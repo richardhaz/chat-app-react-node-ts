@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageWrapper } from '@/shared/components/page-wrapper';
-import { LoginForm } from './components/login-form';
+import { LoginForm } from './components';
 
 const LoginPage = () => {
   return (

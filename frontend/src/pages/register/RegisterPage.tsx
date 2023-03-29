@@ -1,6 +1,6 @@
 import { PageWrapper } from '@/shared/components/page-wrapper';
 import React from 'react';
-import { RegisterForm } from './components/register-form';
+import { RegisterForm } from './components';
 
 const RegisterPage = () => {
   return (

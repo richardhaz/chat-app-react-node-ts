@@ -1,7 +1,8 @@
 import { RegisterUserModel } from '@/shared/models';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { registerUserYupValidation } from '../../utils';
+import { Link } from 'react-router-dom';
+import { registerUserYupValidation } from '../utils';
 import styles from './RegisterForm.module.scss';
 
 const RegisterForm = () => {
@@ -99,6 +100,10 @@ const RegisterForm = () => {
         )}
       </div>
       <button type="submit">Create My Account</button>
+      <div className={styles.existingUser}>
+        <span>Already have an account?</span>
+        <Link to="/login">Login</Link>
+      </div>
     </form>
   );
 };

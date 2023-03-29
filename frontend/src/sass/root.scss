@@ -1,0 +1,59 @@
+/* @import 'mixins.scss'; */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import './_shared.scss';
+
+:root {
+  // colors
+  --primary-color: #0254b9;
+  --primary-color-darker: #04489c;
+
+  // sizing
+  --primary-header-height: 80px;
+  --primary-content-height: calc(100vh - var(--primary-header-height));
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+html {
+  background-color: #1a1a1a;
+  font-family: 'Inter';
+  color: #fff;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(104, 104, 104);
+  border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

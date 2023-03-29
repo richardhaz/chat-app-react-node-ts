@@ -22,6 +22,7 @@
     transition: 150ms background-color ease;
     transition: 500ms border ease;
     border: 2px solid none;
+    margin-bottom: 10px;
     cursor: pointer;
     &:focus {
       background-color: var(--primary-color-darker);
@@ -80,4 +81,20 @@
   width: 100%;
   border-radius: inherit;
   letter-spacing: 0.5px;
+}
+
+.existingUser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  span {
+    font-size: 15px;
+  }
+  a {
+    color: var(--primary-color);
+    &:hover {
+      color: #fff;
+    }
+  }
 }

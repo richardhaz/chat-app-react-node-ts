@@ -1,3 +1,20 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { UserModel } from '@/shared/models';
 
-const initialValues = {};
+interface UserReduxModel {
+  loading: boolean;
+  data: UserModel | null;
+  error: null;
+}
+
+const initialValues: UserReduxModel = {
+  loading: false,
+  data: null,
+  error: null
+};
+
+export const userSlice = createSlice({
+  name: 'user',
+  initialState: initialValues,
+  reducers: {}
+});

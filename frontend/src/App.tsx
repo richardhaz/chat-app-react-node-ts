@@ -2,7 +2,9 @@ import { BrowserRouter, Navigate, Route } from 'react-router-dom';
 import { RoutesWrapper } from '@/routing/components';
 import { LoginPage } from '@/pages/login';
 import { RegisterPage } from '@/pages/register';
-import { envConfig } from './config';
+import { ChatRoutes } from '@/routing/components';
+import { APP_NAME } from '@/config';
+import { AuthGuard } from '@/routing/guards';
 
 const App = () => {
   return (
@@ -10,7 +12,10 @@ const App = () => {
       <RoutesWrapper>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/" element={<div>{`Running on ${envConfig().text} mode`}</div>} />
+        <Route element={<AuthGuard />}>
+          <Route path="/" element={<Navigate to={`/${APP_NAME}`} replace />} />
+          <Route path={`/${APP_NAME}/*`} element={<ChatRoutes />} />
+        </Route>
       </RoutesWrapper>
     </BrowserRouter>
   );
