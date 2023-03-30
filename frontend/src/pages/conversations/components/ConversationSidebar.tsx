@@ -3,6 +3,7 @@ import styles from './ConversationSidebar.module.scss';
 import { FiSettings } from 'react-icons/fi';
 import { BiSearch } from 'react-icons/bi';
 import { RiSearchLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 interface ConversationSidebarProps {
   children: React.ReactNode;
@@ -12,26 +13,32 @@ const ConversationSidebar: React.FC<ConversationSidebarProps> = ({ children }) =
   return (
     <div className={styles.sidebarContainer}>
       <aside>
-        <div className={styles.conversationHeader}>
-          <div className={styles.headerNavTool}>
-            <div>
-              <p>Inbox</p>
-              <span>2 new</span>
+        <div className={styles.conversationHeaderWrapper}>
+          <div className={styles.conversationHeader}>
+            <div className={styles.headerNavTool}>
+              <div>
+                <p>Inbox</p>
+                <span>2 new</span>
+              </div>
+              <button>
+                <FiSettings />
+              </button>
             </div>
-            <button>
-              <FiSettings />
-            </button>
-          </div>
-          <div className={styles.inputWrapper}>
-            <input placeholder="Search" />
-            <span>
-              <BiSearch />
-            </span>
+            <div className={styles.inputWrapper}>
+              <input placeholder="Search" />
+              <span>
+                <BiSearch />
+              </span>
+            </div>
           </div>
         </div>
         <div className={styles.conversationList}>
-          <div className={styles.conversationListItem}>Chat 1</div>
-          {/*           <div className={styles.conversationListItem}>Chat 2</div>
+          <Link to="123" className={styles.conversationListItem}>
+            Chat 1
+          </Link>
+          <Link to="124" className={styles.conversationListItem}>
+            Chat 2
+          </Link>
           <div className={styles.conversationListItem}>Chat 3</div>
           <div className={styles.conversationListItem}>Chat 4</div>
           <div className={styles.conversationListItem}>Chat 5</div>
@@ -49,7 +56,7 @@ const ConversationSidebar: React.FC<ConversationSidebarProps> = ({ children }) =
           <div className={styles.conversationListItem}>Chat 17</div>
           <div className={styles.conversationListItem}>Chat 18</div>
           <div className={styles.conversationListItem}>Chat 19</div>
-          <div className={styles.conversationListItem}>Chat 20</div> */}
+          <div className={styles.conversationListItem}>Chat 20</div>
         </div>
       </aside>
       <div className={styles.channelSection}>{children}</div>

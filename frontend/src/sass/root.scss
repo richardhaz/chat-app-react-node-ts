@@ -10,8 +10,15 @@
   --primary-color-darker: rgb(0, 109, 109);
 
   // sizing
+
+  // primary content
   --primary-header-height: 80px;
   --primary-content-height: calc(100vh - var(--primary-header-height));
+  --primary-content-height-inside: calc(var(--primary-content-height) - 40px);
+
+  // conversations
+  --header-conversations-height: 160px;
+  --header-conversations-height-inside: 120px;
 }
 
 body {

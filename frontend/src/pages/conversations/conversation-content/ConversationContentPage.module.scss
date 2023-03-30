@@ -1,0 +1,80 @@
+.conversationContentHeaderWrapper {
+  height: var(--header-conversations-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .conversationContentHeader {
+    background-color: #131313;
+    height: var(--header-conversations-height-inside);
+    width: 100%;
+    border-radius: 15px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .userInfoContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      .userInfo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .userNames {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+
+          img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+          }
+
+          div {
+            p {
+              font-size: 18px;
+            }
+
+            span {
+              font-size: 13px;
+              text-align: start;
+              width: 100%;
+              color: #cbcbcb;
+            }
+          }
+        }
+      }
+
+      .iconMenuButton {
+        border: none;
+        outline: none;
+        background-color: inherit;
+        color: #fff;
+        transition: 150ms color ease;
+        font-size: 20px;
+        &:hover {
+          cursor: pointer;
+          color: rgb(219, 219, 219);
+        }
+      }
+    }
+  }
+}
+
+.conversationContainer {
+  padding: 30px 25px;
+  display: flex;
+  height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
+  overflow: auto;
+  background-color: #131313;
+  border-radius: 15px;
+  flex-direction: column-reverse;
+}

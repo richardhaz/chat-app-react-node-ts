@@ -1,4 +1,4 @@
-import styles from './ConversationWelcome.module.scss';
+import styles from './ConversationWelcomePage.module.scss';
 
 const ConversationWelcome = () => {
   return (

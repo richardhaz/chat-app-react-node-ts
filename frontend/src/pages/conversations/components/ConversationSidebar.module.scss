@@ -16,101 +16,111 @@ aside {
   width: 460px;
   height: 100%;
 
-  .conversationHeader {
-    height: 170px;
+  .conversationHeaderWrapper {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    font-size: 20px;
-    flex-direction: column;
-    padding: 15px 0;
+    justify-content: center;
+    width: 100%;
+    height: var(--header-conversations-height);
 
-    .headerNavTool {
+    .conversationHeader {
+      height: var(--header-conversations-height-inside);
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       width: 100%;
-      padding: 10px 14px;
+      font-size: 20px;
+      flex-direction: column;
+      /*     gap: 25px; */
+      /*     padding: 15px 0; */
 
-      div {
+      .headerNavTool {
         display: flex;
-        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px 14px;
 
-        p {
-          font-weight: 500;
-          font-size: 24px;
+        div {
+          display: flex;
+          gap: 10px;
+
+          p {
+            font-weight: 500;
+            font-size: 24px;
+          }
+
+          span {
+            background-color: var(--primary-color);
+            border-radius: 15px;
+            height: inherit;
+            width: 65px;
+            font-size: 12.5px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+          }
         }
 
-        span {
-          background-color: var(--primary-color);
-          border-radius: 15px;
-          height: inherit;
-          width: 65px;
-          font-size: 12.5px;
-          font-weight: 400;
+        button {
+          border: none;
+          outline: none;
+          background-color: inherit;
+          color: #fff;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #fff;
+          font-size: 20px;
+          height: 100%;
+          transition: 150ms color ease;
+          &:hover {
+            cursor: pointer;
+            color: rgb(219, 219, 219);
+          }
         }
       }
 
-      button {
-        border: none;
-        outline: none;
-        background-color: inherit;
-        color: #fff;
+      .inputWrapper {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        height: 100%;
-        transition: 150ms color ease;
-        &:hover {
-          cursor: pointer;
-          color: rgb(219, 219, 219);
-        }
-      }
-    }
-
-    .inputWrapper {
-      display: flex;
-      width: 100%;
-      position: relative;
-
-      input {
         width: 100%;
-        outline: none;
-        border: none;
-        background-color: #131313;
-        color: #cbcbcb;
-        font-size: 15px;
-        padding: 18px 40px;
-        border-radius: 30px;
-      }
-      input::-webkit-input-placeholder {
-        color: #cbcbcb;
-      }
-      input:-moz-placeholder {
-        color: #cbcbcb;
-      }
+        position: relative;
 
-      span {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 15px;
-        display: flex;
-        align-items: center;
-        color: #cbcbcb;
+        input {
+          width: 100%;
+          outline: none;
+          border: none;
+          background-color: #131313;
+          color: #cbcbcb;
+          font-size: 15px;
+          padding: 20px 50px;
+          border-radius: 30px;
+        }
+        input::-webkit-input-placeholder {
+          color: #cbcbcb;
+        }
+        input:-moz-placeholder {
+          color: #cbcbcb;
+        }
+
+        span {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 23px;
+          display: flex;
+          align-items: center;
+          color: #cbcbcb;
+        }
       }
     }
   }
 
   .conversationList {
     display: block;
-    height: calc(var(--primary-content-height) - 170px);
-    overflow-y: auto;
+    height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
+    overflow: auto;
     background-color: #131313;
     border-radius: 15px;
 
