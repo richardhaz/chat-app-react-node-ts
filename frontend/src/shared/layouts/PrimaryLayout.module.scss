@@ -28,16 +28,17 @@
       .messagesButton {
         background-color: var(--primary-color);
         color: #fff;
-        padding: 10px 14px;
+        padding: 10px 20px;
         font-size: 15px;
         font-weight: 500;
         border: none;
         outline: none;
-        border-radius: 5px;
+        border-radius: 20px;
         transition: 150ms background-color ease;
         transition: 500ms border ease;
         display: flex;
         justify-content: center;
+        letter-spacing: 1px;
         align-items: center;
         gap: 5px;
         cursor: pointer;
@@ -46,15 +47,11 @@
         }
 
         span {
-          font-size: 16px;
           display: flex;
+          font-size: 17px;
           align-items: center;
           justify-content: center;
         }
-
-        /*         @include respond-above(lg) {
-          background-color: red !important;
-        } */
       }
       .notificationsButton {
         background-color: transparent;
@@ -62,7 +59,7 @@
         justify-content: center;
         align-items: center;
         color: #fff;
-        font-size: 30px;
+        font-size: 25px;
         transition: 150ms color ease;
         cursor: pointer;
         border: none;

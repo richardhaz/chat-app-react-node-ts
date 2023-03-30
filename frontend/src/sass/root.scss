@@ -4,8 +4,10 @@
 
 :root {
   // colors
-  --primary-color: #0254b9;
-  --primary-color-darker: #04489c;
+  --primary-color: teal;
+  --primary-color-light: rgb(2, 184, 184);
+  --primary-color-extra-light: rgb(188, 255, 255);
+  --primary-color-darker: rgb(0, 109, 109);
 
   // sizing
   --primary-header-height: 80px;
