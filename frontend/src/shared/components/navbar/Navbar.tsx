@@ -1,7 +1,7 @@
 import styles from './Navbar.module.scss';
 import { AiOutlineBell, AiFillCaretDown } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
-import AvatarPlaceholder from '@/assets/images/avatars/avatar-placeholder.jpg';
+import Avatar from '@/assets/images/avatars/avatar.png';
 
 const Navbar = () => {
   return (
@@ -18,7 +18,7 @@ const Navbar = () => {
           <AiOutlineBell />
         </button>
         <button className={styles.menuUser}>
-          <img src={AvatarPlaceholder} />
+          <img src={Avatar} />
           <p>ampeter19#9834</p>
           <span>
             <AiFillCaretDown />

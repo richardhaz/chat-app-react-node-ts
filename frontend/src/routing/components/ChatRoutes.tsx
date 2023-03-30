@@ -6,14 +6,16 @@ import { RoutesWrapper } from './RoutesWrapper';
 
 export const ChatRoutes = () => {
   return (
-    <PrimaryLayout>
-      <RoutesWrapper>
-        <Route path="/" element={<Navigate to="conversations" />} />
-        {/* Chat Routes */}
-        <Route path="conversations" element={<ConversationPage />}>
-          <Route path=":id" element={<ConversationContentPage />} />
-        </Route>
-      </RoutesWrapper>
-    </PrimaryLayout>
+    <>
+      <PrimaryLayout>
+        <RoutesWrapper>
+          <Route path="/" element={<Navigate to="conversations" />} />
+          {/* Chat Routes */}
+          <Route path="conversations" element={<ConversationPage />}>
+            <Route path=":id" element={<ConversationContentPage />} />
+          </Route>
+        </RoutesWrapper>
+      </PrimaryLayout>
+    </>
   );
 };

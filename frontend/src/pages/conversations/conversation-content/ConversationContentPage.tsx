@@ -1,6 +1,6 @@
 import styles from './ConversationContentPage.module.scss';
 import { IoEllipsisVerticalSharp } from 'react-icons/io5';
-import AvatarPlaceholder from '@/assets/images/avatars/avatar-placeholder.jpg';
+import Avatar from '@/assets/images/avatars/avatar.png';
 
 const ConversationContentPage = () => {
   return (
@@ -10,7 +10,7 @@ const ConversationContentPage = () => {
           <div className={styles.userInfoContainer}>
             <div className={styles.userInfo}>
               <div className={styles.userNames}>
-                <img src={AvatarPlaceholder} alt="user-avatar" />
+                <img src={Avatar} alt="user-avatar" />
                 <div>
                   <p>Leslies Alexander</p>
                   <span>3 minutes ago</span>
@@ -24,150 +24,11 @@ const ConversationContentPage = () => {
         </div>
       </div>
       <div className={styles.conversationContainer}>
+        <p>Personal chat goes here</p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
-        </p>{' '}
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium
-          exercitationem, in ratione iste nemo qui, itaque illum hic, facilis rerum consequuntur
-          molestias magnam quas totam officiis mollitia error unde.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id
+          voluptatibus placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel
+          fugiat totam neque nostrum.
         </p>
       </div>
     </div>

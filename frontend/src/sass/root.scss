@@ -66,3 +66,8 @@ html,
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
+}
