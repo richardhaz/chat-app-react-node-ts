@@ -47,7 +47,19 @@ const ConversationContentPage = () => {
             </button>
           </div>
         </div>
-        <div className={styles.conversationsContainer}>{renderLorems()}</div>
+        <div className={styles.conversationsContainer}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id
+            voluptatibus placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel
+            fugiat totam neque nostrum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id
+            voluptatibus placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel
+            fugiat totam neque nostrum.
+          </p>
+          {/*    {renderLorems()} */}
+        </div>
       </div>
     </div>
   );
