@@ -9,7 +9,7 @@
     height: var(--header-conversations-height-inside);
     width: 100%;
     border-radius: 15px;
-    padding: 0 40px;
+    padding: 0 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,12 +69,111 @@
   }
 }
 
-.conversationContainer {
-  padding: 30px 25px;
+.messageInputSection {
+  padding: 25px 25px;
   display: flex;
   height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
-  overflow: auto;
   background-color: #131313;
   border-radius: 15px;
   flex-direction: column-reverse;
+
+  .conversationsContainer {
+    overflow: auto;
+    flex-direction: column-reverse;
+    display: flex;
+  }
+
+  .messageInputContainer {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+
+    .messageEmojisContainer {
+      font-size: 25px;
+      color: #afafaf;
+      background-color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 150ms color ease;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+        color: rgb(211, 211, 211);
+      }
+    }
+
+    input {
+      height: 100%;
+      padding: 10px 0px;
+      background-color: inherit;
+      border: 1px solid #999999;
+      width: 100%;
+      color: #ebebeb;
+      font-size: 15px;
+      padding: 0 15px;
+      border-radius: 10px;
+      outline: none;
+      letter-spacing: 0.5px;
+
+      &:focus {
+        border: 1px solid #b8b8b8;
+      }
+    }
+
+    .messageOptionsContainer {
+      padding: 10px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+      .voiceMessageButton {
+        font-size: 25px;
+        color: #afafaf;
+        background-color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 150ms color ease;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+          color: rgb(211, 211, 211);
+        }
+      }
+      .mediaMessageButton {
+        font-size: 25px;
+        color: #afafaf;
+        background-color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 150ms color ease;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+          color: rgb(211, 211, 211);
+        }
+      }
+      .stickersMessageButton {
+        font-size: 25px;
+        color: #afafaf;
+        background-color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 150ms color ease;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+          color: rgb(211, 211, 211);
+        }
+      }
+    }
+  }
 }

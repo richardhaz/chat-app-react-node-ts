@@ -10,20 +10,38 @@ header {
     color: #fff;
   }
 
+  .optionsMenu {
+    background-color: inherit;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 28px;
+    color: #fff;
+    transition: 150ms background-color ease;
+    border: none;
+    outline: none;
+    pointer-events: inherit;
+
+    &:hover {
+      cursor: pointer;
+      color: rgb(219, 219, 219);
+    }
+
+    @include respond-below(md) {
+      display: flex;
+    }
+
+    @include respond-above(md) {
+      display: none;
+    }
+  }
+
   nav {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    display: flex;
 
-    @include respond-below(md) {
-      display: none;
-    }
-
-    @include respond-above(md) {
-      display: flex;
-    }
-
-    .messagesButton {
+    /*     .messagesButton {
       background-color: var(--primary-color);
       color: #fff;
       padding: 10px 20px;
@@ -50,8 +68,9 @@ header {
         align-items: center;
         justify-content: center;
       }
-    }
-    .notificationsButton {
+    } */
+
+    .navIconButton {
       background-color: transparent;
       display: flex;
       justify-content: center;
@@ -75,7 +94,6 @@ header {
       cursor: pointer;
       font-size: 20px;
       transition: 150ms color ease;
-      display: flex;
       align-items: center;
       justify-content: center;
       &:hover {
@@ -96,6 +114,13 @@ header {
 
       span {
         font-size: 16px;
+      }
+      @include respond-below(md) {
+        display: none;
+      }
+
+      @include respond-above(md) {
+        display: flex;
       }
     }
   }

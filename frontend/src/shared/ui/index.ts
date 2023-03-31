@@ -1,1 +1,2 @@
-export { default as Backdrop } from './Backdrop';
+export { default as FullScreenLoader } from './FullScreenLoader';
+export { default as OverlayLoader } from './OverlayLoader';

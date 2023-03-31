@@ -1,0 +1,27 @@
+.messengerButton {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  background-color: var(--primary-color);
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 28px;
+  color: #eeeeee;
+  transition: 150ms background-color ease;
+  border: none;
+  outline: none;
+  pointer-events: inherit;
+
+  &:hover {
+    background-color: var(--primary-color-darker);
+    cursor: pointer;
+  }
+
+  @include respond-below(md) {
+    display: flex;
+  }
+
+  @include respond-above(md) {
+    display: none;
+  }
+}

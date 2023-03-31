@@ -1,0 +1,15 @@
+.conversationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  @include respond-above(md) {
+    gap: 20px;
+  }
+  .channelSection {
+    width: 100%;
+    height: 100%;
+  }
+}

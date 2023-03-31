@@ -1,6 +1,12 @@
 import styles from './ConversationContentPage.module.scss';
 import { IoEllipsisVerticalSharp } from 'react-icons/io5';
 import Avatar from '@/assets/images/avatars/avatar.png';
+import { BsEmojiSmile, BsSticky, BsStickyFill } from 'react-icons/bs';
+import { BiImageAdd, BiImage } from 'react-icons/bi';
+import { MdKeyboardVoice } from 'react-icons/md';
+import { RiStickyNoteLine } from 'react-icons/ri';
+import { ImImage } from 'react-icons/im';
+import { MdOutlineImage } from 'react-icons/md';
 
 const ConversationContentPage = () => {
   return (
@@ -23,16 +29,170 @@ const ConversationContentPage = () => {
           </div>
         </div>
       </div>
-      <div className={styles.conversationContainer}>
-        <p>Personal chat goes here</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id
-          voluptatibus placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel
-          fugiat totam neque nostrum.
-        </p>
+      <div className={styles.messageInputSection}>
+        <div className={styles.messageInputContainer}>
+          <button className={styles.messageEmojisContainer}>
+            <BsEmojiSmile />
+          </button>
+          <input placeholder="Send a message ..." />
+          <div className={styles.messageOptionsContainer}>
+            <button className={styles.mediaMessageButton}>
+              <MdOutlineImage />
+            </button>
+            {/*  <button className={styles.stickersMessageButton}>
+              <RiStickyNoteLine />
+            </button> */}
+            <button className={styles.voiceMessageButton}>
+              <MdKeyboardVoice />
+            </button>
+          </div>
+        </div>
+        <div className={styles.conversationsContainer}>{renderLorems()}</div>
       </div>
     </div>
   );
 };
 
 export default ConversationContentPage;
+
+const renderLorems = () => {
+  return (
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>{' '}
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id voluptatibus
+        placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel fugiat totam
+        neque nostrum.
+      </p>
+    </div>
+  );
+};
