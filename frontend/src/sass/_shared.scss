@@ -6,18 +6,6 @@
   margin-left: auto;
 }
 
-@include respond-above(lg) {
-  .container {
-    width: 1024px;
-  }
-}
-
-@include respond-above(xl) {
-  .container {
-    width: 1200px;
-  }
-}
-
 @include respond-above(2xl) {
   .container {
     width: 1400px;
