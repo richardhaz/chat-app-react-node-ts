@@ -2,61 +2,9 @@ aside {
   height: 100%;
   width: 460px;
 
-  @include respond-below(md) {
+  @include respond-below(lg) {
     display: none;
-    /*     width: 0px; */
-    /*     animation-duration: 0.5s;
-    animation-name: slidein; */
-    /*    position: fixed; */
   }
-
-  /*   @keyframes slidein {
-    from {
-      width: 460px;
-    }
-
-    to {
-      width: 0%;
-    }
-  } */
-
-  /*   @include respond-below(md) {
-    width: 0px;
-    transform: translateX(-460px);
-    -webkit-transition: width 0.5s linear;
-    -moz-transition: width 0.5s linear;
-    -ms-transition: width 0.5s linear;
-    -o-transition: width 0.5s linear;
-    transition: width 0.5s linear;
-  }
-
-  @include respond-above(md) {
-    width: 460px;
-    transform: translateX(0);
-    -webkit-transition: width 0.5s linear;
-    -moz-transition: width 0.5s linear;
-    -ms-transition: width 0.5s linear;
-    -o-transition: width 0.5s linear;
-    transition: width 0.5s linear;
-  } */
-
-  /*  @include respond-above(md) {
-    width: 0px;
-    -webkit-transition: width 0.5s linear;
-    -moz-transition: width 0.5s linear;
-    -ms-transition: width 0.5s linear;
-    -o-transition: width 0.5s linear;
-    transition: width 0.5s linear;
-  }
-
-  @include respond-above(lg) {
-    width: 460px;
-    -webkit-transition: width 0.5s linear;
-    -moz-transition: width 0.5s linear;
-    -ms-transition: width 0.5s linear;
-    -o-transition: width 0.5s linear;
-    transition: width 0.5s linear;
-  } */
 
   .conversationHeaderWrapper {
     display: flex;
@@ -120,7 +68,7 @@ aside {
           border: none;
           background-color: #131313;
           color: #cbcbcb;
-          font-size: 15px;
+          font-size: 16px;
           padding: 20px 50px;
           border-radius: 30px;
         }

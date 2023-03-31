@@ -30,12 +30,20 @@
     }
     p {
       color: #afafaf;
+      text-align: start;
       @include respond-below(md) {
         font-size: 14px;
       }
       @include respond-above(md) {
         font-size: 16px;
       }
+    }
+
+    span {
+      text-align: start;
+      width: 100%;
+      font-size: 14px;
+      color: #afafaf;
     }
   }
 

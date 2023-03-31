@@ -6,12 +6,6 @@
   margin-left: auto;
 }
 
-@include respond-above(md) {
-  .container {
-    width: 768px;
-  }
-}
-
 @include respond-above(lg) {
   .container {
     width: 1024px;

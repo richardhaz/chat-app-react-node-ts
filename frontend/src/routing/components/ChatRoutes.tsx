@@ -19,7 +19,7 @@ export const ChatRoutes = () => {
           <Route path=":id" element={<ConversationContentPage />} />
         </Route>
       </RoutesWrapper>
-      {window.width && window.width < sizeConfig().breakpoints.md ? <NavigationDrawer /> : null}
+      {window.width && window.width <= sizeConfig().breakpoints.lg ? <NavigationDrawer /> : null}
     </>
   );
 };

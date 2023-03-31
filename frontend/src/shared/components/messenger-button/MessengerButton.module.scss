@@ -17,11 +17,11 @@
     cursor: pointer;
   }
 
-  @include respond-below(md) {
+  @include respond-below(lg) {
     display: flex;
   }
 
-  @include respond-above(md) {
+  @include respond-above(lg) {
     display: none;
   }
 }

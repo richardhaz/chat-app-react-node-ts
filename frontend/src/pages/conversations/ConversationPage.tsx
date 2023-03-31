@@ -15,7 +15,7 @@ const ConversatiosPage = () => {
   return (
     <>
       <div className={styles.conversationContainer}>
-        {window.width > sizeConfig().breakpoints.md ? <ConversationSidebar /> : null}
+        {window.width >= sizeConfig().breakpoints.lg ? <ConversationSidebar /> : null}
         <div className={styles.channelSection}>
           {!id ? <ConversationWelcomePage /> : <Outlet />}
         </div>
