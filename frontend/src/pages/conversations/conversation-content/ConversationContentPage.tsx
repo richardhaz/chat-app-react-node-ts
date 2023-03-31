@@ -7,6 +7,9 @@ import { MdKeyboardVoice } from 'react-icons/md';
 import { RiStickyNoteLine } from 'react-icons/ri';
 import { ImImage } from 'react-icons/im';
 import { MdOutlineImage } from 'react-icons/md';
+import { IoMdSend } from 'react-icons/io';
+import { IoSend } from 'react-icons/io5';
+import { BsFillEmojiLaughingFill } from 'react-icons/bs';
 
 const ConversationContentPage = () => {
   return (
@@ -32,23 +35,23 @@ const ConversationContentPage = () => {
       <div className={styles.messageInputSection}>
         <div className={styles.messageInputContainer}>
           <button className={styles.messageEmojisContainer}>
-            <BsEmojiSmile />
+            <BsFillEmojiLaughingFill />
           </button>
           <input placeholder="Send a message ..." />
           <div className={styles.messageOptionsContainer}>
-            <button className={styles.mediaMessageButton}>
+            {/* <button className={styles.mediaMessageButton}>
               <MdOutlineImage />
-            </button>
+            </button> */}
             {/*  <button className={styles.stickersMessageButton}>
               <RiStickyNoteLine />
             </button> */}
-            <button className={styles.voiceMessageButton}>
-              <MdKeyboardVoice />
+            <button className={styles.submitButton}>
+              <IoSend />
             </button>
           </div>
         </div>
         <div className={styles.conversationsContainer}>
-          <p>
+          {/*           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id
             voluptatibus placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel
             fugiat totam neque nostrum.
@@ -57,8 +60,8 @@ const ConversationContentPage = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum ea iste id
             voluptatibus placeat eaque minima commodi qui, ab, nulla dolor dolorum, saepe alias? Vel
             fugiat totam neque nostrum.
-          </p>
-          {/*    {renderLorems()} */}
+          </p> */}
+          {renderLorems()}
         </div>
       </div>
     </div>

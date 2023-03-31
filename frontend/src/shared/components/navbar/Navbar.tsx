@@ -4,12 +4,13 @@ import { FiSettings } from 'react-icons/fi';
 import { RiNotification3Line } from 'react-icons/ri';
 import Avatar from '@/assets/images/avatars/avatar.png';
 import { useAppDispatch } from '@/redux/useTypedRedux';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
   return (
     <header>
-      <h1>Chat</h1>
+      <Link to="/">Chatty App</Link>
       <nav>
         <button className={styles.navIconButton}>
           <RiNotification3Line />

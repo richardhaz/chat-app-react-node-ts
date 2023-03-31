@@ -6,8 +6,16 @@ header {
   position: static;
   top: 0;
 
-  h1 {
+  a {
     color: #fff;
+
+    @include respond-below(lg) {
+      font-size: 25px;
+    }
+
+    @include respond-above(lg) {
+      font-size: 30px;
+    }
   }
 
   .optionsMenu {

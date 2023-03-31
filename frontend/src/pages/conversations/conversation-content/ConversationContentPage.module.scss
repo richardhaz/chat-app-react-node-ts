@@ -9,7 +9,7 @@
     height: var(--header-conversations-height-inside);
     width: 100%;
     border-radius: 15px;
-    padding: 0 25px;
+    padding: 0 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,7 +70,7 @@
 }
 
 .messageInputSection {
-  padding: 25px 25px;
+  padding: 25px 15px;
   display: flex;
   height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
   background-color: #131313;
@@ -87,9 +87,10 @@
     margin-top: 20px;
     display: flex;
     gap: 10px;
+    position: relative;
 
     .messageEmojisContainer {
-      font-size: 25px;
+      font-size: 23px;
       color: #afafaf;
       background-color: inherit;
       display: flex;
@@ -97,6 +98,11 @@
       justify-content: center;
       transition: 150ms color ease;
       border: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin-right: 70px;
 
       &:hover {
         cursor: pointer;
@@ -106,13 +112,16 @@
 
     input {
       height: 100%;
-      padding: 10px 0px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 15px;
+      padding-right: 50px;
+
       background-color: inherit;
       border: 1px solid #999999;
       width: 100%;
       color: #ebebeb;
       font-size: 15px;
-      padding: 0 15px;
       border-radius: 10px;
       outline: none;
       letter-spacing: 0.5px;
@@ -123,21 +132,26 @@
     }
 
     .messageOptionsContainer {
-      padding: 10px 0px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 5px;
 
-      .voiceMessageButton {
-        font-size: 25px;
-        color: #afafaf;
+      .submitButton {
+        font-size: 20px;
+        color: #fff;
         background-color: inherit;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: 150ms color ease;
         border: none;
+        background-color: var(--primary-color);
+        padding: 12px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
           cursor: pointer;
@@ -145,7 +159,7 @@
         }
       }
       .mediaMessageButton {
-        font-size: 25px;
+        font-size: 24px;
         color: #afafaf;
         background-color: inherit;
         display: flex;

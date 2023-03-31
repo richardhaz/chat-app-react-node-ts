@@ -11,18 +11,16 @@ import { PrimaryLayout } from './shared/layouts';
 const App = () => {
   return (
     <>
-      <PrimaryLayout>
-        <BrowserRouter>
-          <RoutesWrapper>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route element={<AuthGuard />}>
-              <Route path="/" element={<Navigate to={`/${APP_NAME}`} replace />} />
-              <Route path={`/${APP_NAME}/*`} element={<ChatRoutes />} />
-            </Route>
-          </RoutesWrapper>
-        </BrowserRouter>
-      </PrimaryLayout>
+      <BrowserRouter>
+        <RoutesWrapper>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route element={<AuthGuard />}>
+            <Route path="/" element={<Navigate to={`/${APP_NAME}`} replace />} />
+            <Route path={`/${APP_NAME}/*`} element={<ChatRoutes />} />
+          </Route>
+        </RoutesWrapper>
+      </BrowserRouter>
       <MessengerButton />
     </>
   );

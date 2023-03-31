@@ -12,13 +12,15 @@ export const ChatRoutes = () => {
   const window = useWindowSize();
   return (
     <>
-      <RoutesWrapper>
-        <Route path="/" element={<Navigate to="conversations" />} />
-        {/* Chat Routes */}
-        <Route path="conversations" element={<ConversationPage />}>
-          <Route path=":id" element={<ConversationContentPage />} />
-        </Route>
-      </RoutesWrapper>
+      <PrimaryLayout>
+        <RoutesWrapper>
+          <Route path="/" element={<Navigate to="conversations" />} />
+          {/* Chat Routes */}
+          <Route path="conversations" element={<ConversationPage />}>
+            <Route path=":id" element={<ConversationContentPage />} />
+          </Route>
+        </RoutesWrapper>
+      </PrimaryLayout>
       {window.width && window.width <= sizeConfig().breakpoints.lg ? <NavigationDrawer /> : null}
     </>
   );
