@@ -6,7 +6,6 @@ import { ChatRoutes } from '@/routing/components';
 import { APP_NAME } from '@/config';
 import { AuthGuard } from '@/routing/guards';
 import { MessengerButton } from './shared/components/messenger-button';
-import { PrimaryLayout } from './shared/layouts';
 
 const App = () => {
   return (

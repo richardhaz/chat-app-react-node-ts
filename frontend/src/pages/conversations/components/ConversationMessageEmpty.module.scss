@@ -1,0 +1,52 @@
+.emptyConversationContainer {
+  padding: 0 25px;
+  overflow: auto;
+  height: 100%;
+  background-color: #131313;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    letter-spacing: 0.5px;
+    max-width: 600px;
+
+    h2 {
+      text-align: center;
+      @include respond-below(md) {
+        font-size: 25px;
+      }
+      @include respond-above(md) {
+        font-size: 27px;
+      }
+    }
+    p {
+      color: #afafaf;
+      text-align: start;
+      @include respond-below(md) {
+        font-size: 14px;
+      }
+      @include respond-above(md) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  img {
+    object-fit: cover;
+    object-position: bottom;
+    max-width: 400px;
+
+    @include respond-below(lg) {
+      width: 100%;
+    }
+  }
+}

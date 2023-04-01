@@ -3,14 +3,14 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import { FiSettings } from 'react-icons/fi';
 import { RiNotification3Line } from 'react-icons/ri';
 import Avatar from '@/assets/images/avatars/avatar.png';
-import { useAppDispatch } from '@/redux/useTypedRedux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { APP_NAME } from '@/config';
 
 const Navbar = () => {
-  const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
   return (
     <header>
-      <Link to="/">Chatty App</Link>
+      <Link to={`${pathname === `/${APP_NAME}/conversations` ? '#' : '/'}`}>Chatty App</Link>
       <nav>
         <button className={styles.navIconButton}>
           <RiNotification3Line />

@@ -19,7 +19,21 @@
   // conversations
   --header-conversations-height: 160px;
   --header-conversations-height-inside: 120px;
-}
+
+  // text properties
+  --text-size-tiny:11px
+  --text-size-extra-small:12px
+  --text-size-small:14px
+  --text-size-medium:16px
+  --text-size-large:18px
+  --text-size-extra-large:20px
+
+    // text colors
+/*     --text-color-dim:#cbcbcb */
+    --text-color-dim:#b3b3b3
+    --text-color-semi-light:#f7f7f7
+    --text-color-light:#fff
+  }
 
 body {
   -webkit-font-smoothing: antialiased;

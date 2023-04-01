@@ -1,7 +1,8 @@
 export interface UserModel {
-  firstNae: string;
+  _id: string;
+  firstName: string;
   lastName: string;
-  phone: string;
+  phone?: string;
+  avatar: string;
   email: string;
-  password: string;
 }

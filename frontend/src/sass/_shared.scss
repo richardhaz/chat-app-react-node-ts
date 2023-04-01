@@ -29,3 +29,21 @@
   position: fixed;
   background-color: rgba(0, 0, 0, 0.6);
 }
+
+.text-divider {
+  display: flex;
+  align-items: center; // align text and lines vertically
+  gap: 5px;
+  font-size: 13px;
+  color: #aaaaaa;
+  /*   margin-right: 20px;
+  margin-left: 20px; */
+}
+
+.text-divider::before,
+.text-divider::after {
+  content: '';
+  height: 1px;
+  background-color: #585858;
+  flex-grow: 1; // both lines will expand to occupy the available space
+}
