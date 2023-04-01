@@ -1,14 +1,15 @@
 import Drawer from '@mui/material/Drawer';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
-import { toggleNavigationDrawer } from '@/redux/app/app.slice';
+import { setChatListNavigationDrawer } from '@/redux/app/app.slice';
 import mockConversations from '@/__mocks__/Conversations';
 import { Link } from 'react-router-dom';
 import Avatar from '@/assets/images/avatars/avatar.png';
-import styles from './NavigationDrawer.module.scss';
+import styles from './ChatListNavigationDrawer.module.scss';
 import { BiSearch } from 'react-icons/bi';
+import { APP_NAME } from '@/config';
 
 const NavigationDrawer = () => {
-  const { navigationDrawerState } = useAppSelector((state) => state.app);
+  const { chatListNavigationDrawer } = useAppSelector((state) => state.app);
 
   const dispatch = useAppDispatch();
 
@@ -38,9 +39,9 @@ const NavigationDrawer = () => {
           {mockConversations.map((item) => (
             <Link
               key={item._id}
-              to={`/chat/conversations/${item._id}`}
+              to={`/${APP_NAME}/conversations/${item._id}`}
               className={styles.conversationListItem}
-              onClick={() => dispatch(toggleNavigationDrawer())}
+              onClick={() => dispatch(setChatListNavigationDrawer(!chatListNavigationDrawer))}
             >
               <div className={styles.userProfile}>
                 <img src="https://i.pravatar.cc/300" alt="user profile picture" />
@@ -65,8 +66,8 @@ const NavigationDrawer = () => {
     <div>
       <Drawer
         PaperProps={{ sx: { backgroundColor: '#1a1a1a' } }}
-        open={navigationDrawerState}
-        onClose={() => dispatch(toggleNavigationDrawer())}
+        open={chatListNavigationDrawer}
+        onClose={() => dispatch(setChatListNavigationDrawer(false))}
       >
         {renderMessagesList()}
       </Drawer>

@@ -1,7 +1,8 @@
 import { sizeConfig } from '@/config';
 import { ConversationPage } from '@/pages/conversations';
 import { ConversationContentPage } from '@/pages/conversations/conversation-content';
-import { NavigationDrawer } from '@/shared/components/navigation-drawer';
+import { ChatListNavigationDrawer } from '@/shared/components/chat-list-navigation-drawer';
+import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 import { useWindowSize } from '@/shared/hooks';
 import { PrimaryLayout } from '@/shared/layouts';
 /* import { OverlayLoader } from '@/shared/ui'; */
@@ -21,7 +22,12 @@ export const ChatRoutes = () => {
           </Route>
         </RoutesWrapper>
       </PrimaryLayout>
-      {window.width && window.width <= sizeConfig().breakpoints.lg ? <NavigationDrawer /> : null}
+      {window.width && window.width <= sizeConfig().breakpoints.xl ? (
+        <ChatListNavigationDrawer />
+      ) : null}
+      {window.width && window.width <= sizeConfig().breakpoints.lg ? (
+        <UsersListNavigationDrawer />
+      ) : null}
     </>
   );
 };

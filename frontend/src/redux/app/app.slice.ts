@@ -1,28 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AppReduxModel {
-  navigationDrawerState: boolean;
+  chatListNavigationDrawer: boolean;
+  usersListNavigationDrawer: boolean;
 }
 
 const initialValues: AppReduxModel = {
-  navigationDrawerState: false
+  chatListNavigationDrawer: false,
+  usersListNavigationDrawer: false
 };
 
 export const appSlice = createSlice({
   name: 'navigationDrawer',
   initialState: initialValues,
   reducers: {
-    toggleNavigationDrawer: (state) => {
-      state.navigationDrawerState = !state.navigationDrawerState;
+    setUsersListNavigationDrawer: (state, action: PayloadAction<boolean>) => {
+      console.log(action.payload);
+      state.usersListNavigationDrawer = action.payload;
     },
-    showNavigationDrawer: (state) => {
-      state.navigationDrawerState = true;
-    },
-    hideNavigationDrawer: (state) => {
-      state.navigationDrawerState = false;
+    setChatListNavigationDrawer: (state, action: PayloadAction<boolean>) => {
+      console.log(action.payload);
+      state.chatListNavigationDrawer = action.payload;
     }
   }
 });
 
-export const { toggleNavigationDrawer, showNavigationDrawer, hideNavigationDrawer } =
-  appSlice.actions;
+export const { setChatListNavigationDrawer, setUsersListNavigationDrawer } = appSlice.actions;

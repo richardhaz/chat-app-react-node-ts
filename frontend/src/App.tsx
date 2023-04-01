@@ -6,6 +6,7 @@ import { ChatRoutes } from '@/routing/components';
 import { APP_NAME } from '@/config';
 import { AuthGuard } from '@/routing/guards';
 import { MessengerButton } from './shared/components/messenger-button';
+import { UsersListButton } from './shared/components/users-list-button';
 
 const App = () => {
   // TODO: create global chat users list drawer
@@ -23,6 +24,7 @@ const App = () => {
         </RoutesWrapper>
       </BrowserRouter>
       <MessengerButton />
+      <UsersListButton />
     </>
   );
 };

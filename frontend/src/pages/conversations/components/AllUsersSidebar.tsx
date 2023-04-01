@@ -1,17 +1,17 @@
 import React from 'react';
-import styles from './ConversationSidebar.module.scss';
+import styles from './AllUsersSidebar.module.scss';
 import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import mockConversations from '@/__mocks__/Conversations';
+import mockuserss from '@/__mocks__/Conversations';
 
-const ConversationSidebar: React.FC = () => {
+const AllUsersSidebar: React.FC = () => {
   return (
-    <aside>
-      <div className={styles.conversationHeaderWrapper}>
-        <div className={styles.conversationHeader}>
+    <div className={styles.usersListContainer}>
+      <div className={styles.usersHeaderWrapper}>
+        <div className={styles.usersHeader}>
           <div className={styles.headerNavTool}>
-            <p>Inbox</p>
-            <span>{`2 new message(s)`}</span>
+            <p>Users</p>
+            <span>{`104 users connected`}</span>
           </div>
           <div className={styles.inputWrapper}>
             <input placeholder="Search" />
@@ -22,9 +22,9 @@ const ConversationSidebar: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.conversationList}>
-        {mockConversations.map((item) => (
-          <Link key={item._id} to={item._id} className={styles.conversationListItem}>
+      <div className={styles.usersList}>
+        {mockuserss.map((item) => (
+          <Link key={item._id} to={item._id} className={styles.usersListItem}>
             <div className={styles.userProfile}>
               <img src={item.avatar} alt="user profile picture" />
               <div>
@@ -33,15 +33,13 @@ const ConversationSidebar: React.FC = () => {
                 </p>
                 <span>online</span>
               </div>
-              <span className={styles.lastConnection}>1min</span>
             </div>
-            <p className={styles.message}>{item.lastMessage}</p>
             <div className={styles.dotNotification}></div>
           </Link>
         ))}
       </div>
-    </aside>
+    </div>
   );
 };
 
-export default ConversationSidebar;
+export default AllUsersSidebar;
