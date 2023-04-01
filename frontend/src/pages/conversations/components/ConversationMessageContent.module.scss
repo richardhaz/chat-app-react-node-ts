@@ -4,7 +4,6 @@
 .messageContentContainer {
   margin-top: 10px;
   margin-bottom: 10px;
-  /*   background-color: rgb(133, 133, 133); */
 
   .messageContent {
     display: flex;
@@ -28,22 +27,22 @@
         gap: 5px;
 
         .messageDate {
-          font-size: 12px;
-          color: #b3b3b3;
+          font-size: var(--text-size-extra-small);
+          color: var(--text-color-dim);
         }
 
         .userName {
-          color: #f7f7f7;
+          color: var(--text-color-semi-light);
           font-weight: 500;
-          font-size: 15px;
+          font-size: var(--text-size-medium);
         }
       }
     }
     .message {
       margin-top: 5px;
       p {
-        font-size: 15px;
-        color: #eeeeee;
+        font-size: var(--text-size-medium);
+        color: var(--text-color-dim-light);
       }
     }
   }

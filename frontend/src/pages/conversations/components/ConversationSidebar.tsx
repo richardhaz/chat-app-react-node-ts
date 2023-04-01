@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './ConversationSidebar.module.scss';
-import { FiSettings } from 'react-icons/fi';
 import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import Avatar from '@/assets/images/avatars/avatar.png';
@@ -23,6 +22,7 @@ const ConversationSidebar: React.FC = () => {
           </div>
         </div>
       </div>
+
       <div className={styles.conversationList}>
         {mockConversations.map((item) => (
           <Link key={item._id} to={item._id} className={styles.conversationListItem}>
@@ -36,7 +36,7 @@ const ConversationSidebar: React.FC = () => {
               </div>
               <span className={styles.lastConnection}>1min</span>
             </div>
-            <div className={styles.message}>{item.lastMessage}</div>
+            <p className={styles.message}>{item.lastMessage}</p>
             <div className={styles.dotNotification}></div>
           </Link>
         ))}

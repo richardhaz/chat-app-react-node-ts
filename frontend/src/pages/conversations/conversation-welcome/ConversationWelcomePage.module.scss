@@ -29,7 +29,7 @@
       }
     }
     p {
-      color: #afafaf;
+      color: var(--text-color-dim);
       text-align: start;
       @include respond-below(md) {
         font-size: 14px;
@@ -43,7 +43,7 @@
       text-align: start;
       width: 100%;
       font-size: 14px;
-      color: #afafaf;
+      color: var(--text-color-dim);
     }
   }
 

@@ -2,7 +2,7 @@
   padding: 25px 15px;
   display: flex;
   height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
-  background-color: #131313;
+  background-color: var(--bg-color-dark);
   border-radius: 15px;
   flex-direction: column-reverse;
 
@@ -20,8 +20,8 @@
     position: relative;
 
     .messageEmojisContainer {
-      font-size: 23px;
-      color: #afafaf;
+      font-size: var(--text-size-extra-large);
+      color: var(--text-color-dim);
       background-color: inherit;
       display: flex;
       align-items: center;
@@ -36,7 +36,7 @@
 
       &:hover {
         cursor: pointer;
-        color: rgb(211, 211, 211);
+        color: var(--text-color-dim-light);
       }
     }
 
@@ -48,16 +48,16 @@
       padding-right: 50px;
 
       background-color: inherit;
-      border: 1px solid #999999;
+      border: 1px solid var(--bg-color-border-box-light);
       width: 100%;
-      color: #ebebeb;
-      font-size: 15px;
-      border-radius: 10px;
+      color: var(--text-color-dim-light);
+      font-size: var(--text-size-medium);
+      border-radius: 8px;
       outline: none;
       letter-spacing: 0.5px;
 
       &:focus {
-        border: 1px solid #b8b8b8;
+        border: 1px solid var(--bg-color-border-box-extra-light);
       }
     }
 
@@ -68,8 +68,8 @@
       gap: 5px;
 
       .submitButton {
-        font-size: 20px;
-        color: #fff;
+        font-size: var(--text-size-extra-large);
+        color: var(--text-color-light);
         background-color: inherit;
         display: flex;
         align-items: center;
@@ -85,37 +85,7 @@
 
         &:hover {
           cursor: pointer;
-          color: rgb(211, 211, 211);
-        }
-      }
-      .mediaMessageButton {
-        font-size: 24px;
-        color: #afafaf;
-        background-color: inherit;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 150ms color ease;
-        border: none;
-
-        &:hover {
-          cursor: pointer;
-          color: rgb(211, 211, 211);
-        }
-      }
-      .stickersMessageButton {
-        font-size: 25px;
-        color: #afafaf;
-        background-color: inherit;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 150ms color ease;
-        border: none;
-
-        &:hover {
-          cursor: pointer;
-          color: rgb(211, 211, 211);
+          background-color: var(--primary-color-darker);
         }
       }
     }

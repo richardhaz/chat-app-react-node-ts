@@ -49,48 +49,19 @@ header {
     gap: 20px;
     display: flex;
 
-    /*     .messagesButton {
-      background-color: var(--primary-color);
-      color: #fff;
-      padding: 10px 20px;
-      font-size: 15px;
-      font-weight: 500;
-      border: none;
-      outline: none;
-      border-radius: 20px;
-      transition: 150ms background-color ease;
-      transition: 500ms border ease;
-      display: flex;
-      justify-content: center;
-      letter-spacing: 1px;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      &:hover {
-        background-color: var(--primary-color-darker);
-      }
-
-      span {
-        display: flex;
-        font-size: 17px;
-        align-items: center;
-        justify-content: center;
-      }
-    } */
-
     .navIconButton {
       background-color: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
-      font-size: 25px;
+      color: var(--text-color-light);
+      font-size: 23px;
       transition: 150ms color ease;
       cursor: pointer;
       border: none;
       outline: none;
       &:hover {
-        color: rgb(219, 219, 219);
+        color: var(--icon-color-hover);
       }
     }
 
@@ -100,28 +71,27 @@ header {
       border: none;
       outline: none;
       cursor: pointer;
-      font-size: 20px;
       transition: 150ms color ease;
       align-items: center;
       justify-content: center;
       &:hover {
-        color: rgb(219, 219, 219);
+        color: var(--icon-color-hover);
       }
 
       img {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         margin-right: 10px;
       }
 
       p {
-        font-size: 16px;
+        font-size: var(--text-size-medium);
         margin-right: 2px;
       }
 
       span {
-        font-size: 16px;
+        font-size: var(--text-size-medium);
       }
       @include respond-below(md) {
         display: none;

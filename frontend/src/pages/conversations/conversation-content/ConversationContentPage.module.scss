@@ -5,7 +5,7 @@
   justify-content: center;
 
   .conversationContentHeader {
-    background-color: #131313;
+    background-color: var(--bg-color-dark);
     height: var(--header-conversations-height-inside);
     width: 100%;
     border-radius: 15px;
@@ -40,14 +40,14 @@
 
           div {
             p {
-              font-size: 18px;
+              font-size: var(--text-size-base);
             }
 
             span {
-              font-size: 13px;
+              font-size: var(--text-size-small);
               text-align: start;
               width: 100%;
-              color: #cbcbcb;
+              color: var(--text-color-dim);
             }
           }
         }
@@ -57,12 +57,12 @@
         border: none;
         outline: none;
         background-color: inherit;
-        color: #fff;
+        color: var(--text-color-light);
         transition: 150ms color ease;
-        font-size: 20px;
+        font-size: var(--text-size-extra-large);
         &:hover {
           cursor: pointer;
-          color: rgb(219, 219, 219);
+          color: var(--icon-color-hover);
         }
       }
     }

@@ -3,37 +3,44 @@
 @import './_shared.scss';
 
 :root {
-  // colors
   --primary-color: #008080;
   --primary-color-light: rgb(2, 184, 184);
   --primary-color-extra-light: rgb(188, 255, 255);
   --primary-color-darker: rgb(0, 109, 109);
 
-  // sizing
+  // utils
 
-  // primary content
+  --icon-color-hover: rgb(219, 219, 219);
+
   --primary-header-height: 80px;
   --primary-content-height: calc(100vh - var(--primary-header-height));
   --primary-content-height-inside: calc(var(--primary-content-height) - 20px);
 
-  // conversations
   --header-conversations-height: 160px;
   --header-conversations-height-inside: 120px;
 
-  // text properties
-  --text-size-tiny:11px
-  --text-size-extra-small:12px
-  --text-size-small:14px
-  --text-size-medium:16px
-  --text-size-large:18px
-  --text-size-extra-large:20px
+  --text-size-tiny: 11px;
+  --text-size-extra-small: 12px;
+  --text-size-small: 13px;
+  --text-size-medium: 15px;
+  --text-size-base: 16px;
+  --text-size-large: 18px;
+  --text-size-extra-large: 20px;
 
-    // text colors
-/*     --text-color-dim:#cbcbcb */
-    --text-color-dim:#b3b3b3
-    --text-color-semi-light:#f7f7f7
-    --text-color-light:#fff
-  }
+  --text-color-dim-light: #cbcbcb;
+  --text-color-dim: #afafaf;
+  --text-color-dim-dark: #a1a1a1;
+  --text-color-semi-light: #eeeeee;
+  --text-color-light: #fff;
+
+  --bg-color-semi-dark: #1a1a1a;
+  --bg-color-dark: #131313;
+
+  // border box
+  --bg-color-border-box: #242424;
+  --bg-color-border-box-light: #868686;
+  --bg-color-border-box-extra-light: #b8b8b8;
+}
 
 body {
   -webkit-font-smoothing: antialiased;

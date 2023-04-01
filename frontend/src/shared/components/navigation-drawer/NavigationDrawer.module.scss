@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    font-size: 20px;
+    font-size: var(--text-size-extra-large);
     flex-direction: column;
     gap: 10px;
 
@@ -29,12 +29,12 @@
         p {
           font-weight: 500;
           font-size: 24px;
-          color: #fff;
+          color: var(--text-color-light);
         }
       }
       span {
-        font-size: 14px;
-        color: #cbcbcb;
+        font-size: var(--text-size-small);
+        color: var(--text-color-dim-light);
       }
     }
 
@@ -47,17 +47,17 @@
         width: 100%;
         outline: none;
         border: none;
-        background-color: #131313;
-        color: #cbcbcb;
-        font-size: 15px;
+        background-color: var(--bg-color-dark);
+        color: var(--text-color-semi-light);
+        font-size: var(--text-size-medium);
         padding: 20px 50px;
-        border-radius: 25px;
+        border-radius: 30px;
       }
       input::-webkit-input-placeholder {
-        color: #cbcbcb;
+        color: var(--text-color-semi-light);
       }
       input:-moz-placeholder {
-        color: #cbcbcb;
+        color: var(--text-color-semi-light);
       }
 
       span {
@@ -67,7 +67,7 @@
         left: 23px;
         display: flex;
         align-items: center;
-        color: #cbcbcb;
+        color: var(--text-color-semi-light);
       }
     }
   }
@@ -86,10 +86,10 @@
     padding: 24px 50px;
     gap: 10px;
     transition: 150ms background-color ease;
-    border-bottom: 1px solid #2b2b2b;
+    border-bottom: 1px solid var(--bg-color-border-box);
 
     &:hover {
-      background-color: #242424;
+      background-color: var(--bg-color-border-box);
     }
 
     .userProfile {
@@ -112,17 +112,17 @@
         gap: 5px;
 
         p {
-          font-size: 17px;
-          font-weight: 400;
-          color: #e4e4e4;
+          font-size: var(--text-size-medium);
+          font-weight: 500;
+          color: var(--text-color-light);
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
           max-width: 10em;
         }
         span {
-          font-size: 12px;
-          color: #cbcbcb;
+          font-size: var(--text-size-extra-small);
+          color: var(--text-color-semi-light);
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -137,9 +137,9 @@
         position: absolute;
         top: 0;
         right: -15%;
-        font-size: 11px;
-        font-weight: 400;
-        color: #cbcbcb;
+        font-size: var(--text-size-tiny);
+        font-weight: 500;
+        color: var(--text-color-dim-light);
         letter-spacing: 0.5px;
       }
     }
@@ -157,8 +157,8 @@
     }
 
     .message {
-      font-size: 14px;
-      color: #cbcbcb;
+      font-size: var(--text-size-medium);
+      color: var(--text-color-dim-light);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
