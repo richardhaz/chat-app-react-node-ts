@@ -17,7 +17,7 @@
     flex-direction: column;
     gap: 15px;
     letter-spacing: 0.5px;
-    max-width: 600px;
+    max-width: 500px;
 
     h1 {
       text-align: center;
@@ -50,7 +50,7 @@
   img {
     object-fit: cover;
     object-position: bottom;
-    max-width: 600px;
+    max-width: 500px;
 
     @include respond-below(lg) {
       width: 100%;

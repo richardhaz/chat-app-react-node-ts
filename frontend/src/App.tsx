@@ -23,7 +23,7 @@ const App = () => {
           </Route>
         </RoutesWrapper>
       </BrowserRouter>
-      <MessengerButton />
+      {/*       <MessengerButton /> */}
       <UsersListButton />
     </>
   );

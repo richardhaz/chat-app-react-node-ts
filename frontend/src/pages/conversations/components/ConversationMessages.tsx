@@ -4,7 +4,7 @@ import { BsFillEmojiLaughingFill } from 'react-icons/bs';
 import ConversationMessageContent from './ConversationMessageContent';
 import ConversationMessageEmpty from './ConversationMessageEmpty';
 
-const isMessages = true;
+const isMessages = false;
 
 const ConversationMessages = () => {
   return (

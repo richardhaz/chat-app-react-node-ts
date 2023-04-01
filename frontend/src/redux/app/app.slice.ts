@@ -15,11 +15,9 @@ export const appSlice = createSlice({
   initialState: initialValues,
   reducers: {
     setUsersListNavigationDrawer: (state, action: PayloadAction<boolean>) => {
-      console.log(action.payload);
       state.usersListNavigationDrawer = action.payload;
     },
     setChatListNavigationDrawer: (state, action: PayloadAction<boolean>) => {
-      console.log(action.payload);
       state.chatListNavigationDrawer = action.payload;
     }
   }

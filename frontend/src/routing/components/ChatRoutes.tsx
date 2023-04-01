@@ -22,7 +22,7 @@ export const ChatRoutes = () => {
           </Route>
         </RoutesWrapper>
       </PrimaryLayout>
-      {window.width && window.width <= sizeConfig().breakpoints.xl ? (
+      {window.width && window.width <= sizeConfig().breakpoints['2xl'] ? (
         <ChatListNavigationDrawer />
       ) : null}
       {window.width && window.width <= sizeConfig().breakpoints.lg ? (

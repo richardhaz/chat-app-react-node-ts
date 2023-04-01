@@ -50,18 +50,69 @@ header {
     display: flex;
 
     .navIconButton {
+      position: relative;
       background-color: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
       color: var(--text-color-light);
-      font-size: 23px;
+      font-size: 28px;
+      transition: 150ms color ease;
+      cursor: pointer;
+      border: none;
+      outline: none;
+
+      &:hover {
+        color: var(--icon-color-hover);
+      }
+      span {
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        font-size: 12px;
+        font-weight: 500;
+        width: 22px;
+        height: 22px;
+        background-color: red;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .navIconMessengerButton {
+      position: relative;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color-light);
+      font-size: 30px;
       transition: 150ms color ease;
       cursor: pointer;
       border: none;
       outline: none;
       &:hover {
         color: var(--icon-color-hover);
+      }
+
+      @include respond-above(2xl) {
+        display: none;
+      }
+
+      span {
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        font-size: 12px;
+        font-weight: 500;
+        width: 22px;
+        height: 22px;
+        background-color: red;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
