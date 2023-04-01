@@ -12,7 +12,7 @@ const ConversationContentPage = () => {
           <div className={styles.userInfoContainer}>
             <div className={styles.userInfo}>
               <div className={styles.userNames}>
-                <img src={Avatar} alt="user-avatar" />
+                <img src="https://i.pravatar.cc/300" alt="user avatar" />
                 <div>
                   <p>Leslies Alexander</p>
                   <span>3 minutes ago</span>

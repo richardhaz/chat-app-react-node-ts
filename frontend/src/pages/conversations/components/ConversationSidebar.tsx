@@ -27,7 +27,7 @@ const ConversationSidebar: React.FC = () => {
         {mockConversations.map((item) => (
           <Link key={item._id} to={item._id} className={styles.conversationListItem}>
             <div className={styles.userProfile}>
-              <img src={Avatar} alt="user profile picture" />
+              <img src={item.avatar} alt="user profile picture" />
               <div>
                 <p>
                   {item.firstName} {item.lastName}

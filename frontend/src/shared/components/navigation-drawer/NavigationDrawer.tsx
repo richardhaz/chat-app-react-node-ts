@@ -43,7 +43,7 @@ const NavigationDrawer = () => {
               onClick={() => dispatch(toggleNavigationDrawer())}
             >
               <div className={styles.userProfile}>
-                <img src={Avatar} alt="user profile picture" />
+                <img src="https://i.pravatar.cc/300" alt="user profile picture" />
                 <div>
                   <p>
                     {item.firstName} {item.lastName}

@@ -1,10 +1,9 @@
 import styles from './Navbar.module.scss';
-import { AiFillCaretDown } from 'react-icons/ai';
 import { FiSettings } from 'react-icons/fi';
 import { RiNotification3Line } from 'react-icons/ri';
-import Avatar from '@/assets/images/avatars/avatar.png';
 import { Link, useLocation } from 'react-router-dom';
 import { APP_NAME } from '@/config';
+import { UserDropDownMenu } from './user-drop-down';
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -18,13 +17,7 @@ const Navbar = () => {
         <button className={styles.navIconButton}>
           <FiSettings />
         </button>
-        <button className={styles.menuUser}>
-          <img src={Avatar} />
-          <p>ampeter19#9834</p>
-          <span>
-            <AiFillCaretDown />
-          </span>
-        </button>
+        <UserDropDownMenu />
       </nav>
     </header>
   );

@@ -3,4 +3,5 @@ export type ConversationModel = {
   firstName: string;
   lastName: string;
   lastMessage: string;
+  avatar: string;
 };

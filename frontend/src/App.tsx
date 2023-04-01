@@ -8,6 +8,8 @@ import { AuthGuard } from '@/routing/guards';
 import { MessengerButton } from './shared/components/messenger-button';
 
 const App = () => {
+  // TODO: create global chat users list drawer
+
   return (
     <>
       <BrowserRouter>

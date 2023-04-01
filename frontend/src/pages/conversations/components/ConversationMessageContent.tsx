@@ -10,7 +10,7 @@ const ConversationMessageContent = () => {
           <div className={styles.messageContentContainer}>
             <div className={styles.messageContent}>
               <div className={styles.userAvatar}>
-                <img src="https://i.pravatar.cc/150?img=43" />
+                <img src="https://i.pravatar.cc/300" />
               </div>
               <div className={styles.currentMessage}>
                 <div className={styles.userInfoDetails}>
