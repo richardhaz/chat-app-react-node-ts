@@ -5,11 +5,9 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import styles from './UserDropDownMenu.module.scss';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { logOutUser } from '@/redux/auth/auth.slice';
-import { useNavigate } from 'react-router-dom';
 
 const UserDropDownMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);

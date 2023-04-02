@@ -7,6 +7,7 @@ import { APP_NAME } from '@/config';
 import { AuthGuard } from '@/routing/guards';
 import { MessengerButton } from './shared/components/messenger-button';
 import { UsersListButton } from './shared/components/users-list-button';
+import { FloatingChat } from './shared/components/floating-chat';
 
 const App = () => {
   // TODO: switch backend nest to node express
@@ -24,7 +25,7 @@ const App = () => {
         </RoutesWrapper>
       </BrowserRouter>
       {/*       <MessengerButton /> */}
-      <UsersListButton />
+      {/* <UsersListButton /> */}
     </>
   );
 };

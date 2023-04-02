@@ -8,6 +8,7 @@ import { PrimaryLayout } from '@/shared/layouts';
 /* import { OverlayLoader } from '@/shared/ui'; */
 import { Navigate, Route } from 'react-router-dom';
 import { RoutesWrapper } from './RoutesWrapper';
+import { UsersListButton } from '@/shared/components/users-list-button';
 
 export const ChatRoutes = () => {
   const window = useWindowSize();
@@ -28,6 +29,7 @@ export const ChatRoutes = () => {
       {window.width && window.width <= sizeConfig().breakpoints.lg ? (
         <UsersListNavigationDrawer />
       ) : null}
+      <UsersListButton />
     </>
   );
 };

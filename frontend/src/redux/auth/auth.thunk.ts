@@ -11,7 +11,6 @@ const login = createAsyncThunk(
       const result = await AuthService.login(values);
       if (result.ok) {
         navigate('/');
-        toast.success('Login Successful');
         reset();
         return result.data;
       }

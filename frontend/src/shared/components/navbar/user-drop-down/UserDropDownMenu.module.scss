@@ -10,6 +10,7 @@
   &:hover {
     color: var(--icon-color-hover);
   }
+  display: flex;
 
   img {
     width: 30px;
@@ -21,16 +22,15 @@
   p {
     font-size: var(--text-size-medium);
     margin-right: 2px;
+    @include respond-below(md) {
+      display: none;
+    }
   }
 
   span {
     font-size: var(--text-size-medium);
-  }
-  @include respond-below(md) {
-    display: none;
-  }
-
-  @include respond-above(md) {
-    display: flex;
+    @include respond-below(md) {
+      display: none;
+    }
   }
 }
