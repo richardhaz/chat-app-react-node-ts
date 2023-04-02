@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './AllUsersSidebar.module.scss';
 import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import mockuserss from '@/__mocks__/Conversations';
 import { useAppSelector } from '@/redux/useTypedRedux';
+import { Skeleton } from '@mui/material';
 
 const AllUsersSidebar: React.FC = () => {
   const { users } = useAppSelector((state) => state.user);
@@ -25,24 +25,66 @@ const AllUsersSidebar: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.usersList}>
-        {users.data.map((item) => (
-          <Link key={item._id} to={item._id} className={styles.usersListItem}>
-            <div className={styles.userProfile}>
-              <img src={item.avatar} alt="user profile picture" />
-              <div>
-                <p>
-                  {item.firstName} {item.lastName}
-                </p>
-                <span>online</span>
+      {users.loading ? (
+        <UsersListLoading />
+      ) : (
+        <div className={styles.usersList}>
+          {users.data.map((item) => (
+            <Link key={item._id} to={item._id} className={styles.usersListItem}>
+              <div className={styles.userProfile}>
+                <div className={styles.avatarWrapper}>
+                  <img src={item.avatar} alt="user profile picture" />
+                  <div className={styles.dotNotification}></div>
+                </div>
+                <div>
+                  <p>
+                    {item.firstName} {item.lastName}
+                  </p>
+                  <span>online</span>
+                </div>
               </div>
-            </div>
-            <div className={styles.dotNotification}></div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 export default AllUsersSidebar;
+
+const UsersListLoading = () => {
+  return (
+    <div className={styles.usersList}>
+      {Array.from(new Array(8)).map((item, idx) => (
+        <div key={idx} className={styles.usersListItem}>
+          <div className={styles.userProfile}>
+            <Skeleton
+              animation="wave"
+              sx={{ bgcolor: 'grey.900' }}
+              variant="circular"
+              width={45}
+              height={45}
+            />
+            <div>
+              <Skeleton
+                animation="wave"
+                sx={{ bgcolor: 'grey.900', marginBottom: '10px' }}
+                variant="rectangular"
+                width={140}
+                height={18}
+              />
+              <Skeleton
+                animation="wave"
+                sx={{ bgcolor: 'grey.900' }}
+                variant="rectangular"
+                width={140}
+                height={12}
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};

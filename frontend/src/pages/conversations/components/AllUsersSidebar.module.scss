@@ -1,6 +1,6 @@
 .usersListContainer {
   height: 100%;
-  min-width: 290px;
+  min-width: 270px;
 
   @include respond-below(md) {
     display: none;
@@ -105,7 +105,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      padding: 24px 45px;
+      padding: 20px 25px;
       gap: 10px;
       transition: 150ms background-color ease;
       border-bottom: 1px solid var(--bg-color-border-box);
@@ -121,10 +121,28 @@
         width: 100%;
         position: relative;
 
-        img {
-          width: 45px;
-          height: 45px;
-          border-radius: 50%;
+        .avatarWrapper {
+          position: relative;
+
+          img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            /*      vertical-align: super; */
+          }
+
+          .dotNotification {
+            width: 13px;
+            height: 13px;
+            border-radius: 100%;
+            position: absolute;
+            margin: auto;
+            right: 0px;
+            bottom: 0px;
+            background-color: var(--online-color);
+            border: 2px solid #2c2c2c;
+            overflow: hidden;
+          }
         }
 
         div {
@@ -164,18 +182,6 @@
           color: var(--text-color-dim-light);
           letter-spacing: 0.5px;
         }
-      }
-
-      .dotNotification {
-        width: 8px;
-        height: 8px;
-        border-radius: 100%;
-        position: absolute;
-        margin: auto;
-        top: 0;
-        bottom: 0;
-        left: 20px;
-        background-color: var(--online-color);
       }
 
       .message {
