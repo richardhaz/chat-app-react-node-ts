@@ -5,10 +5,19 @@ import { Outlet, useParams } from 'react-router-dom';
 import { AllUsersSidebar, ConversationSidebar } from './components';
 import { ConversationWelcomePage } from './conversation-welcome';
 import styles from './ConversationPage.module.scss';
+import { useEffect } from 'react';
+import { useAppDispatch } from '@/redux/useTypedRedux';
+import { UserThunk } from '@/redux/user/user.thunk';
 
 const ConversatiosPage = () => {
   const window = useWindowSize();
   const { id } = useParams();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(UserThunk.getAllUsers());
+  }, [dispatch]);
 
   if (!window.width) return <OverlayLoader />;
 

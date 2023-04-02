@@ -1,5 +1,6 @@
 .usersListContainer {
   height: 100%;
+  min-width: 290px;
 
   @include respond-below(md) {
     display: none;
@@ -166,15 +167,15 @@
       }
 
       .dotNotification {
-        width: 6px;
-        height: 6px;
+        width: 8px;
+        height: 8px;
         border-radius: 100%;
         position: absolute;
         margin: auto;
         top: 0;
         bottom: 0;
         left: 20px;
-        background-color: var(--primary-color-light);
+        background-color: var(--online-color);
       }
 
       .message {

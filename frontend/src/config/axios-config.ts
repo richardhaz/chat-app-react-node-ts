@@ -1,11 +1,14 @@
+import { getPersistedToken } from '@/shared/utils';
 import axios from 'axios';
 
 const AxiosUrl = axios.create({
-  withCredentials: true,
   baseURL: import.meta.env.VITE_API_URL,
   timeout: 10000
 });
 
-export { AxiosUrl };
+AxiosUrl.interceptors.request.use((req) => {
+  req.headers.Authorization = `Bearer ${getPersistedToken()}`;
+  return req;
+});
 
-/* export const ApiUrl = import.meta.env.VITE_API_URL; */
+export { AxiosUrl };

@@ -9,7 +9,7 @@ import { MessengerButton } from './shared/components/messenger-button';
 import { UsersListButton } from './shared/components/users-list-button';
 
 const App = () => {
-  // TODO: create global chat users list drawer
+  // TODO: switch backend nest to node express
 
   return (
     <>

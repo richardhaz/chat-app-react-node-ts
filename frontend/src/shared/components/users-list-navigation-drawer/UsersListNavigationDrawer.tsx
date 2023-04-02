@@ -1,7 +1,7 @@
 import styles from './UsersListNavigationDrawer.module.scss';
 import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import mockuserss from '@/__mocks__/Conversations';
+/* import mockusers from '@/__mocks__/Conversations'; */
 import Drawer from '@mui/material/Drawer';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { setUsersListNavigationDrawer } from '@/redux/app/app.slice';
@@ -9,6 +9,7 @@ import { APP_NAME } from '@/config';
 
 const UsersListNavigationDrawer = () => {
   const { usersListNavigationDrawer } = useAppSelector((state) => state.app);
+  const { users } = useAppSelector((state) => state.user);
 
   const dispatch = useAppDispatch();
 
@@ -30,7 +31,7 @@ const UsersListNavigationDrawer = () => {
           </div>
         </div>
         <div className={styles.usersList}>
-          {mockuserss.map((item) => (
+          {users.data.map((item) => (
             <Link
               key={item._id}
               to={`/${APP_NAME}/conversations/${item._id}`}

@@ -1,7 +1,7 @@
 import { AxiosUrl } from '@/config/axios-config';
-import { GenericResponse, LoginUserModel } from '@/shared/models';
+import { GenericResponse, LoggedInModel, LoginUserModel } from '@/shared/models';
 
-const login = (data: LoginUserModel): Promise<GenericResponse<string>> => {
+const login = (data: LoginUserModel): Promise<GenericResponse<LoggedInModel>> => {
   return AxiosUrl.post('/auth/login', data).then((res) => {
     return res.data;
   });

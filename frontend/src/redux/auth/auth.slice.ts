@@ -1,39 +1,48 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserModel } from '@/shared/models';
+import { createSlice } from '@reduxjs/toolkit';
+import { LoggedInModel } from '@/shared/models';
 import { AuthThunk } from './auth.thunk';
 
-interface AuthReduxModel {
+export interface AuthReduxModel {
   loading: boolean;
-  data: UserModel | null;
-  error: null | any;
+  error: null | unknown;
   token: null | string;
+  loggedIn: null | LoggedInModel['loggedIn'];
 }
 
 const initialValues: AuthReduxModel = {
   loading: false,
-  data: null,
   error: null,
-  token: null
+  token: null,
+  loggedIn: null
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState: initialValues,
-  reducers: {},
+  reducers: {
+    logOutUser: (state) => {
+      state.loading = false;
+      state.error = null;
+      state.token = null;
+      state.loggedIn = null;
+    }
+  },
   extraReducers(builder) {
     builder.addCase(AuthThunk.login.pending, (state) => {
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(AuthThunk.login.fulfilled, (state, action: PayloadAction<string | null>) => {
+    builder.addCase(AuthThunk.login.fulfilled, (state, action) => {
       state.loading = false;
-      state.token = action.payload;
+      state.token = action.payload?.token ?? null;
+      state.loggedIn = action.payload?.loggedIn ?? null;
       state.error = null;
     });
     builder.addCase(AuthThunk.login.rejected, (state, action) => {
       state.loading = false;
-      state.data = null;
       state.error = action.payload;
     });
   }
 });
+
+export const { logOutUser } = authSlice.actions;

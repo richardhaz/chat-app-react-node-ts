@@ -3,8 +3,11 @@ import styles from './AllUsersSidebar.module.scss';
 import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import mockuserss from '@/__mocks__/Conversations';
+import { useAppSelector } from '@/redux/useTypedRedux';
 
 const AllUsersSidebar: React.FC = () => {
+  const { users } = useAppSelector((state) => state.user);
+
   return (
     <div className={styles.usersListContainer}>
       <div className={styles.usersHeaderWrapper}>
@@ -23,7 +26,7 @@ const AllUsersSidebar: React.FC = () => {
       </div>
 
       <div className={styles.usersList}>
-        {mockuserss.map((item) => (
+        {users.data.map((item) => (
           <Link key={item._id} to={item._id} className={styles.usersListItem}>
             <div className={styles.userProfile}>
               <img src={item.avatar} alt="user profile picture" />

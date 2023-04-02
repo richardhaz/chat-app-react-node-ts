@@ -3,9 +3,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { AiFillCaretDown } from 'react-icons/ai';
 import styles from './UserDropDownMenu.module.scss';
+import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
+import { logOutUser } from '@/redux/auth/auth.slice';
+import { useNavigate } from 'react-router-dom';
 
 const UserDropDownMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -13,6 +17,10 @@ const UserDropDownMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const dispath = useAppDispatch();
+
+  const auth = useAppSelector((state) => state.auth);
 
   return (
     <div>
@@ -24,8 +32,8 @@ const UserDropDownMenu = () => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <img src="https://i.pravatar.cc/300" />
-        <p>ampeter19#9834</p>
+        <img src={auth.loggedIn?.avatar} />
+        <p>{auth.loggedIn?.username}</p>
         <span>
           <AiFillCaretDown />
         </span>
@@ -58,7 +66,10 @@ const UserDropDownMenu = () => {
         </MenuItem>
         <MenuItem
           disableRipple
-          onClick={handleClose}
+          onClick={() => {
+            handleClose();
+            dispath(logOutUser());
+          }}
           sx={{ '&:hover': { backgroundColor: '#242424' } }}
         >
           Logout

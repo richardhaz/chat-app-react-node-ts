@@ -15,7 +15,6 @@ const login = createAsyncThunk(
         reset();
         return result.data;
       }
-      return null;
     } catch (error) {
       const errMessage = errorMessageResolver(error);
       toast.error(errMessage);
