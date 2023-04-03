@@ -15,4 +15,18 @@ const getAllUsers = createAsyncThunk('user/getAllUsers', async (_, thunkApi) => 
   }
 });
 
-export const UserThunk = { getAllUsers };
+const getUserById = createAsyncThunk('user/getUserById', async (id: string, thunkApi) => {
+  try {
+    const result = await UserService.getUserById(id);
+    if (result.ok) {
+      /*    console.log(result.data); */
+      return result.data;
+    }
+  } catch (error) {
+    const errMessage = errorMessageResolver(error);
+    /* toast.error(errMessage); */
+    return thunkApi.rejectWithValue(errMessage);
+  }
+});
+
+export const UserThunk = { getAllUsers, getUserById };

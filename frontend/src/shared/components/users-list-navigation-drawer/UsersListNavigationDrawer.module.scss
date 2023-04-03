@@ -23,7 +23,7 @@
 
       p {
         font-weight: 500;
-        font-size: 24px;
+        font-size: 18px;
         color: var(--text-color-light);
       }
 
@@ -118,19 +118,18 @@
           width: 45px;
           height: 45px;
           border-radius: 50%;
-
-          .dotNotificationWrapper {
-            width: 13px;
-            height: 13px;
-            border-radius: 100%;
-            position: absolute;
-            margin: auto;
-            right: 0px;
-            bottom: 0px;
-            background-color: var(--online-color);
-            border: 2px solid #2c2c2c;
-            overflow: hidden;
-          }
+        }
+        .dotNotificationWrapper {
+          width: 13px;
+          height: 13px;
+          border-radius: 100%;
+          position: absolute;
+          margin: auto;
+          right: 0px;
+          bottom: 0px;
+          background-color: var(--online-color);
+          border: 2px solid #2c2c2c;
+          overflow: hidden;
         }
       }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './LoginForm.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { LoginUserModel } from '@/shared/models';
+import { LoginUserDto } from '@/shared/dtos/auth';
 import { loginUserYupValidation } from '../utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
@@ -14,12 +14,12 @@ const LoginForm = () => {
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<LoginUserModel>({ resolver: yupResolver(loginUserYupValidation) });
+  } = useForm<LoginUserDto>({ resolver: yupResolver(loginUserYupValidation) });
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.auth);
 
-  const onSubmit = (values: LoginUserModel) => {
+  const onSubmit = (values: LoginUserDto) => {
     dispatch(AuthThunk.login({ values, navigate, reset }));
   };
 

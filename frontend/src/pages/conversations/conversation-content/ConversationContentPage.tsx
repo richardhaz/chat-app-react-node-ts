@@ -3,17 +3,10 @@ import { IoEllipsisVerticalSharp } from 'react-icons/io5';
 
 import { ConversationMessages } from '../components';
 import { Skeleton } from '@mui/material';
+import { useAppSelector } from '@/redux/useTypedRedux';
 
-/* 
-<Skeleton animation="wave" variant="circular" width={40} height={40} />
-) : (
-  <Avatar
-  alt="Ted talk"
-  src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg"
-  />
-*/
 const ConversationContentPage = () => {
-  const isLoading = false;
+  const { userById } = useAppSelector((state) => state.user);
 
   return (
     <div>
@@ -21,16 +14,16 @@ const ConversationContentPage = () => {
         <div className={styles.conversationContentHeader}>
           <div className={styles.userInfoContainer}>
             <div className={styles.userInfo}>
-              {isLoading ? (
+              {userById.loading ? (
                 <ConversationHeaderLoading />
               ) : (
                 <div className={styles.userNames}>
-                  <img
-                    src="https://img.freepik.com/premium-vector/cute-girl-with-unusual-blue-eyes-avatar-vector_658753-21.jpg?w=1380"
-                    alt="user avatar"
-                  />
+                  <img src={userById.data?.avatar} alt="user avatar" />
                   <div>
-                    <p>Leslies Alexander</p>
+                    <p>
+                      {userById.data?.firstName} {userById.data?.lastName}
+                    </p>
+                    {/* TODO: update minutes ago with socket io */}
                     <span>3 minutes ago</span>
                   </div>
                 </div>

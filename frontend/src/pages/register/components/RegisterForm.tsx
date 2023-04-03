@@ -1,9 +1,9 @@
-import { RegisterUserModel } from '@/shared/models';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { registerUserYupValidation } from '../utils';
 import styles from './RegisterForm.module.scss';
+import { CreateUserDto } from '@/shared/dtos/auth';
 
 const RegisterForm = () => {
   const {
@@ -11,9 +11,9 @@ const RegisterForm = () => {
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<RegisterUserModel>({ resolver: yupResolver(registerUserYupValidation) });
+  } = useForm<CreateUserDto>({ resolver: yupResolver(registerUserYupValidation) });
 
-  const onSubmit = (values: RegisterUserModel) => {
+  const onSubmit = (values: CreateUserDto) => {
     console.log(values);
   };
 

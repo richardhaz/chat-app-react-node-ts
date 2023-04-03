@@ -7,4 +7,10 @@ const getAllUsers = (): Promise<GenericResponse<UserModel[]>> => {
   });
 };
 
-export const UserService = { getAllUsers };
+const getUserById = (id: string): Promise<GenericResponse<UserModel>> => {
+  return AxiosUrl.get(`/user/${id}`).then((res) => {
+    return res.data;
+  });
+};
+
+export const UserService = { getAllUsers, getUserById };

@@ -68,7 +68,7 @@
       gap: 5px;
 
       .submitButton {
-        font-size: var(--text-size-extra-large);
+        font-size: var(--text-size-large);
         color: var(--text-color-light);
         background-color: inherit;
         display: flex;
@@ -86,6 +86,12 @@
         &:hover {
           cursor: pointer;
           background-color: var(--primary-color-darker);
+        }
+
+        &:disabled {
+          background-color: #cccccc;
+          color: #666666;
+          cursor: default;
         }
       }
     }

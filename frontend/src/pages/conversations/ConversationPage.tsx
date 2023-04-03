@@ -6,18 +6,36 @@ import { AllUsersSidebar, ConversationSidebar } from './components';
 import { ConversationWelcomePage } from './conversation-welcome';
 import styles from './ConversationPage.module.scss';
 import { useEffect } from 'react';
-import { useAppDispatch } from '@/redux/useTypedRedux';
+import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
+import { MessageThunk } from '@/redux/message/message.thunk';
 
 const ConversatiosPage = () => {
   const window = useWindowSize();
   const { id } = useParams();
 
   const dispatch = useAppDispatch();
+  const { loggedIn } = useAppSelector((state) => state.auth);
 
+  // load all users
   useEffect(() => {
     dispatch(UserThunk.getAllUsers());
   }, [dispatch]);
+
+  // fetch user info if user is selected in chat
+  useEffect(() => {
+    if (id) {
+      dispatch(UserThunk.getUserById(id));
+    }
+  }, [dispatch, id]);
+
+  // fetch messages if user is selected
+  useEffect(() => {
+    if (loggedIn?.id && id) {
+      const payload = { from: loggedIn?.id, to: id };
+      dispatch(MessageThunk.getAllMessages(payload));
+    }
+  }, [dispatch, id]);
 
   if (!window.width) return <OverlayLoader />;
 

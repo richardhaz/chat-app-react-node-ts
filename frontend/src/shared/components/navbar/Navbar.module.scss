@@ -8,13 +8,30 @@ header {
 
   a {
     color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    @include respond-below(md) {
+      font-size: 20px;
+    }
+  }
 
-    @include respond-below(lg) {
-      font-size: 25px;
+  .globalChat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 28px;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+    @include respond-below(md) {
+      display: none;
     }
 
-    @include respond-above(lg) {
-      font-size: 30px;
+    @include respond-below(lg) {
+      font-size: 26px;
     }
   }
 

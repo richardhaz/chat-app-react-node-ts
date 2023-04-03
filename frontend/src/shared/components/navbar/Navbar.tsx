@@ -7,6 +7,7 @@ import { UserDropDownMenu } from './user-drop-down';
 import { RiMessengerLine } from 'react-icons/ri';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { setChatListNavigationDrawer } from '@/redux/app/app.slice';
+import { Tooltip } from '@mui/material';
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -19,22 +20,31 @@ const Navbar = () => {
   return (
     <header>
       <Link to={`${pathname === `/${APP_NAME}/conversations` ? '#' : '/'}`}>Chatty App</Link>
+      <Tooltip title="Click here to go to global chat" placement="bottom" arrow>
+        <button className={`${styles.globalChat} text-rainbow-animation`}>Global Chat</button>
+      </Tooltip>
       <nav>
-        <button
-          className={styles.navIconMessengerButton}
-          onClick={() => dispatch(setChatListNavigationDrawer(!chatListNavigationDrawer))}
-        >
-          <RiMessengerLine />
-          {notificationChat && <span>1</span>}
-        </button>
-        <button className={styles.navIconButton}>
-          <RiNotification3Line />
-          {notificationSettings && <span>1</span>}
-        </button>
-        <button className={styles.navIconButton}>
-          <FiSettings />
-          {notificationGeneral && <span>1</span>}
-        </button>
+        <Tooltip title="Inbox" placement="bottom" arrow>
+          <button
+            className={styles.navIconMessengerButton}
+            onClick={() => dispatch(setChatListNavigationDrawer(!chatListNavigationDrawer))}
+          >
+            <RiMessengerLine />
+            {notificationChat && <span>1</span>}
+          </button>
+        </Tooltip>
+        <Tooltip title="Notifications" placement="bottom" arrow>
+          <button className={styles.navIconButton}>
+            <RiNotification3Line />
+            {notificationSettings && <span>1</span>}
+          </button>
+        </Tooltip>
+        <Tooltip title="Settings" placement="bottom" arrow>
+          <button className={styles.navIconButton}>
+            <FiSettings />
+            {notificationGeneral && <span>1</span>}
+          </button>
+        </Tooltip>
         <UserDropDownMenu />
       </nav>
     </header>

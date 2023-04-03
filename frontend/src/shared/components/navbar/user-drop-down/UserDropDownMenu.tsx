@@ -5,6 +5,7 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import styles from './UserDropDownMenu.module.scss';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { logOutUser } from '@/redux/auth/auth.slice';
+import { Tooltip } from '@mui/material';
 
 const UserDropDownMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -22,20 +23,22 @@ const UserDropDownMenu = () => {
 
   return (
     <div>
-      <button
-        className={styles.menuUser}
-        id="user-dropdown-menu"
-        aria-controls={open ? 'user-dropdown-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        <img src={auth.loggedIn?.avatar} />
-        <p>{auth.loggedIn?.username}</p>
-        <span>
-          <AiFillCaretDown />
-        </span>
-      </button>
+      <Tooltip title="User Profile" placement="bottom" arrow>
+        <button
+          className={styles.menuUser}
+          id="user-dropdown-menu"
+          aria-controls={open ? 'user-dropdown-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+        >
+          <img src={auth.loggedIn?.avatar} />
+          <p>{auth.loggedIn?.username}</p>
+          <span>
+            <AiFillCaretDown />
+          </span>
+        </button>
+      </Tooltip>
       <Menu
         PaperProps={{
           sx: {

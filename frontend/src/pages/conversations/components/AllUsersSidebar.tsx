@@ -1,12 +1,22 @@
-import React from 'react';
 import styles from './AllUsersSidebar.module.scss';
 import { BiSearch } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
-import { useAppSelector } from '@/redux/useTypedRedux';
+import { Link, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { Skeleton } from '@mui/material';
+import { UserThunk } from '@/redux/user/user.thunk';
 
 const AllUsersSidebar: React.FC = () => {
   const { users } = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
+  const params = useParams();
+
+  const handleGetUserById = (id: string) => {
+    // if condition to prevent refetching the same user info if its selected one more time in the chat list
+    if (params.id && params.id !== id) {
+      dispatch(UserThunk.getUserById(id));
+    }
+  };
 
   return (
     <div className={styles.usersListContainer}>
@@ -30,7 +40,12 @@ const AllUsersSidebar: React.FC = () => {
       ) : (
         <div className={styles.usersList}>
           {users.data.map((item) => (
-            <Link key={item._id} to={item._id} className={styles.usersListItem}>
+            <Link
+              key={item._id}
+              to={item._id}
+              className={styles.usersListItem}
+              onClick={() => handleGetUserById(item._id)}
+            >
               <div className={styles.userProfile}>
                 <div className={styles.avatarWrapper}>
                   <img src={item.avatar} alt="user profile picture" />

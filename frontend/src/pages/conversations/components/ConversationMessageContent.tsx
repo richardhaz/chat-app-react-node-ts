@@ -1,27 +1,42 @@
+import { useAppSelector } from '@/redux/useTypedRedux';
 import styles from './ConversationMessageContent.module.scss';
 import messagesMock from '@/__mocks__/Messages';
+import moment from 'moment';
+import { useState } from 'react';
 
 const ConversationMessageContent = () => {
+  const { messages } = useAppSelector((state) => state.message);
+  /*   const [chatDate, setChatDate] = useState(null); */
+
+  // format to show
+  /*   moment(item.createdAt).isSame(item.createdAt, 'day') 
+  moment(item.createdAt).format('MMMM DD, YYYY') */
   return (
     <>
-      {messagesMock.map((item) => (
+      {messages.data.map((item, idx, arr) => (
         <div key={item._id} className={styles.conversationChatContainer}>
-          <div className="text-divider">{item.startDate}</div>
+          {/*           <div className="text-divider">{moment(item.createdAt).format('MMMM DD, YYYY')}</div> */}
+          {moment(item.createdAt).isSame(
+            moment(arr[idx - 1]?.createdAt).format('YYYY-MM-DD'),
+            'day'
+          ) && <div className="text-divider">{moment(item.createdAt).format('MMMM DD, YYYY')}</div>}
           <div className={styles.messageContentContainer}>
             <div className={styles.messageContent}>
               <div className={styles.userAvatar}>
-                <img src="https://i.pravatar.cc/300" />
+                <img src={item.userDetails.avatar} />
               </div>
               <div className={styles.currentMessage}>
                 <div className={styles.userInfoDetails}>
-                  <p className={styles.userName}>Larry Herrera</p>
-                  <p className={styles.messageDate}>Today at 6:41 PM</p>
+                  <p className={styles.userName}>
+                    {item.userDetails.firstName} {item.userDetails.lastName}
+                  </p>
+                  {/* <p className={styles.messageDate}>Today at 6:41 PM</p> */}
+                  <p className={styles.messageDate}>
+                    {moment(item.updatedAt).format('DD/MM/YYYY h:mm A')}
+                  </p>
                 </div>
                 <div className={styles.message}>
-                  <p>
-                    I dont really know what hes trynna to do but like i think hes overwelmed and i
-                    hope he gets better soon
-                  </p>
+                  <p>{item.message}</p>
                 </div>
               </div>
             </div>
