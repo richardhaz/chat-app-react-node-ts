@@ -2,9 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { body, param } from 'express-validator';
 
 import { confirmPasswordMatch, IsEmailUnique } from '@/constraints';
-import { validateResult } from '@/utils';
-
-import { UserSchema } from '../user.schema';
+import { REGEX, validateResult } from '@/utils';
 
 const registerUser = [
   body('email')
@@ -50,4 +48,11 @@ const registerUser = [
   },
 ];
 
-export const UserValidation = { registerUser };
+const validateId = [
+  param('id').matches(REGEX.MONGO_ID).withMessage('please provide a valid mongoId'),
+  (req: Request, res: Response, next: NextFunction) => {
+    validateResult(req, res, next);
+  },
+];
+
+export const UserValidation = { registerUser, validateId };

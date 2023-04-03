@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { RequestExtended } from '@/models';
 import { ErrorManager } from '@/utils';
 
-import { CreateUserDto } from './dtos/create-user.dto';
+import { CreateUserDto } from './dtos';
 import { UserService } from './user.service';
 
 const getAllUsers = async (req: RequestExtended, res: Response) => {
@@ -24,6 +24,19 @@ const getProfile = async (req: RequestExtended, res: Response) => {
   }
 };
 
+const getUserById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const user = await UserService.findById(id);
+
+    if (!user) return res.status(404).json({ message: 'USER_NOT_FOUND' });
+
+    return res.status(200).json({ ok: true, data: user });
+  } catch (error) {
+    return ErrorManager(res, error, 'ERROR_GET_PROFILE');
+  }
+};
+
 const registerUser = async (req: Request, res: Response) => {
   try {
     const dto = req.body as CreateUserDto;
@@ -34,4 +47,4 @@ const registerUser = async (req: Request, res: Response) => {
   }
 };
 
-export const UserController = { getAllUsers, registerUser, getProfile };
+export const UserController = { getAllUsers, registerUser, getProfile, getUserById };
