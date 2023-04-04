@@ -34,11 +34,12 @@ const ConversationMessages = () => {
   const onSubmit = (values: { message: string }) => {
     const messagePayload: CreateMessageDto = {
       // id of logged in user
-      from: `${loggedIn?.id}`,
+      from: `${loggedIn?._id}`,
       // id of selected user in chat
       to: `${userById.data?._id}`,
       message: values.message
     };
+
     /* console.log('payload', payload); */
     reset();
     dispatch(MessageThunk.createMessage(messagePayload));

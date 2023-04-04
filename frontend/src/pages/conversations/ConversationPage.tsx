@@ -17,22 +17,17 @@ import { setOnlineUsers } from '@/redux/socket/socket.slice';
 
 const ConversatiosPage = () => {
   const windowSize = useWindowSize();
-  const { id } = useParams();
-  /*   const socket = useRef<Socket | undefined>(undefined); */
   const dispatch = useAppDispatch();
+  const { id } = useParams();
   const { loggedIn } = useAppSelector((state) => state.auth);
-
-  // load all users
-  useEffect(() => {
-    dispatch(UserThunk.getAllUsers());
-  }, [dispatch]);
+  /*   const socket = useRef<Socket | undefined>(undefined); */
 
   // fetch user info if user is selected in chat
-  /*   useEffect(() => {
+  useEffect(() => {
     if (id) {
       dispatch(UserThunk.getUserById(id));
     }
-  }, [dispatch, id]); */
+  }, [dispatch, id]);
 
   // fetch messages if user is selected
   useEffect(() => {
@@ -40,20 +35,7 @@ const ConversatiosPage = () => {
       const payload = { from: loggedIn._id, to: id };
       dispatch(MessageThunk.getAllMessages(payload));
     }
-  }, [dispatch, id]);
-
-  // Connect to Socket.io and get all online users
-  useEffect(() => {
-    if (loggedIn) {
-      const socket = ioSocket();
-      socket.emit('new_user_add', loggedIn);
-      socket.on('get_users', (users: LoggedInModel['loggedIn'][]) => {
-        /* dispatch(UserThunk.getSocketUserById(users)); */
-        dispatch(setOnlineUsers(users));
-        console.log('ALL CONNECTED USERS: ', users);
-      });
-    }
-  }, [dispatch, loggedIn]);
+  }, [dispatch, id, loggedIn]);
 
   if (!windowSize.width) return <OverlayLoader />;
 

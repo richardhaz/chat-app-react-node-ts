@@ -7,14 +7,13 @@ import { UserThunk } from '@/redux/user/user.thunk';
 
 const AllUsersSidebar: React.FC = () => {
   const { users } = useAppSelector((state) => state.user);
+  const { loggedIn } = useAppSelector((state) => state.auth);
   const { onlineUsers } = useAppSelector((state) => state.socket);
-
-  console.log('rtk', onlineUsers);
 
   const dispatch = useAppDispatch();
   const params = useParams();
 
-  const handleGetUserById = (id: string) => {
+  const handleGetAllMessages = (id: string) => {
     // if condition to prevent refetching the same user info if its selected one more time in the chat list
     if (params.id && params.id !== id) {
       dispatch(UserThunk.getUserById(id));
@@ -42,25 +41,27 @@ const AllUsersSidebar: React.FC = () => {
         <UsersListLoading />
       ) : (
         <div className={styles.usersList}>
-          {onlineUsers.map((item) => (
-            <Link
-              key={item.profile._id}
-              to={item.profile._id}
-              className={styles.usersListItem}
-              onClick={() => handleGetUserById(item.profile._id)}
-            >
-              <div className={styles.userProfile}>
-                <div className={styles.avatarWrapper}>
-                  <img src={item.profile.avatar} alt="user profile picture" />
-                  <div className={styles.dotNotification}></div>
+          {onlineUsers
+            .filter((u) => u.profile._id !== loggedIn?._id)
+            .map((item) => (
+              <Link
+                key={item.profile._id}
+                to={item.profile._id}
+                className={styles.usersListItem}
+                onClick={() => handleGetAllMessages(item.profile._id)}
+              >
+                <div className={styles.userProfile}>
+                  <div className={styles.avatarWrapper}>
+                    <img src={item.profile.avatar} alt="user profile picture" />
+                    <div className={styles.dotNotification}></div>
+                  </div>
+                  <div>
+                    <p>{item.profile.displayName}</p>
+                    <span>online</span>
+                  </div>
                 </div>
-                <div>
-                  <p>{item.profile.displayName}</p>
-                  <span>online</span>
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
         </div>
       )}
     </div>

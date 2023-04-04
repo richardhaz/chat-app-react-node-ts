@@ -32,7 +32,7 @@ const getUserById = createAsyncThunk('user/getUserById', async (id: string, thun
   try {
     const result = await UserService.getUserById(id);
     if (result.ok) {
-      /*    console.log(result.data); */
+      /*  console.log(result.data); */
       return result.data;
     }
   } catch (error) {
