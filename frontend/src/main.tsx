@@ -10,12 +10,12 @@ import { persistedStore, store } from '@/redux/store';
 import { ToastContainer } from 'react-toastify';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistedStore}>
-        <ToastContainer theme="dark" />
-        <App />
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+  /*   <React.StrictMode> */
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistedStore}>
+      <ToastContainer theme="dark" />
+      <App />
+    </PersistGate>
+  </Provider>
+  /*   </React.StrictMode> */
 );

@@ -7,6 +7,9 @@ import { UserThunk } from '@/redux/user/user.thunk';
 
 const AllUsersSidebar: React.FC = () => {
   const { users } = useAppSelector((state) => state.user);
+  const { onlineUsers } = useAppSelector((state) => state.socket);
+
+  console.log('rtk', onlineUsers);
 
   const dispatch = useAppDispatch();
   const params = useParams();
@@ -39,22 +42,20 @@ const AllUsersSidebar: React.FC = () => {
         <UsersListLoading />
       ) : (
         <div className={styles.usersList}>
-          {users.data.map((item) => (
+          {onlineUsers.map((item) => (
             <Link
-              key={item._id}
-              to={item._id}
+              key={item.profile._id}
+              to={item.profile._id}
               className={styles.usersListItem}
-              onClick={() => handleGetUserById(item._id)}
+              onClick={() => handleGetUserById(item.profile._id)}
             >
               <div className={styles.userProfile}>
                 <div className={styles.avatarWrapper}>
-                  <img src={item.avatar} alt="user profile picture" />
+                  <img src={item.profile.avatar} alt="user profile picture" />
                   <div className={styles.dotNotification}></div>
                 </div>
                 <div>
-                  <p>
-                    {item.firstName} {item.lastName}
-                  </p>
+                  <p>{item.profile.displayName}</p>
                   <span>online</span>
                 </div>
               </div>

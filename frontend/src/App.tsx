@@ -8,6 +8,9 @@ import { AuthGuard } from '@/routing/guards';
 import { MessengerButton } from './shared/components/messenger-button';
 import { UsersListButton } from './shared/components/users-list-button';
 import { FloatingChat } from './shared/components/floating-chat';
+import { useEffect } from 'react';
+import { useAppSelector } from './redux/useTypedRedux';
+import { ioSocket } from './shared/utils';
 
 const App = () => {
   // TODO: switch backend nest to node express

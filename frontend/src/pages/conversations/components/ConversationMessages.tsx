@@ -1,20 +1,26 @@
 import styles from './ConversationMessages.module.scss';
 import { IoSend } from 'react-icons/io5';
 import { BsFillEmojiLaughingFill } from 'react-icons/bs';
-import ConversationMessageContent from './ConversationMessageContent';
+import ConversationMessageContent, {
+  ConversationContentLoading
+} from './ConversationMessageContent';
 import ConversationMessageEmpty from './ConversationMessageEmpty';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { useForm } from 'react-hook-form';
 import { MessageThunk } from '@/redux/message/message.thunk';
 import { CreateMessageDto } from '@/shared/dtos/messages';
+import { ConversationSidebarContentLoading } from './ConversationSidebar';
 
-const isMessages = true;
+/* const isMessages = true; */
 
 const ConversationMessages = () => {
   const dispatch = useAppDispatch();
 
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { userById } = useAppSelector((state) => state.user);
+  const { messages } = useAppSelector((state) => state.message);
+
+  /*   console.log({ messages }); */
 
   const {
     register,
@@ -64,7 +70,14 @@ const ConversationMessages = () => {
         </div>
       </form>
       <div className={styles.conversationsContainer}>
-        {isMessages ? <ConversationMessageContent /> : <ConversationMessageEmpty />}
+        {/*         {messages.data.length > 0 ? <ConversationMessageContent /> : <ConversationMessageEmpty />} */}
+        {messages.loading ? (
+          <ConversationContentLoading />
+        ) : !messages.loading && messages.data.length === 0 ? (
+          <ConversationMessageEmpty />
+        ) : (
+          <ConversationMessageContent />
+        )}
       </div>
     </div>
   );

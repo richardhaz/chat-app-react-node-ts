@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { LoggedInModel } from '@/shared/models';
 import { AuthThunk } from './auth.thunk';
+import { ioSocket } from '@/shared/utils';
 
 export interface AuthReduxModel {
   loading: boolean;
@@ -25,6 +26,9 @@ export const authSlice = createSlice({
       state.error = null;
       state.token = null;
       state.loggedIn = null;
+      // disconnect user
+      const socket = ioSocket();
+      socket.emit('offline');
     }
   },
   extraReducers(builder) {

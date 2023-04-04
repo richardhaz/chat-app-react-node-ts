@@ -1,6 +1,6 @@
 import { CreateMessageDto, GetAllMessagesDto } from '@/shared/dtos/messages';
 import { MessageService } from '@/shared/services';
-import { errorMessageResolver } from '@/shared/utils';
+import { errorMessageResolver, ioSocket } from '@/shared/utils';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const getAllMessages = createAsyncThunk(
@@ -24,6 +24,8 @@ const createMessage = createAsyncThunk(
   'message/createMessage',
   async (data: CreateMessageDto, thunkApi) => {
     try {
+      const socket = ioSocket();
+      socket.emit('message', data.message);
       const result = await MessageService.createMessage(data);
       if (result.ok) {
         console.log('create-message', result.data);

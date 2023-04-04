@@ -8,14 +8,29 @@ interface UserReduxModel {
     data: UserModel[];
     error: null | unknown;
   };
+  me: {
+    loading: boolean;
+    data: UserModel | null;
+    error: null | unknown;
+  };
   userById: {
     loading: boolean;
     data: UserModel | null;
     error: null | unknown;
   };
+  socketUser: {
+    data: UserModel[];
+    loading: boolean;
+    error: null | unknown;
+  };
 }
 
 const initialState: UserReduxModel = {
+  me: {
+    loading: false,
+    data: null,
+    error: null
+  },
   users: {
     loading: false,
     data: [],
@@ -25,6 +40,11 @@ const initialState: UserReduxModel = {
     loading: false,
     data: null,
     error: null
+  },
+  socketUser: {
+    loading: false,
+    data: [],
+    error: null
   }
 };
 
@@ -33,6 +53,21 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
+    // get me
+    builder.addCase(UserThunk.getProfile.pending, (state) => {
+      state.me.loading = true;
+      state.me.error = null;
+    });
+    builder.addCase(UserThunk.getProfile.fulfilled, (state, action) => {
+      state.me.loading = false;
+      state.me.data = action.payload ?? null;
+      state.me.error = null;
+    });
+    builder.addCase(UserThunk.getProfile.rejected, (state, action) => {
+      state.me.loading = false;
+      state.me.error = action.payload;
+    });
+
     // get all users
     builder.addCase(UserThunk.getAllUsers.pending, (state) => {
       state.users.loading = true;

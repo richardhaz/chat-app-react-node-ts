@@ -15,7 +15,7 @@ export interface MessageModel {
 export interface MessageResultModel {
   _id: string;
   fromSelf: boolean;
-  userDetails: UserModel;
+  senderDetails: UserModel;
   message: string;
   status: MESSAGE_STATUS;
   createdAt: string;

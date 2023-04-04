@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { sizeConfig } from '@/config';
 import { useWindowSize } from '@/shared/hooks';
 import { OverlayLoader } from '@/shared/ui';
@@ -9,11 +10,15 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
 import { MessageThunk } from '@/redux/message/message.thunk';
+import { Socket } from 'socket.io-client';
+import { ioSocket } from '@/shared/utils';
+import { LoggedInModel, UserModel } from '@/shared/models';
+import { setOnlineUsers } from '@/redux/socket/socket.slice';
 
 const ConversatiosPage = () => {
-  const window = useWindowSize();
+  const windowSize = useWindowSize();
   const { id } = useParams();
-
+  /*   const socket = useRef<Socket | undefined>(undefined); */
   const dispatch = useAppDispatch();
   const { loggedIn } = useAppSelector((state) => state.auth);
 
@@ -23,30 +28,43 @@ const ConversatiosPage = () => {
   }, [dispatch]);
 
   // fetch user info if user is selected in chat
-  useEffect(() => {
+  /*   useEffect(() => {
     if (id) {
       dispatch(UserThunk.getUserById(id));
     }
-  }, [dispatch, id]);
+  }, [dispatch, id]); */
 
   // fetch messages if user is selected
   useEffect(() => {
-    if (loggedIn?.id && id) {
-      const payload = { from: loggedIn?.id, to: id };
+    if (loggedIn?._id && id) {
+      const payload = { from: loggedIn._id, to: id };
       dispatch(MessageThunk.getAllMessages(payload));
     }
   }, [dispatch, id]);
 
-  if (!window.width) return <OverlayLoader />;
+  // Connect to Socket.io and get all online users
+  useEffect(() => {
+    if (loggedIn) {
+      const socket = ioSocket();
+      socket.emit('new_user_add', loggedIn);
+      socket.on('get_users', (users: LoggedInModel['loggedIn'][]) => {
+        /* dispatch(UserThunk.getSocketUserById(users)); */
+        dispatch(setOnlineUsers(users));
+        console.log('ALL CONNECTED USERS: ', users);
+      });
+    }
+  }, [dispatch, loggedIn]);
+
+  if (!windowSize.width) return <OverlayLoader />;
 
   return (
     <>
       <div className={styles.conversationContainer}>
-        {window.width >= sizeConfig().breakpoints.md ? <ConversationSidebar /> : null}
+        {windowSize.width >= sizeConfig().breakpoints.md ? <ConversationSidebar /> : null}
         <div className={styles.channelSection}>
           {!id ? <ConversationWelcomePage /> : <Outlet />}
         </div>
-        {window.width >= sizeConfig().breakpoints.lg ? <AllUsersSidebar /> : null}
+        {windowSize.width >= sizeConfig().breakpoints.lg ? <AllUsersSidebar /> : null}
       </div>
     </>
   );

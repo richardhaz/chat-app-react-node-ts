@@ -12,6 +12,7 @@ import { UsersListButton } from '@/shared/components/users-list-button';
 
 export const ChatRoutes = () => {
   const window = useWindowSize();
+
   return (
     <>
       <PrimaryLayout>

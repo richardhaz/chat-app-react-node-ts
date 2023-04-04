@@ -1,13 +1,14 @@
 export interface LoggedInModel {
   token: string;
   loggedIn: {
-    id: string;
+    _id: string;
     email: string;
     username: string;
     displayName: string;
     isAdmin: boolean;
     isPremium: boolean;
     avatar: string;
+    socketStatus?: 'online' | 'idle' | 'offline';
   };
 }
 /* 
