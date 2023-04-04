@@ -9,5 +9,6 @@ const MessageRoute = express.Router();
 
 MessageRoute.post('/all', sessionMiddleware, MessageValidation.getMessages, MessageController.getAllMessages);
 MessageRoute.post('/create', sessionMiddleware, MessageValidation.createMessage, MessageController.createMessage);
+MessageRoute.post('/latest', sessionMiddleware, MessageValidation.getMessages, MessageController.getLastestMessage);
 
 export { MessageRoute };

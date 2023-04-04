@@ -25,7 +25,7 @@ const login = async (req: Request, res: Response) => {
       data: {
         token,
         loggedIn: {
-          id: user._id,
+          _id: user._id,
           email: user.email,
           username: user.username,
           displayName: `${user.firstName} ${user.lastName}`,

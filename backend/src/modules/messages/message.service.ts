@@ -17,4 +17,13 @@ const getAllMessages = (dto: GetChatMessageDto) => {
   }).sort({ updatedAt: 'desc' });
 };
 
-export const MessageService = { createMessage, getAllMessages };
+const getLastestMessage = (dto: GetChatMessageDto) => {
+  return MessageSchema.find({
+    users: {
+      $in: [dto.from],
+    },
+  }); /* .sort({ $natural: -1 }); */
+  /*     .limit(1); */
+};
+
+export const MessageService = { createMessage, getAllMessages, getLastestMessage };

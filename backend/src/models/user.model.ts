@@ -14,3 +14,14 @@ export interface UserModel {
   isPremium: boolean;
   isAdmin: boolean;
 }
+
+export interface LoggedInModel {
+  _id: string;
+  email: string;
+  username: string;
+  displayName: string;
+  isAdmin: boolean;
+  isPremium: boolean;
+  avatar: string;
+  socketStatus?: 'online' | 'idle' | 'offline';
+}

@@ -4,6 +4,9 @@ export const envConfig = () => ({
     port: process.env.APP_PORT,
     environment: process.env.ENVIRONMENT,
   },
+  socket: {
+    port: process.env.SOCKET_PORT,
+  },
   client: {
     baseUrl: process.env.CLIENT_BASE_URL,
     successGoogleSession: process.env.CLIENT_SUCCESS_GOOGLE_SESSION,

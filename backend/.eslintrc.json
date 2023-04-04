@@ -32,6 +32,8 @@
     "prefer-promise-reject-errors": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/no-base-to-string": "off",
-    "@typescript-eslint/dot-notation": "off"
+    "@typescript-eslint/dot-notation": "off",
+    "@typescript-eslint/prefer-ts-expect-error": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }
