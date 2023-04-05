@@ -1,19 +1,19 @@
-.usersListContainer {
+.inboxContainer {
   height: 100%;
-  min-width: 270px;
+  min-width: 300px;
 
-  @include respond-below(md) {
+  @include respond-below(2xl) {
     display: none;
   }
 
-  .usersHeaderWrapper {
+  .conversationHeaderWrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: var(--header-conversations-height);
 
-    .usersHeader {
+    .conversationHeader {
       height: var(--header-conversations-height-inside);
       display: flex;
       align-items: center;
@@ -31,7 +31,6 @@
 
         p {
           font-weight: 500;
-          color: var(--text-color-light);
           font-size: 18px;
         }
 
@@ -93,19 +92,19 @@
     }
   }
 
-  .usersList {
+  .conversationList {
     display: block;
     height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
     overflow: auto;
     background-color: var(--bg-color-dark);
     border-radius: 15px;
 
-    .usersListItem {
+    .conversationListItem {
       position: relative;
       display: flex;
       flex-direction: column;
       width: 100%;
-      padding: 20px 25px;
+      padding: 20px 45px;
       gap: 10px;
       transition: 150ms background-color ease;
       border-bottom: 1px solid var(--bg-color-border-box);
@@ -121,28 +120,10 @@
         width: 100%;
         position: relative;
 
-        .avatarWrapper {
-          position: relative;
-
-          img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            /*      vertical-align: super; */
-          }
-
-          .dotNotification {
-            width: 13px;
-            height: 13px;
-            border-radius: 100%;
-            position: absolute;
-            margin: auto;
-            right: 0px;
-            bottom: 0px;
-            background-color: var(--online-color);
-            border: 2px solid #2c2c2c;
-            overflow: hidden;
-          }
+        img {
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
         }
 
         div {
@@ -182,6 +163,18 @@
           color: var(--text-color-dim-light);
           letter-spacing: 0.5px;
         }
+      }
+
+      .dotNotification {
+        width: 6px;
+        height: 6px;
+        border-radius: 100%;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 20px;
+        background-color: var(--primary-color-light);
       }
 
       .message {

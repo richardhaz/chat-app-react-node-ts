@@ -1,26 +1,19 @@
-import { useRef } from 'react';
-import { sizeConfig } from '@/config';
+import styles from './ChatPage.module.scss';
 import { useWindowSize } from '@/shared/hooks';
 import { OverlayLoader } from '@/shared/ui';
 import { Outlet, useParams } from 'react-router-dom';
-import { AllUsersSidebar, ConversationSidebar } from './components';
-import { ConversationWelcomePage } from './conversation-welcome';
-import styles from './ConversationPage.module.scss';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
 import { MessageThunk } from '@/redux/message/message.thunk';
-import { Socket } from 'socket.io-client';
-import { ioSocket } from '@/shared/utils';
-import { LoggedInModel, UserModel } from '@/shared/models';
-import { setOnlineUsers } from '@/redux/socket/socket.slice';
+import InboxSidebar from './components/inbox-sidebar/InboxSidebar';
+import StartMessaging from './components/start-messaging/StartMessaging';
 
-const ConversatiosPage = () => {
+const ChatPage = () => {
   const windowSize = useWindowSize();
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const { loggedIn } = useAppSelector((state) => state.auth);
-  /*   const socket = useRef<Socket | undefined>(undefined); */
 
   // fetch user info if user is selected in chat
   useEffect(() => {
@@ -41,15 +34,15 @@ const ConversatiosPage = () => {
 
   return (
     <>
-      <div className={styles.conversationContainer}>
-        {windowSize.width >= sizeConfig().breakpoints.md ? <ConversationSidebar /> : null}
+      <div className={styles.chatContainer}>
+        <InboxSidebar />
         <div className={styles.channelSection}>
-          {!id ? <ConversationWelcomePage /> : <Outlet />}
+          <Outlet />
+          {!id && <StartMessaging />}
         </div>
-        {windowSize.width >= sizeConfig().breakpoints.lg ? <AllUsersSidebar /> : null}
       </div>
     </>
   );
 };
 
-export default ConversatiosPage;
+export default ChatPage;

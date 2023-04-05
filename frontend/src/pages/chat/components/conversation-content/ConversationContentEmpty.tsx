@@ -1,7 +1,7 @@
 import EmptyContentImage from '@/assets/images/undraw/empty-content.svg';
-import styles from './ConversationMessageEmpty.module.scss';
+import styles from './ConversationContentEmpty.module.scss';
 
-const ConversationMessageEmpty = () => {
+const ConversationContentEmpty = () => {
   return (
     <div className={styles.emptyConversationContainer}>
       <div>
@@ -13,4 +13,4 @@ const ConversationMessageEmpty = () => {
   );
 };
 
-export default ConversationMessageEmpty;
+export default ConversationContentEmpty;

@@ -1,9 +1,10 @@
-.conversationContainer {
+.chatContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
+  padding: 0 20px;
 
   @include respond-above(md) {
     gap: 20px;

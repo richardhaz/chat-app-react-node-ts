@@ -24,7 +24,7 @@ const UsersListNavigationDrawer = () => {
         <div className={styles.usersHeaderWrapper}>
           <div className={styles.usersHeader}>
             <div className={styles.headerNavTool}>
-              <p>Users</p>
+              <p>Chat</p>
               <span>{`104 users connected`}</span>
             </div>
             <div className={styles.inputWrapper}>

@@ -1,11 +1,11 @@
-import styles from './AllUsersSidebar.module.scss';
+import styles from './ChatList.module.scss';
 import { BiSearch } from 'react-icons/bi';
 import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
-import { Skeleton } from '@mui/material';
 import { UserThunk } from '@/redux/user/user.thunk';
+import ChatListLoading from './ChatListLoading';
 
-const AllUsersSidebar: React.FC = () => {
+const ChatList: React.FC = () => {
   const { users } = useAppSelector((state) => state.user);
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { onlineUsers } = useAppSelector((state) => state.socket);
@@ -25,7 +25,7 @@ const AllUsersSidebar: React.FC = () => {
       <div className={styles.usersHeaderWrapper}>
         <div className={styles.usersHeader}>
           <div className={styles.headerNavTool}>
-            <p>Users</p>
+            <p>Chat</p>
             <span>{`104 users connected`}</span>
           </div>
           <div className={styles.inputWrapper}>
@@ -38,7 +38,7 @@ const AllUsersSidebar: React.FC = () => {
       </div>
 
       {users.loading ? (
-        <UsersListLoading />
+        <ChatListLoading />
       ) : (
         <div className={styles.usersList}>
           {onlineUsers
@@ -46,7 +46,7 @@ const AllUsersSidebar: React.FC = () => {
             .map((item) => (
               <Link
                 key={item.profile._id}
-                to={item.profile._id}
+                to={`/chat/${item.profile._id}`}
                 className={styles.usersListItem}
                 onClick={() => handleGetAllMessages(item.profile._id)}
               >
@@ -68,40 +68,4 @@ const AllUsersSidebar: React.FC = () => {
   );
 };
 
-export default AllUsersSidebar;
-
-const UsersListLoading = () => {
-  return (
-    <div className={styles.usersList}>
-      {Array.from(new Array(8)).map((item, idx) => (
-        <div key={idx} className={styles.usersListItem}>
-          <div className={styles.userProfile}>
-            <Skeleton
-              animation="wave"
-              sx={{ bgcolor: 'grey.900' }}
-              variant="circular"
-              width={45}
-              height={45}
-            />
-            <div>
-              <Skeleton
-                animation="wave"
-                sx={{ bgcolor: 'grey.900', marginBottom: '10px' }}
-                variant="rectangular"
-                width={140}
-                height={18}
-              />
-              <Skeleton
-                animation="wave"
-                sx={{ bgcolor: 'grey.900' }}
-                variant="rectangular"
-                width={140}
-                height={12}
-              />
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
+export default ChatList;

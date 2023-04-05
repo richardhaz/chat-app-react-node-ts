@@ -1,0 +1,37 @@
+.usersList {
+  display: block;
+  height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
+  overflow: auto;
+  background-color: var(--bg-color-dark);
+  border-radius: 15px;
+
+  .usersListItem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 25px;
+    gap: 10px;
+    transition: 150ms background-color ease;
+    border-bottom: 1px solid var(--bg-color-border-box);
+
+    &:hover {
+      background-color: var(--bg-color-border-box);
+    }
+
+    .userProfile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+      position: relative;
+
+      div {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+  }
+}
