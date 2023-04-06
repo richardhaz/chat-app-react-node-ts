@@ -8,7 +8,7 @@ import ConversationContentPage from '@/pages/chat/components/conversation/Conver
 import { getPersistedToken, ioSocket } from '@/shared/utils';
 import { setOnlineUsers } from '@/redux/socket/socket.slice';
 import { LoggedInModel } from '@/shared/models';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 import { UserThunk } from '@/redux/user/user.thunk';
@@ -16,8 +16,6 @@ import { UserThunk } from '@/redux/user/user.thunk';
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
   const { loggedIn } = useAppSelector((state) => state.auth);
-  const { users } = useAppSelector((state) => state.user);
-  const { messages } = useAppSelector((state) => state.message);
 
   // load all users
   useEffect(() => {

@@ -10,9 +10,7 @@ interface ConversationContentData {
 
 const ConversationContentData: React.FC<ConversationContentData> = ({ arrivalMessages }) => {
   const { userById: receiver } = useAppSelector((state) => state.user);
-  // TODO: FIX types
   // TODO: Fix other users watching others conversation
-  // TODO: Fix not sending the first message
 
   const scrollRef = useRef<null | HTMLDivElement>(null);
 
@@ -40,7 +38,8 @@ const ConversationContentData: React.FC<ConversationContentData> = ({ arrivalMes
                       ? moment(item?.updatedAt).format('MMM D, YYYY [at] h:mm A z')
                       : moment(item?.updatedAt).fromNow()} */}
 
-                {moment(item?.updatedAt).format('MMM D, YYYY [at] h:mm A z')}
+                {/* {moment(item?.updatedAt).format('MMM D, YYYY [at] h:mm A z')} */}
+                {moment(item?.updatedAt).fromNow()}
               </p>
             </div>
           ) : (
@@ -67,8 +66,9 @@ const ConversationContentData: React.FC<ConversationContentData> = ({ arrivalMes
                 {/*                     {moment.duration(item?.updatedAt, 'days').days() > 2
                       ? moment(item?.updatedAt).format('MMM D, YYYY [at] h:mm A z')
                       : moment(item?.updatedAt).fromNow()} */}
-
-                {moment(item?.updatedAt).format('MMM D, YYYY [at] h:mm A z')}
+                {/* 
+                {moment(item?.updatedAt).format('MMM D, YYYY [at] h:mm A z')} */}
+                {moment(item?.updatedAt).fromNow()}
               </p>
             </div>
           )}

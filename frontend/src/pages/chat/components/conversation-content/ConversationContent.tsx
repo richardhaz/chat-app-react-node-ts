@@ -21,8 +21,6 @@ const ConversationContent = () => {
   const { messages } = useAppSelector((state) => state.message);
   const [arrivalMessages, setArrivalMessages] = useState<MessageResultModel[]>([]);
 
-  console.log('message-data', messages.data);
-
   useEffect(() => {
     setArrivalMessages(messages.data);
   }, [messages.data]);
@@ -36,6 +34,7 @@ const ConversationContent = () => {
     message: string;
   }>();
 
+  // TODO: validate input max length 250 character
   const onSubmit = (values: { message: string }) => {
     const messagePayload: CreateMessageDto = {
       from: `${loggedIn?._id}`,
@@ -49,12 +48,12 @@ const ConversationContent = () => {
   };
 
   // socket
-  const { userById: receiver, me } = useAppSelector((state) => state.user);
+  const { me } = useAppSelector((state) => state.user);
   const [socketMessages, setSocketMessages] = useState<SocketMessaggeData | null>(null);
 
   // Get socket messages
   useEffect(() => {
-    console.log('render-get-message');
+    /*     console.log('render-get-message'); */
     const socket = ioSocket();
     socket.on('getMessage', (data) => {
       setSocketMessages(data);
@@ -62,10 +61,11 @@ const ConversationContent = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    // TODO: fix velivering wrong chat conversation
     /*  && arrivalMessages.includes(socketMessages) */
     /*  && arrivalMessages.includes((u)=>u.) */
     if (socketMessages) {
-      console.log('render-prev-messages');
+      /*       console.log('render-prev-messages'); */
       setArrivalMessages((prev) => [
         ...prev,
         {
@@ -79,18 +79,13 @@ const ConversationContent = () => {
         }
       ]);
     }
-    /*     console.log({ arrivalMessages }); */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketMessages, me.data?._id]);
-
-  // TODO: validate input max length 250 character
-
-  console.log({ arrivalMessages });
-  console.log('messages-mongo-db', messages.data);
 
   return (
     <div className={styles.messageInputSection}>
       <div className={styles.conversationsContainer}>
-        {messages.loading ? (
+        {messages.loading && arrivalMessages.length === 0 ? (
           <ConversationContentLoading />
         ) : arrivalMessages.length === 0 ? (
           <ConversationContentEmpty />

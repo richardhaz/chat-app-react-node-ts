@@ -2,7 +2,7 @@
   padding: 0 25px;
   overflow: auto;
   height: 100%;
-  background-color: #131313;
+  background-color: var(--bg-color-dark);
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -19,6 +19,18 @@
     letter-spacing: 0.5px;
     max-width: 400px;
 
+    span {
+      color: var(--primary-color);
+      text-align: center;
+      font-weight: 600;
+      @include respond-below(md) {
+        font-size: 14px;
+      }
+      @include respond-above(md) {
+        font-size: 16px;
+      }
+    }
+
     h2 {
       text-align: center;
       @include respond-below(md) {
@@ -30,7 +42,7 @@
     }
     p {
       color: #afafaf;
-      text-align: start;
+      text-align: center;
       @include respond-below(md) {
         font-size: 14px;
       }
