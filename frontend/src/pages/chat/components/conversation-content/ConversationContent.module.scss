@@ -4,13 +4,13 @@
   height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
   background-color: var(--bg-color-dark);
   border-radius: 15px;
-  flex-direction: column-reverse;
+  flex-direction: column;
 
   .conversationsContainer {
-    overflow: auto;
-    flex-direction: column-reverse;
+    flex-direction: column;
     display: flex;
     height: 100%;
+    overflow: auto;
   }
 
   .messageInputContainer {

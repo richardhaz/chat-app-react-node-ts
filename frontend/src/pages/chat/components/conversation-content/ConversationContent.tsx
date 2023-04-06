@@ -11,6 +11,7 @@ import ConversationContentEmpty from './ConversationContentEmpty';
 import ConversationContentData from './ConversationContentData';
 import { useParams } from 'react-router-dom';
 import { generateUUID } from '@/shared/utils';
+import { DetailedHTMLProps, FormHTMLAttributes, useEffect, useRef } from 'react';
 
 /* const isMessages = true; */
 
@@ -20,6 +21,7 @@ const ConversationContent = () => {
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { userById } = useAppSelector((state) => state.user);
   const { messages } = useAppSelector((state) => state.message);
+  const { socketMessage } = useAppSelector((state) => state.socket);
 
   /*   console.log({ messages }); */
 
@@ -48,6 +50,15 @@ const ConversationContent = () => {
 
   return (
     <div className={styles.messageInputSection}>
+      <div className={styles.conversationsContainer}>
+        {messages.loading ? (
+          <ConversationContentLoading />
+        ) : !messages.loading && messages.data.length === 0 ? (
+          <ConversationContentEmpty />
+        ) : (
+          <ConversationContentData />
+        )}
+      </div>
       <form
         className={styles.messageInputContainer}
         onSubmit={handleSubmit((values) => onSubmit(values))}
@@ -69,15 +80,6 @@ const ConversationContent = () => {
           </button>
         </div>
       </form>
-      <div className={styles.conversationsContainer}>
-        {messages.loading ? (
-          <ConversationContentLoading />
-        ) : !messages.loading && messages.data.length === 0 ? (
-          <ConversationContentEmpty />
-        ) : (
-          <ConversationContentData />
-        )}
-      </div>
     </div>
   );
 };

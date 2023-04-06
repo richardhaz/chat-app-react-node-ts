@@ -1,21 +1,25 @@
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import styles from './ConversationContentData.module.scss';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ioSocket } from '@/shared/utils';
-import { setSocketMessage } from '@/redux/socket/socket.slice';
-import { UserModel } from '@/shared/models';
+/* import { setSocketMessage } from '@/redux/socket/socket.slice'; */
+import { MessageResultModel, UserModel } from '@/shared/models';
 
 const ConversationContentData = () => {
+  // TODO: FIX types
+  // TODO: Fix other users watching others conversation
+  // TODO: Fix not sending the first message
   const dispatch = useAppDispatch();
   const { messages } = useAppSelector((state) => state.message);
   const { userById: receiver, me } = useAppSelector((state) => state.user);
-  const { socketMessage } = useAppSelector((state) => state.socket);
-  const [arrivalMessages, setArrivalMessages] = useState<any[]>(messages.data);
+  /*   const { socketMessage } = useAppSelector((state) => state.socket); */
+  const [socketMessages, setSocketMessages] = useState(null);
+  const [arrivalMessages, setArrivalMessages] = useState<MessageResultModel[]>(messages.data);
 
   const getSocketSender = () => {
     const user = [me.data, receiver.data]
-      .filter((u) => u?._id === socketMessage?.senderId)
+      .filter((u) => u?._id === socketMessages?.senderId)
       .map((item) => item);
     return user;
   };
@@ -25,28 +29,51 @@ const ConversationContentData = () => {
     console.log('render-get-message');
     const socket = ioSocket();
     socket.on('getMessage', (data) => {
-      dispatch(setSocketMessage(data));
+      setSocketMessages(data);
     });
   }, [dispatch]);
 
+  /*   useEffect(()=>{
+
+  },[])
+ */
+
+  /* 
+  
+    (socketMessages && me.data?._id === socketMessages.senderId) ||
+      me.data?._id === socketMessages.receiverId
+    
+
+
+      
+      
+      */
+  console.log('arrival-messags', arrivalMessages);
+  console.log('__socket_messages', socketMessages);
   useEffect(() => {
-    if (socketMessage) {
+    /*  && arrivalMessages.includes(socketMessages) */
+    /*  && arrivalMessages.includes((u)=>u.) */
+    if (
+      socketMessages &&
+      (me.data?._id === socketMessages.users[0] || me.data?._id === socketMessages.users[1])
+    ) {
       console.log('render-prev-messages');
       setArrivalMessages((prev) => [
         ...prev,
         {
           fromSelf: me.data?._id === getSocketSender()[0]?._id,
-          messageIdentifier: socketMessage.messageIdentifier,
-          message: socketMessage.message,
+          messageIdentifier: socketMessages.messageIdentifier,
+          message: socketMessages.message,
+          users: socketMessages.users,
           senderDetails: getSocketSender()[0] as UserModel,
-          status: socketMessage.messageStatus,
+          status: socketMessages.messageStatus,
           createdAt: new Date(),
           updatedAt: new Date()
         }
       ]);
     }
     /*     console.log({ arrivalMessages }); */
-  }, [socketMessage]);
+  }, [socketMessages]);
 
   /*   console.log(getSocketSender());
   console.log({ socketMessage });
@@ -117,33 +144,38 @@ export interface MessageModel {
   /*   moment(item.createdAt).isSame(item.createdAt, 'day') 
   moment(item.createdAt).format('MMMM DD, YYYY') */
 
+  const scrollRef = useRef<null | HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }, [arrivalMessages]);
+
   return (
     <>
       {/*       {messages.data.map((item, idx, arr) => ( */}
       {arrivalMessages.map((item, idx, arr) => (
-        <div key={item.messageIdentifier + idx} className={styles.conversationChatContainer}>
-          {/*           <div className="text-divider">{moment(item.createdAt).format('MMMM DD, YYYY')}</div> */}
-          {/*   {moment(item.createdAt).isSame(
-            moment(arr[idx - 1]?.createdAt).format('YYYY-MM-DD'),
-            'day'
-          ) && <div className="text-divider">{moment(item.createdAt).format('MMMM DD, YYYY')}</div>} */}
+        <div
+          ref={scrollRef}
+          key={item?.messageIdentifier + idx}
+          className={styles.conversationChatContainer}
+        >
           <div className={styles.messageContentContainer}>
             <div className={styles.messageContent}>
               <div className={styles.userAvatar}>
-                <img src={item.senderDetails.avatar} />
+                <img src={item?.senderDetails?.avatar} />
               </div>
               <div className={styles.currentMessage}>
                 <div className={styles.userInfoDetails}>
                   <p className={styles.userName}>
-                    {item.senderDetails.firstName} {item.senderDetails.lastName}
+                    {item.senderDetails?.firstName} {item?.senderDetails?.lastName}
                   </p>
                   {/* <p className={styles.messageDate}>Today at 6:41 PM</p> */}
                   <p className={styles.messageDate}>
-                    {moment(item.updatedAt).format('DD/MM/YYYY h:mm A')}
+                    {moment(item?.updatedAt).format('DD/MM/YYYY h:mm A')}
                   </p>
                 </div>
                 <div className={styles.message}>
-                  <p>{item.message}</p>
+                  <p>{item?.message}</p>
                 </div>
               </div>
             </div>

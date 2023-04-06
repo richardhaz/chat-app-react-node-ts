@@ -43,7 +43,7 @@ export const AppRoutes = () => {
         console.log('ALL CONNECTED USERS: ', users);
       });
     }
-  }, [dispatch, loggedIn]);
+  }, [dispatch]);
 
   return (
     <>
