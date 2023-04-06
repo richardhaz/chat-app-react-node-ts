@@ -18,9 +18,17 @@ export interface MessageResultModel {
   _id?: string;
   fromSelf: boolean;
   messageIdentifier: string;
-  senderDetails: UserModel;
   message: string;
+  senderId: string;
   status: MESSAGE_STATUS;
   createdAt: string | Date;
   updatedAt: string | Date;
+}
+
+export interface SocketMessaggeData {
+  senderId: string;
+  receiverId: string;
+  message: string;
+  messageIdentifier: string;
+  messageStatus: MESSAGE_STATUS.DELIVERED;
 }

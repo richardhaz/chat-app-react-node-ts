@@ -9,11 +9,9 @@ import { CreateMessageDto } from '@/shared/dtos/messages';
 import { ConversationContentLoading } from './ConversationContentLoading';
 import ConversationContentEmpty from './ConversationContentEmpty';
 import ConversationContentData from './ConversationContentData';
-import { useParams } from 'react-router-dom';
-import { generateUUID } from '@/shared/utils';
-import { DetailedHTMLProps, FormHTMLAttributes, useEffect, useRef } from 'react';
-
-/* const isMessages = true; */
+import { generateUUID, ioSocket } from '@/shared/utils';
+import { useEffect, useState } from 'react';
+import { MessageResultModel, SocketMessaggeData } from '@/shared/models';
 
 const ConversationContent = () => {
   const dispatch = useAppDispatch();
@@ -21,9 +19,13 @@ const ConversationContent = () => {
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { userById } = useAppSelector((state) => state.user);
   const { messages } = useAppSelector((state) => state.message);
-  const { socketMessage } = useAppSelector((state) => state.socket);
+  const [arrivalMessages, setArrivalMessages] = useState<MessageResultModel[]>([]);
 
-  /*   console.log({ messages }); */
+  console.log('message-data', messages.data);
+
+  useEffect(() => {
+    setArrivalMessages(messages.data);
+  }, [messages.data]);
 
   const {
     register,
@@ -46,17 +48,54 @@ const ConversationContent = () => {
     dispatch(MessageThunk.createMessage(messagePayload));
   };
 
+  // socket
+  const { userById: receiver, me } = useAppSelector((state) => state.user);
+  const [socketMessages, setSocketMessages] = useState<SocketMessaggeData | null>(null);
+
+  // Get socket messages
+  useEffect(() => {
+    console.log('render-get-message');
+    const socket = ioSocket();
+    socket.on('getMessage', (data) => {
+      setSocketMessages(data);
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
+    /*  && arrivalMessages.includes(socketMessages) */
+    /*  && arrivalMessages.includes((u)=>u.) */
+    if (socketMessages) {
+      console.log('render-prev-messages');
+      setArrivalMessages((prev) => [
+        ...prev,
+        {
+          fromSelf: loggedIn?._id === socketMessages.senderId,
+          messageIdentifier: socketMessages.messageIdentifier,
+          message: socketMessages.message,
+          senderId: socketMessages.senderId,
+          status: socketMessages.messageStatus,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
+      ]);
+    }
+    /*     console.log({ arrivalMessages }); */
+  }, [socketMessages, me.data?._id]);
+
   // TODO: validate input max length 250 character
+
+  console.log({ arrivalMessages });
+  console.log('messages-mongo-db', messages.data);
 
   return (
     <div className={styles.messageInputSection}>
       <div className={styles.conversationsContainer}>
         {messages.loading ? (
           <ConversationContentLoading />
-        ) : !messages.loading && messages.data.length === 0 ? (
+        ) : arrivalMessages.length === 0 ? (
           <ConversationContentEmpty />
         ) : (
-          <ConversationContentData />
+          <ConversationContentData arrivalMessages={arrivalMessages} />
         )}
       </div>
       <form

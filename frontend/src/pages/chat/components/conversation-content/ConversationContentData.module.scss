@@ -1,15 +1,15 @@
 .conversationChatContainer {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .messageContentContainer {
-  margin-top: 10px;
-  margin-bottom: 10px;
-
   .messageContent {
     display: flex;
     align-items: start;
     gap: 10px;
     height: 100%;
+    max-width: 400px;
 
     .userAvatar {
       img {
@@ -20,16 +20,15 @@
     }
 
     .currentMessage {
+      background-color: #2e2e2e;
+      padding: 10px 12px;
+      border-radius: 10px;
+
       .userInfoDetails {
         display: flex;
         align-items: center;
         justify-content: start;
         gap: 8px;
-
-        .messageDate {
-          font-size: var(--text-size-extra-small);
-          color: var(--text-color-dim);
-        }
 
         .userName {
           color: var(--text-color-semi-light);
@@ -38,6 +37,7 @@
         }
       }
     }
+
     .message {
       margin-top: 5px;
       p {
@@ -46,4 +46,39 @@
       }
     }
   }
+}
+
+.messageDate {
+  margin-top: 6px;
+  margin-left: 60px;
+  font-size: var(--text-size-extra-small);
+  color: var(--text-color-dim);
+}
+
+.messageContentContainerOwn {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+
+  .currentMessageOwn {
+    background-color: #004444;
+    color: var(--primary-color);
+    padding: 10px 12px;
+    border-radius: 10px;
+    max-width: 400px;
+
+    .messageOwn {
+      p {
+        font-size: var(--text-size-medium);
+        color: var(--text-color-dim-light);
+      }
+    }
+  }
+}
+
+.messageDateOwn {
+  text-align: end;
+  margin-top: 6px;
+  font-size: var(--text-size-extra-small);
+  color: var(--text-color-dim);
 }
