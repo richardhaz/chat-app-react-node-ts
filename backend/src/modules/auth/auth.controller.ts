@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { UserModel } from '@/models';
-import { encryptPwd, ErrorManager, signToken } from '@/utils';
+import { ErrorManager, signToken, verifyPwd } from '@/utils';
 
 import { UserService } from '../users/user.service';
 import { LoginUserDto } from './dtos';
@@ -14,7 +14,9 @@ const login = async (req: Request, res: Response) => {
 
     if (!user) return res.status(401).json({ message: 'INCORRECT_EMAIL_OR_PASSWORD' });
 
-    const validPassword = await encryptPwd(dto.password);
+    const validPassword = await verifyPwd(dto.password, user.password);
+
+    console.log({ validPassword });
 
     if (!validPassword) return res.status(401).json({ message: 'INCORRECT_EMAIL_OR_PASSWORD' });
 
@@ -28,7 +30,8 @@ const login = async (req: Request, res: Response) => {
           _id: user._id,
           email: user.email,
           username: user.username,
-          displayName: `${user.firstName} ${user.lastName}`,
+          firstName: user.firstName,
+          lastName: user.lastName,
           isAdmin: user.isAdmin,
           isPremium: user.isPremium,
           avatar: user.avatar,

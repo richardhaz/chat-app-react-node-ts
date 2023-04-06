@@ -5,6 +5,10 @@ import { MessageModel } from '@/models';
 
 const Message = new Schema<MessageModel>(
   {
+    messageIdentifier: {
+      type: String,
+      required: false,
+    },
     message: {
       text: {
         type: String,

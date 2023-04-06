@@ -6,6 +6,7 @@ const createMessage = (dto: CreateMessageDto) => {
     message: { text: dto.message },
     users: [dto.from, dto.to],
     sender: dto.from,
+    messageIdentifier: dto.messageIdentifier,
   });
 };
 
@@ -14,7 +15,7 @@ const getAllMessages = (dto: GetChatMessageDto) => {
     users: {
       $all: [dto.from, dto.to],
     },
-  }).sort({ updatedAt: 'desc' });
+  }).sort({ updatedAt: 'asc' });
 };
 
 const getLastestMessage = (dto: GetChatMessageDto) => {

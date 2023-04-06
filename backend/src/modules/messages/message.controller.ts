@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import moment from 'moment';
 
 import { MessageModel, RequestExtended } from '@/models';
 import { ErrorManager } from '@/utils';
@@ -27,6 +26,7 @@ const getAllMessages = async (req: RequestExtended, res: Response) => {
         _id: msg._id,
         fromSelf: msg.sender.toString() === dto.from,
         senderDetails: await UserService.findById(`${msg.sender}`),
+        messageIdentifier: msg.messageIdentifier,
         message: msg.message.text,
         status: msg.message.status,
         createdAt: msg.createdAt,

@@ -4,7 +4,9 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { UserSchema } from './user.schema';
 
 const getAll = (id: string) => {
-  const users = UserSchema.find({ _id: { $ne: id } }).sort({ createdAt: 'desc' });
+  const users = UserSchema.find({ _id: { $ne: id } })
+    .select('-password')
+    .sort({ createdAt: 'desc' });
   return users;
 };
 
@@ -13,7 +15,7 @@ const findByEmail = (email: string) => {
 };
 
 const findById = (id: string) => {
-  const user = UserSchema.findById(id);
+  const user = UserSchema.findById(id).select('-password');
   return user;
 };
 

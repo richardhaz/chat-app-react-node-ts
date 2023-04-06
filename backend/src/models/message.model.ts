@@ -6,6 +6,7 @@ import { UserModel } from './user.model';
 
 export interface MessageModel {
   _id: string;
+  messageIdentifier: string;
   message: {
     text: string;
     status: MESSAGE_STATUS;
