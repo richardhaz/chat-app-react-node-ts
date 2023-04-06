@@ -4,22 +4,11 @@ export interface LoggedInModel {
     _id: string;
     email: string;
     username: string;
-    displayName: string;
+    firstName: string;
+    lastName: string;
     isAdmin: boolean;
     isPremium: boolean;
     avatar: string;
-    socketStatus?: 'online' | 'idle' | 'offline';
+    connectionStatus?: 'online' | 'idle' | 'offline';
   };
 }
-/* 
-
-export interface LoggedInModel {
-  user: {
-    _id: string;
-    displayName: string;
-  };
-  isPremium: boolean;
-  isAdmin: boolean;
-}
-
-*/

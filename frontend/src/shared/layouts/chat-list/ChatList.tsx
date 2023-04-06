@@ -6,7 +6,7 @@ import { UserThunk } from '@/redux/user/user.thunk';
 import ChatListLoading from './ChatListLoading';
 
 const ChatList: React.FC = () => {
-  const { users } = useAppSelector((state) => state.user);
+  const { users, userById } = useAppSelector((state) => state.user);
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { onlineUsers } = useAppSelector((state) => state.socket);
 
@@ -56,7 +56,9 @@ const ChatList: React.FC = () => {
                     <div className={styles.dotNotification}></div>
                   </div>
                   <div>
-                    <p>{item.profile.displayName}</p>
+                    <p>
+                      {item.profile.firstName} {item.profile.lastName}
+                    </p>
                     <span>online</span>
                   </div>
                 </div>

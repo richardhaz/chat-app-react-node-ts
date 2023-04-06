@@ -41,14 +41,14 @@ const routes = [
 const MainMenuOptions: React.FC = () => {
   const { loggedIn } = useAppSelector((state) => state.auth);
 
-  console.log({ loggedIn });
-
   return (
     <aside className={styles.mainMenuOptionsContainer}>
       <div className={styles.menuOptionsHeaderWrapper}>
         <div className={styles.menuHeader}>
           <img src={loggedIn?.avatar} />
-          <p>{loggedIn?.displayName} </p>
+          <p>
+            {loggedIn?.firstName} {loggedIn?.lastName}{' '}
+          </p>
         </div>
       </div>
       <div className={styles.menuList}>

@@ -26,9 +26,10 @@ export const authSlice = createSlice({
       state.error = null;
       state.token = null;
       state.loggedIn = null;
-      // disconnect user
-      const socket = ioSocket();
-      socket.emit('offline');
+      if (state.token === null) {
+        console.log('window-reload');
+        window.location.reload();
+      }
     }
   },
   extraReducers(builder) {

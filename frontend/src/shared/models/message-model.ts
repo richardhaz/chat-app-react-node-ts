@@ -3,21 +3,24 @@ import { UserModel } from './user-model';
 
 export interface MessageModel {
   _id: string;
+  messageIdentifier: string;
   message: {
     text: string;
+    status: MESSAGE_STATUS;
   };
   createdAt: string;
-  startDate: string;
+  updatedAt: string;
   users: UserModel[];
-  sender: [string];
+  sender: string;
 }
 
 export interface MessageResultModel {
-  _id: string;
+  _id?: string;
   fromSelf: boolean;
+  messageIdentifier: string;
   senderDetails: UserModel;
   message: string;
   status: MESSAGE_STATUS;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 }

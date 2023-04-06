@@ -10,6 +10,7 @@ import { ConversationContentLoading } from './ConversationContentLoading';
 import ConversationContentEmpty from './ConversationContentEmpty';
 import ConversationContentData from './ConversationContentData';
 import { useParams } from 'react-router-dom';
+import { generateUUID } from '@/shared/utils';
 
 /* const isMessages = true; */
 
@@ -33,14 +34,12 @@ const ConversationContent = () => {
 
   const onSubmit = (values: { message: string }) => {
     const messagePayload: CreateMessageDto = {
-      // id of logged in user
       from: `${loggedIn?._id}`,
-      // id of selected user in chat
       to: `${userById.data?._id}`,
-      message: values.message
+      message: values.message,
+      messageIdentifier: generateUUID()
     };
 
-    /* console.log('payload', payload); */
     reset();
     dispatch(MessageThunk.createMessage(messagePayload));
   };
