@@ -11,7 +11,7 @@ export interface MessageModel {
     text: string;
     status: MESSAGE_STATUS;
   };
-  users: UserModel[];
+  users: string[];
   sender: ObjectId;
   createdAt: string;
   updatedAt: string;

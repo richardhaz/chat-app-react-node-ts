@@ -19,13 +19,10 @@ export const chatSocket = (io: SocketServer) => {
     // send message
     socket.on('sendMessage', ({ senderId, receiverId, message, messageIdentifier }) => {
       const user = getUser(receiverId);
-      console.log({ senderId });
-      console.log({ receiverId });
-      console.log({ message });
-      console.log({ user });
       console.log('socketId', user?.socketId);
       io.emit('getMessage', {
         senderId,
+        receiverId,
         message,
         messageIdentifier,
         messageStatus: MESSAGE_STATUS.DELIVERED,
