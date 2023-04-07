@@ -6,7 +6,9 @@ import {
   RiGroupLine,
   RiMessengerLine,
   RiSettings2Line,
-  RiUser3Line
+  RiUser3Line,
+  RiBugLine,
+  RiInformationLine
 } from 'react-icons/ri';
 import { useAppSelector } from '@/redux/useTypedRedux';
 
@@ -18,7 +20,7 @@ const routes = [
   },
   {
     path: '/chat',
-    name: 'Inbox',
+    name: 'Single Chat',
     icon: <RiMessengerLine />
   },
   {
@@ -34,6 +36,16 @@ const routes = [
   {
     path: '/friends',
     name: 'Friends',
+    icon: <RiInformationLine />
+  },
+  {
+    path: '/bug-report',
+    name: 'Bug Report',
+    icon: <RiBugLine />
+  },
+  {
+    path: '/about',
+    name: 'About',
     icon: <RiGroupLine />
   }
 ];

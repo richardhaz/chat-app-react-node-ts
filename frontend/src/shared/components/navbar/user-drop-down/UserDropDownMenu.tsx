@@ -17,7 +17,7 @@ const UserDropDownMenu = () => {
     setAnchorEl(null);
   };
 
-  const dispath = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const auth = useAppSelector((state) => state.auth);
 
@@ -69,7 +69,7 @@ const UserDropDownMenu = () => {
           disableRipple
           onClick={() => {
             handleClose();
-            dispath(logOutUser());
+            dispatch(logOutUser());
           }}
           sx={{ '&:hover': { backgroundColor: '#242424' } }}
         >

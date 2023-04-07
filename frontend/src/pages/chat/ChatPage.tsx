@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
 import { MessageThunk } from '@/redux/message/message.thunk';
-import InboxSidebar from './components/inbox-sidebar/InboxSidebar';
-import StartMessaging from './components/start-messaging/StartMessaging';
+import { InboxSidebar } from './components/inbox-sidebar';
+import { StartMessaging } from './components/start-messaging';
 
 const ChatPage = () => {
   const windowSize = useWindowSize();
@@ -35,7 +35,7 @@ const ChatPage = () => {
   return (
     <>
       <div className={styles.chatContainer}>
-        <InboxSidebar />
+        {/*  <InboxSidebar /> */}
         <div className={styles.channelSection}>
           <Outlet />
           {!id && <StartMessaging />}

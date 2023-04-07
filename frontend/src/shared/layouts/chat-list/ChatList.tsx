@@ -6,7 +6,7 @@ import { UserThunk } from '@/redux/user/user.thunk';
 import ChatListLoading from './ChatListLoading';
 
 const ChatList: React.FC = () => {
-  const { users, userById } = useAppSelector((state) => state.user);
+  const { users } = useAppSelector((state) => state.user);
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { onlineUsers } = useAppSelector((state) => state.socket);
 
@@ -20,6 +20,8 @@ const ChatList: React.FC = () => {
     }
   };
 
+  const allOnlineUsers = onlineUsers.length - 1;
+
   const newMessage = false;
 
   return (
@@ -28,7 +30,7 @@ const ChatList: React.FC = () => {
         <div className={styles.usersHeader}>
           <div className={styles.headerNavTool}>
             <p>Chat</p>
-            <span>{`104 users connected`}</span>
+            <span>{`${allOnlineUsers} users connected`}</span>
           </div>
           <div className={styles.inputWrapper}>
             <input placeholder="Search" />

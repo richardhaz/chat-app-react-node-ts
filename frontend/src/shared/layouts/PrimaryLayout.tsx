@@ -9,7 +9,7 @@ interface PrimaryLayoutProps {
 
 const PrimaryLayout: React.FC<PrimaryLayoutProps> = ({ children }) => {
   return (
-    <div className={`${styles.primaryLayoutContainer}`}>
+    <div className={`${styles.primaryLayoutContainer} container`}>
       <Navbar />
       <div className={styles.primaryLayoutContent}>
         <MainMenuOptions />

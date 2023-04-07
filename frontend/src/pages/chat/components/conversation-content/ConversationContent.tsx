@@ -53,7 +53,6 @@ const ConversationContent = () => {
 
   // Get socket messages
   useEffect(() => {
-    /*     console.log('render-get-message'); */
     const socket = ioSocket();
     socket.on('getMessage', (data) => {
       setSocketMessages(data);
@@ -61,8 +60,6 @@ const ConversationContent = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    // TODO: fix velivering wrong chat conversation
-
     if (socketMessages) {
       // check if the sender and receiver are in the same chat as sender or receiver
       if (

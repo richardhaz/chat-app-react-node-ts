@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { RoutesWrapper } from '../components';
 import { HomePage } from '@/pages/home';
 import { ChatPage } from '@/pages/chat';
-import ConversationContentPage from '@/pages/chat/components/conversation/Conversation';
+import { ConversationContentPage } from '@/pages/chat/components/conversation';
 import { getPersistedToken, ioSocket } from '@/shared/utils';
 import { setOnlineUsers } from '@/redux/socket/socket.slice';
 import { LoggedInModel } from '@/shared/models';
@@ -55,6 +55,8 @@ export const AppRoutes = () => {
           <Route path="/me" element={<div>Me Page</div>} />
           <Route path="/settings" element={<div>Settings Page</div>} />
           <Route path="/friends" element={<div>Friends Page</div>} />
+          <Route path="/bug-report" element={<div>Bug Report Page</div>} />
+          <Route path="/about" element={<div>About Page</div>} />
           {/* Chat Routes */}
         </RoutesWrapper>
       </PrimaryLayout>

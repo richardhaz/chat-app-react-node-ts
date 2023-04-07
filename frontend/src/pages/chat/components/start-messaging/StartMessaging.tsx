@@ -6,7 +6,7 @@ const StartMessaging = () => {
     <div className={styles.startMessagingContainer}>
       <div>
         <h2>Start Messaging</h2>
-        <p>You&apos;ll started a conversation yet</p>
+        <p>You haven&apos;t started a conversation yet</p>
       </div>
       <img src={StartMessagingImage} alt="empty-chat-image" />
     </div>

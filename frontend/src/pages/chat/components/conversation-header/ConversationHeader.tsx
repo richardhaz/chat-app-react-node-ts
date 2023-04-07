@@ -5,6 +5,11 @@ import ConversationHeaderLoading from './ConversationHeaderLoading';
 
 const ConversationHeader = () => {
   const { userById } = useAppSelector((state) => state.user);
+
+  const { onlineUsers } = useAppSelector((state) => state.socket);
+
+  const result = onlineUsers.filter((u) => u.profile._id === userById.data?._id);
+
   return (
     <div className={styles.conversationContentHeader}>
       <div className={styles.userInfoContainer}>
@@ -19,7 +24,7 @@ const ConversationHeader = () => {
                   {userById.data?.firstName} {userById.data?.lastName}
                 </p>
                 {/* TODO: update minutes ago with socket io */}
-                <span>3 minutes ago</span>
+                <span>{result.length === 0 ? 'offline' : 'online'}</span>
               </div>
             </div>
           )}
