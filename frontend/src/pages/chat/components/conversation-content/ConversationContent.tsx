@@ -62,22 +62,28 @@ const ConversationContent = () => {
 
   useEffect(() => {
     // TODO: fix velivering wrong chat conversation
-    /*  && arrivalMessages.includes(socketMessages) */
-    /*  && arrivalMessages.includes((u)=>u.) */
+
     if (socketMessages) {
-      /*       console.log('render-prev-messages'); */
-      setArrivalMessages((prev) => [
-        ...prev,
-        {
-          fromSelf: loggedIn?._id === socketMessages.senderId,
-          messageIdentifier: socketMessages.messageIdentifier,
-          message: socketMessages.message,
-          senderId: socketMessages.senderId,
-          status: socketMessages.messageStatus,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-      ]);
+      // check if the sender and receiver are in the same chat as sender or receiver
+      if (
+        (loggedIn?._id === socketMessages.senderId &&
+          userById.data?._id === socketMessages.receiverId) ||
+        (loggedIn?._id === socketMessages.receiverId &&
+          userById.data?._id === socketMessages.senderId)
+      ) {
+        setArrivalMessages((prev) => [
+          ...prev,
+          {
+            fromSelf: loggedIn?._id === socketMessages.senderId,
+            messageIdentifier: socketMessages.messageIdentifier,
+            message: socketMessages.message,
+            senderId: socketMessages.senderId,
+            status: socketMessages.messageStatus,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        ]);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketMessages, me.data?._id]);
