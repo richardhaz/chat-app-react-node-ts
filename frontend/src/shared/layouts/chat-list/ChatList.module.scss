@@ -184,6 +184,25 @@
           color: var(--text-color-dim-light);
           letter-spacing: 0.5px;
         }
+
+        .newMessageNotification {
+          font-size: 12px;
+          color: rgb(209, 209, 209);
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 18px;
+          height: 18px;
+          border-radius: 100%;
+          position: absolute;
+          margin: auto;
+          left: 0px;
+          bottom: 0px;
+          background: rgb(216, 3, 3);
+          border: 1px solid rgb(165, 0, 0);
+          overflow: hidden;
+        }
       }
 
       .message {

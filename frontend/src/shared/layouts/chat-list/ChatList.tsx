@@ -20,6 +20,8 @@ const ChatList: React.FC = () => {
     }
   };
 
+  const newMessage = false;
+
   return (
     <div className={styles.usersListContainer}>
       <div className={styles.usersHeaderWrapper}>
@@ -61,6 +63,7 @@ const ChatList: React.FC = () => {
                     </p>
                     <span>online</span>
                   </div>
+                  {newMessage && <div className={styles.newMessageNotification}>2</div>}
                 </div>
               </Link>
             ))}
