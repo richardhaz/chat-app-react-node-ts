@@ -21,8 +21,6 @@ const getAllMessages = async (req: RequestExtended, res: Response) => {
   try {
     const dto = req.body as GetChatMessageDto;
     const messages = (await MessageService.getAllMessages(dto)) as MessageModel[];
-    console.log({ messages });
-    console.log({ dto });
     const filteredMessages = messages.map((msg) => ({
       _id: msg._id,
       fromSelf: msg.sender.toString() === dto.from,
