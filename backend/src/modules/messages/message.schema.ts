@@ -21,7 +21,12 @@ const Message = new Schema<MessageModel>(
         default: MESSAGE_STATUS.DELIVERED,
       },
     },
-    users: Array,
+    users: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users',

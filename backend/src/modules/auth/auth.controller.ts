@@ -16,8 +16,6 @@ const login = async (req: Request, res: Response) => {
 
     const validPassword = await verifyPwd(dto.password, user.password);
 
-    console.log({ validPassword });
-
     if (!validPassword) return res.status(401).json({ message: 'INCORRECT_EMAIL_OR_PASSWORD' });
 
     const token = await signToken(user);

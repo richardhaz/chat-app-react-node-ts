@@ -2,8 +2,6 @@ import { ObjectId } from 'mongoose';
 
 import { MESSAGE_STATUS } from '@/constants';
 
-import { UserModel } from './user.model';
-
 export interface MessageModel {
   _id: string;
   messageIdentifier: string;

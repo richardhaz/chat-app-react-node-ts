@@ -4,4 +4,5 @@ export * from './generate-username';
 export * from './handle-jwt';
 export * from './logger';
 export * from './regex-utility';
+export * from './route-not-found';
 export * from './validation-result';
