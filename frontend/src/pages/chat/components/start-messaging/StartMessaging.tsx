@@ -1,4 +1,4 @@
-import StartMessagingImage from '@/assets/images/undraw/be-friends.svg';
+import EmptyInboxImage from '@/assets/images/undraw/chat-start.svg';
 import styles from './StartMessaging.module.scss';
 
 const StartMessaging = () => {
@@ -8,7 +8,7 @@ const StartMessaging = () => {
         <h2>Start Messaging</h2>
         <p>You haven&apos;t started a conversation yet</p>
       </div>
-      <img src={StartMessagingImage} alt="empty-chat-image" />
+      <img src={EmptyInboxImage} alt="empty-chat-image" />
     </div>
   );
 };

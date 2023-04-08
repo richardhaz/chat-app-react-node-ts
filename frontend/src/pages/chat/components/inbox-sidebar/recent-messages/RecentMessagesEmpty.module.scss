@@ -1,0 +1,26 @@
+.conversationListEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
+  overflow: auto;
+  background-color: var(--bg-color-dark);
+  border-radius: 15px;
+  padding: 30px 30px;
+  text-align: center;
+}
+
+.conversationListEmpty p {
+  font-size: var(--text-size-large);
+}
+.conversationListEmpty span {
+  margin-top: 10px;
+  font-size: var(--text-size-medium);
+  color: var(--text-color-dim);
+}
+
+.conversationListEmpty img {
+  margin-top: 40px;
+  width: 240px;
+}

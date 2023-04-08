@@ -95,3 +95,7 @@ a:-webkit-any-link {
   text-decoration: none;
   color: inherit;
 }
+
+.MuiCircularProgress-colorPrimary {
+  color: var(--primary-color) !important;
+}

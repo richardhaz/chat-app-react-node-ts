@@ -5,6 +5,7 @@ import ConversationHeaderLoading from './ConversationHeaderLoading';
 
 const ConversationHeader = () => {
   const { userById } = useAppSelector((state) => state.user);
+  const { messages } = useAppSelector((state) => state.message);
 
   const { onlineUsers } = useAppSelector((state) => state.socket);
 
@@ -14,7 +15,7 @@ const ConversationHeader = () => {
     <div className={styles.conversationContentHeader}>
       <div className={styles.userInfoContainer}>
         <div className={styles.userInfo}>
-          {userById.loading ? (
+          {userById.loading || messages.loading ? (
             <ConversationHeaderLoading />
           ) : (
             <div className={styles.userNames}>

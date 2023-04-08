@@ -96,7 +96,7 @@ const ConversationContent = () => {
   return (
     <div className={styles.messageInputSection}>
       <div className={styles.conversationsContainer}>
-        {messages.loading && arrivalMessages.length === 0 ? (
+        {messages.loading || userById.loading ? (
           <ConversationContentLoading />
         ) : arrivalMessages.length === 0 ? (
           <ConversationContentEmpty />

@@ -1,0 +1,107 @@
+.conversationList {
+  display: block;
+  height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
+  overflow: auto;
+  background-color: var(--bg-color-dark);
+  border-radius: 15px;
+
+  .conversationListItem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 45px;
+    gap: 10px;
+    transition: 150ms background-color ease;
+    border-bottom: 1px solid var(--bg-color-border-box);
+
+    &:hover {
+      background-color: var(--bg-color-border-box);
+    }
+
+    .userProfile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+      position: relative;
+
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+
+      div {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        gap: 5px;
+
+        p {
+          font-size: var(--text-size-medium);
+          font-weight: 500;
+          color: var(--text-color-light);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 10em;
+        }
+        span {
+          font-size: var(--text-size-extra-small);
+          color: var(--text-color-semi-light);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 14em;
+        }
+      }
+
+      .lastConnection {
+        position: absolute;
+        top: 0;
+        right: -15%;
+        font-size: var(--text-size-tiny);
+        font-weight: 500;
+        color: var(--text-color-dim-light);
+        letter-spacing: 0.5px;
+      }
+    }
+
+    .dotNotification {
+      width: 6px;
+      height: 6px;
+      border-radius: 100%;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      background-color: var(--primary-color-light);
+    }
+
+    .message {
+      font-size: var(--text-size-medium);
+      color: var(--text-color-dim-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 17em;
+    }
+  }
+}
+
+.conversationListItemSelected {
+  /*   background-color: #033d3d; */
+  /*   background-color: #042c2c; */
+  background-color: #042c2c;
+  &:hover {
+    background-color: #042c2c !important;
+  }
+}

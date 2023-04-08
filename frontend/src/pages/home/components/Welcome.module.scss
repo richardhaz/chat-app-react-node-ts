@@ -34,14 +34,14 @@
         font-size: 14px;
       }
       @include respond-above(md) {
-        font-size: 16px;
+        font-size: 17px;
       }
     }
 
     span {
       text-align: start;
       width: 100%;
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-color-dim);
     }
   }
