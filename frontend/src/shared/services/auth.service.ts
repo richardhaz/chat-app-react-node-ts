@@ -8,4 +8,10 @@ const login = (data: LoginUserDto): Promise<GenericResponse<LoggedInModel>> => {
   });
 };
 
-export const AuthService = { login };
+const logout = (): Promise<GenericResponse<string>> => {
+  return AxiosUrl.post('/auth/logout').then((res) => {
+    return res.data;
+  });
+};
+
+export const AuthService = { login, logout };

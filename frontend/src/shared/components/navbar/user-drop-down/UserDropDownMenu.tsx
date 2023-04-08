@@ -4,8 +4,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { AiFillCaretDown } from 'react-icons/ai';
 import styles from './UserDropDownMenu.module.scss';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
-import { logOutUser } from '@/redux/auth/auth.slice';
 import { Tooltip } from '@mui/material';
+import { AuthThunk } from '@/redux/auth/auth.thunk';
 
 const UserDropDownMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -69,7 +69,7 @@ const UserDropDownMenu = () => {
           disableRipple
           onClick={() => {
             handleClose();
-            dispatch(logOutUser());
+            dispatch(AuthThunk.logout());
           }}
           sx={{ '&:hover': { backgroundColor: '#242424' } }}
         >

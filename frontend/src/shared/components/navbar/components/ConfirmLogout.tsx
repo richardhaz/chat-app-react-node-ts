@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useAppDispatch } from '@/redux/useTypedRedux';
-import { logOutUser } from '@/redux/auth/auth.slice';
+import { AuthThunk } from '@/redux/auth/auth.thunk';
 
 interface ConfirmLogoutProps {
   openConfirmLogout: boolean;
@@ -41,7 +41,7 @@ const ConfirmLogout: React.FC<ConfirmLogoutProps> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() => dispatch(logOutUser())} autoFocus sx={{ color: 'white' }}>
+          <Button onClick={() => dispatch(AuthThunk.logout())} autoFocus sx={{ color: 'white' }}>
             LogOut
           </Button>
         </DialogActions>

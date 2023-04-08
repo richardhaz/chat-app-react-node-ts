@@ -17,7 +17,7 @@ const getConversationByMembers = (
 const getAllMyConversations = (
   data: FindAllMyConversationsDto
 ): Promise<GenericResponse<ConversationModel[]>> => {
-  return AxiosUrl.post('/conversation/find-all-my-conversations', data).then((res) => {
+  return AxiosUrl.post('/conversation/all-my-conversations', data).then((res) => {
     return res.data;
   });
 };

@@ -58,9 +58,7 @@ const MainMenuOptions: React.FC = () => {
       <div className={styles.menuOptionsHeaderWrapper}>
         <div className={styles.menuHeader}>
           <img src={loggedIn?.avatar} />
-          <p>
-            {loggedIn?.firstName} {loggedIn?.lastName}{' '}
-          </p>
+          <p>{loggedIn?.displayName}</p>
         </div>
       </div>
       <div className={styles.menuList}>

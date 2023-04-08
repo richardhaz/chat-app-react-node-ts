@@ -5,7 +5,7 @@ import { RoutesWrapper } from '../components';
 import { HomePage } from '@/pages/home';
 import { ChatPage } from '@/pages/chat';
 import { ConversationContentPage } from '@/pages/chat/components/conversation';
-import { getPersistedToken, ioSocket } from '@/shared/utils';
+import { ioSocket } from '@/shared/utils';
 import { setOnlineUsers } from '@/redux/socket/socket.slice';
 import { LoggedInModel } from '@/shared/models';
 import { useEffect } from 'react';
@@ -39,7 +39,7 @@ export const AppRoutes = () => {
     if (loggedIn) {
       const socket = ioSocket();
       socket.emit('new_user_add', loggedIn);
-      socket.on('get_users', (users: LoggedInModel['loggedIn'][]) => {
+      socket.on('get_users', (users: LoggedInModel[]) => {
         dispatch(setOnlineUsers(users));
         console.log('ALL CONNECTED USERS: ', users);
       });
