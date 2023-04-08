@@ -1,7 +1,7 @@
 import { MessageResultModel } from '@/shared/models';
 import styles from './ConversationContentData.module.scss';
 import moment from 'moment';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '@/redux/useTypedRedux';
 
 interface ConversationContentData {
@@ -10,7 +10,8 @@ interface ConversationContentData {
 
 const ConversationContentData: React.FC<ConversationContentData> = ({ arrivalMessages }) => {
   const { userById: receiver } = useAppSelector((state) => state.user);
-  // TODO: Fix other users watching others conversation
+  const [typing, setTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   const scrollRef = useRef<null | HTMLDivElement>(null);
 

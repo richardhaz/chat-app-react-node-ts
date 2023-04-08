@@ -1,7 +1,9 @@
 import { CreateMessageDto, GetAllMessagesDto } from '@/shared/dtos/messages';
 import { MessageService } from '@/shared/services';
-import { errorMessageResolver, generateUUID, ioSocket } from '@/shared/utils';
+import { errorMessageResolver, ioSocket } from '@/shared/utils';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ConversationThunk } from '../conversation/conversation.thunk';
+import { CreateConversationDto } from '@/shared/dtos/conversations';
 
 const getAllMessages = createAsyncThunk(
   'message/getAllMessages',
@@ -24,6 +26,16 @@ const createMessage = createAsyncThunk(
   'message/createMessage',
   async (data: CreateMessageDto, thunkApi) => {
     try {
+      const createConversation: CreateConversationDto = {
+        lastMessage: data.message,
+        member1: data.from,
+        member2: data.to,
+        senderId: data.from
+      };
+      // if conversation exists it will only update the last message and the senderId
+      thunkApi.dispatch(ConversationThunk.createConversation(createConversation));
+
+      // sending messages
       const socket = ioSocket();
       socket.emit('sendMessage', {
         senderId: data.from,

@@ -1,7 +1,11 @@
+import { UserModel } from './user-model';
+
 export type ConversationModel = {
   _id: string;
-  firstName: string;
-  lastName: string;
   lastMessage: string;
-  avatar: string;
+  senderId: string;
+  contact: UserModel;
+  members: string[];
+  createdAt: Date;
+  updatedAt: Date;
 };

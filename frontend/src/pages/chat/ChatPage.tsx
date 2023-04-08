@@ -8,6 +8,7 @@ import { UserThunk } from '@/redux/user/user.thunk';
 import { MessageThunk } from '@/redux/message/message.thunk';
 import { InboxSidebar } from './components/inbox-sidebar';
 import { StartMessaging } from './components/start-messaging';
+import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 
 const ChatPage = () => {
   const windowSize = useWindowSize();
@@ -35,7 +36,7 @@ const ChatPage = () => {
   return (
     <>
       <div className={styles.chatContainer}>
-        {/*  <InboxSidebar /> */}
+        <InboxSidebar />
         <div className={styles.channelSection}>
           <Outlet />
           {!id && <StartMessaging />}

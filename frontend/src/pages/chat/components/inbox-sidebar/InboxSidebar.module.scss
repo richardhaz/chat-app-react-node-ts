@@ -191,3 +191,12 @@
     }
   }
 }
+
+.conversationListItemSelected {
+  /*   background-color: #033d3d; */
+  /*   background-color: #042c2c; */
+  background-color: #042c2c;
+  &:hover {
+    background-color: #042c2c !important;
+  }
+}

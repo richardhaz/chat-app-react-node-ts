@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 import { UserThunk } from '@/redux/user/user.thunk';
+import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
@@ -19,16 +20,18 @@ export const AppRoutes = () => {
 
   // load all users
   useEffect(() => {
-    if (getPersistedToken()) {
-      dispatch(UserThunk.getAllUsers());
-    }
+    dispatch(UserThunk.getAllUsers());
   }, [dispatch]);
 
   // get profile
   useEffect(() => {
-    if (getPersistedToken()) {
-      dispatch(UserThunk.getProfile());
-    }
+    dispatch(UserThunk.getProfile());
+  }, [dispatch]);
+
+  // fetch user info if user is selected in chat
+  useEffect(() => {
+    dispatch(ConversationThunk.getAllMyConversations({ senderId: `${loggedIn?._id}` }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   // Connect to Socket.io and get all online users
@@ -41,6 +44,7 @@ export const AppRoutes = () => {
         console.log('ALL CONNECTED USERS: ', users);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return (

@@ -9,7 +9,7 @@ import { CreateMessageDto } from '@/shared/dtos/messages';
 import { ConversationContentLoading } from './ConversationContentLoading';
 import ConversationContentEmpty from './ConversationContentEmpty';
 import ConversationContentData from './ConversationContentData';
-import { generateUUID, ioSocket, playMessageSentSound } from '@/shared/utils';
+import { generateUUID, ioSocket } from '@/shared/utils';
 import { useEffect, useState } from 'react';
 import { MessageResultModel, SocketMessaggeData } from '@/shared/models';
 import { setSocketMessages as setSocketMessagesAction } from '@/redux/socket/socket.slice';
@@ -26,15 +26,10 @@ const ConversationContent = () => {
   /*   const { socketMessages } = useAppSelector((state) => state.socket); */
   const [arrivalMessages, setArrivalMessages] = useState<MessageResultModel[]>([]);
   const [socketMessages, setSocketMessages] = useState<SocketMessaggeData | null>(null);
-  const [typing, setTyping] = useState(false);
-  const [isTyping, setIsTyping] = useState('');
 
   useEffect(() => {
     setArrivalMessages(messages.data);
   }, [messages.data]);
-
-  /*   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  }; */
 
   const {
     register,
@@ -53,7 +48,7 @@ const ConversationContent = () => {
       message: values.message,
       messageIdentifier: generateUUID()
     };
-    playMessageSentSound();
+
     reset();
     dispatch(MessageThunk.createMessage(messagePayload));
   };
@@ -114,11 +109,7 @@ const ConversationContent = () => {
         <input
           placeholder="Send a message ..."
           type="text"
-          {...register('message', {
-            required: true,
-            maxLength: 250,
-            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setIsTyping(e.target.value)
-          })}
+          {...register('message', { required: true, maxLength: 250 })}
         />
         {/*         {errors.message && errors.message.message && (
           <span className="">{errors.message.message}</span>
