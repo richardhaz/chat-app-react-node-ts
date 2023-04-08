@@ -15,7 +15,7 @@ ConversationRoute.post(
 );
 
 ConversationRoute.post(
-  '/find-all-my-conversations',
+  '/all-my-conversations',
   sessionMiddleware,
   ConversationValidation.findAllMyConversations,
   ConversationController.findAllMyConversations,

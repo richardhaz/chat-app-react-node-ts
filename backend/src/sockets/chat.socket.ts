@@ -1,11 +1,11 @@
 import { Server as SocketServer } from 'socket.io';
 
 import { MESSAGE_STATUS } from '@/constants';
-import { LoggedInModel } from '@/models';
+import { SocketUserModel } from '@/models';
 
 export const chatSocket = (io: SocketServer) => {
   interface IOnlineUsers {
-    profile: LoggedInModel;
+    profile: SocketUserModel;
     socketId: string;
   }
 
@@ -36,7 +36,7 @@ export const chatSocket = (io: SocketServer) => {
     });
 
     // add new user
-    socket.on('new_user_add', (newUser: LoggedInModel) => {
+    socket.on('new_user_add', (newUser: SocketUserModel) => {
       // if user is not added before
       if (!onlineUsers.some((user) => user.profile._id === newUser._id)) {
         onlineUsers.push({ profile: { ...newUser, connectionStatus: 'online' }, socketId: socket.id });

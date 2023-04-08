@@ -2,24 +2,24 @@ import { NextFunction, Response } from 'express';
 
 import { RequestExtended, UserModel } from '@/models';
 import { UserService } from '@/modules/users/user.service';
-import { ErrorManager, getCookiesAsCollection, verifyToken } from '@/utils';
+import { ErrorManager, verifyToken } from '@/utils';
 
 const sessionMiddleware = async (req: RequestExtended, res: Response, next: NextFunction) => {
   try {
-    const allCokies = req.headers.cookie as string;
+    const bearerToken = req.headers.authorization;
 
-    const cookie = getCookiesAsCollection(allCokies) as { access: string; loggedIn: string };
+    if (!bearerToken) return res.status(401).json({ message: 'USER_NOT_AUTHORIZED' });
 
-    if (!cookie.access) {
-      return res.status(401).json({ message: 'USER_NOT_AUTHENTICATED' });
-    }
+    const token = bearerToken.split(' ').pop();
 
-    const verifiedToken = await verifyToken(cookie.access);
+    if (!token) return res.status(401).json({ message: 'TOKEN_IS_INVALID' });
+
+    const verifiedToken = await verifyToken(token);
 
     const user = (await UserService.findById(verifiedToken.context.user._id)) as UserModel;
 
     if (!user) {
-      return res.status(403).json({ message: 'INVALID_TOKEN' });
+      return res.status(403).json({ message: 'USER_NOT_FOUND_WITH_TOKEN_PROVIDED' });
     } else {
       req.user = user;
       next();

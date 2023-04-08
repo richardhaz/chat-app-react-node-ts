@@ -9,7 +9,7 @@ export interface UserModel {
   username: string;
   firstName: string;
   lastName: string;
-  avatar: string[];
+  avatar: string;
   status: USER_STATUS;
   isPremium: boolean;
   isAdmin: boolean;
@@ -19,10 +19,6 @@ export interface LoggedInModel {
   _id: string;
   email: string;
   username: string;
-  firstName: string;
-  lastName: string;
-  isAdmin: boolean;
-  isPremium: boolean;
+  displayName: string;
   avatar: string;
-  connectionStatus?: 'online' | 'idle' | 'offline';
 }
