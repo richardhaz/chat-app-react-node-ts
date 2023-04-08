@@ -60,9 +60,7 @@ const ChatList: React.FC = () => {
                     <div className={styles.dotNotification}></div>
                   </div>
                   <div>
-                    <p>
-                      {item.profile.firstName} {item.profile.lastName}
-                    </p>
+                    <p>{item.profile.displayName}</p>
                     <span>online</span>
                   </div>
                   {newMessage && <div className={styles.newMessageNotification}>2</div>}

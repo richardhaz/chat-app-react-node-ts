@@ -10,13 +10,6 @@ const InboxSidebar: React.FC = () => {
   const { me } = useAppSelector((state) => state.user);
   const { onlineUsers } = useAppSelector((state) => state.socket);
   const params = useParams();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (allMyConversations.data.length > 0) {
-      navigate(`/chat/${allMyConversations.data[0].contact._id}`);
-    }
-  }, []);
 
   return (
     <aside className={styles.inboxContainer}>

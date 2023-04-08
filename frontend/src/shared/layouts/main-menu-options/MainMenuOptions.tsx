@@ -20,7 +20,7 @@ const routes = [
   },
   {
     path: '/chat',
-    name: 'Single Chat',
+    name: 'Inbox',
     icon: <RiMessengerLine />
   },
   {
@@ -52,6 +52,7 @@ const routes = [
 
 const MainMenuOptions: React.FC = () => {
   const { loggedIn } = useAppSelector((state) => state.auth);
+  const { allMyConversations } = useAppSelector((state) => state.conversation);
 
   return (
     <aside className={styles.mainMenuOptionsContainer}>
@@ -63,7 +64,15 @@ const MainMenuOptions: React.FC = () => {
       </div>
       <div className={styles.menuList}>
         {routes.map((item, idx) => (
-          <Link key={idx} to={item.path} className={styles.menuListItem}>
+          <Link
+            key={idx}
+            to={
+              item.path === '/chat' && allMyConversations.data.length > 0
+                ? `/chat/${allMyConversations.data[0].contact._id}`
+                : item.path
+            }
+            className={styles.menuListItem}
+          >
             <span>{item.icon}</span>
             {item.name}
           </Link>
