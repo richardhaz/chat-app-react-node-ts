@@ -41,16 +41,9 @@ const LoginForm = () => {
           <label htmlFor="Password" className={styles.inputLabel}>
             Password
           </label>
-          <input
-            type="password"
-            id="password"
-            className={styles.inputField}
-            {...register('password')}
-          />
+          <input type="password" id="password" className={styles.inputField} {...register('password')} />
         </div>
-        {errors.password && errors.password.message && (
-          <span className="">{errors.password.message}</span>
-        )}
+        {errors.password && errors.password.message && <span className="">{errors.password.message}</span>}
       </div>
       <button type="submit" disabled={loading}>
         {loading ? 'loading...' : 'Sign In'}

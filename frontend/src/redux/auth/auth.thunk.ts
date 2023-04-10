@@ -4,25 +4,22 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthLoginThunkProps } from './auth.types';
 import { toast } from 'react-toastify';
 
-const login = createAsyncThunk(
-  'auth/login',
-  async ({ values, navigate, reset }: AuthLoginThunkProps, thunkApi) => {
-    try {
-      const result = await AuthService.login(values);
-      if (result.ok) {
-        console.log('redirect to home');
-        LocalStorageService.setLocalStorage(LocalStorageService.key.loggedIn, result.data);
-        navigate('/');
-        reset();
-        return result.data;
-      }
-    } catch (error) {
-      const errMessage = errorMessageResolver(error);
-      toast.error(errMessage);
-      return thunkApi.rejectWithValue(errMessage);
+const login = createAsyncThunk('auth/login', async ({ values, navigate, reset }: AuthLoginThunkProps, thunkApi) => {
+  try {
+    const result = await AuthService.login(values);
+    if (result.ok) {
+      console.log('redirect to home');
+      LocalStorageService.setLocalStorage(LocalStorageService.key.loggedIn, result.data);
+      navigate('/');
+      reset();
+      return result.data;
     }
+  } catch (error) {
+    const errMessage = errorMessageResolver(error);
+    toast.error(errMessage);
+    return thunkApi.rejectWithValue(errMessage);
   }
-);
+});
 
 const logout = createAsyncThunk('auth/logout', async (_, thunkApi) => {
   try {

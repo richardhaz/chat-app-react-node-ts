@@ -88,13 +88,7 @@ const UserListNavigationDrawerLoading = () => {
       {Array.from(new Array(6)).map((item, idx) => (
         <div key={idx} className={styles.usersListItem}>
           <div className={styles.userProfile}>
-            <Skeleton
-              animation="wave"
-              sx={{ bgcolor: 'grey.900' }}
-              variant="circular"
-              width={45}
-              height={45}
-            />
+            <Skeleton animation="wave" sx={{ bgcolor: 'grey.900' }} variant="circular" width={45} height={45} />
             <div>
               <Skeleton
                 animation="wave"
@@ -103,13 +97,7 @@ const UserListNavigationDrawerLoading = () => {
                 width={140}
                 height={18}
               />
-              <Skeleton
-                animation="wave"
-                sx={{ bgcolor: 'grey.900' }}
-                variant="rectangular"
-                width={140}
-                height={12}
-              />
+              <Skeleton animation="wave" sx={{ bgcolor: 'grey.900' }} variant="rectangular" width={140} height={12} />
             </div>
           </div>
         </div>

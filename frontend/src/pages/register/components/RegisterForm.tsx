@@ -35,32 +35,18 @@ const RegisterForm = () => {
             <label htmlFor="FirstName" className={styles.inputLabel} {...register('firstName')}>
               First Name
             </label>
-            <input
-              type="text"
-              id="firstName"
-              className={styles.inputField}
-              {...register('firstName')}
-            />
+            <input type="text" id="firstName" className={styles.inputField} {...register('firstName')} />
           </div>
-          {errors.firstName && errors.firstName.message && (
-            <span className="">{errors.firstName.message}</span>
-          )}
+          {errors.firstName && errors.firstName.message && <span className="">{errors.firstName.message}</span>}
         </div>
         <div className={styles.inputSeparator}>
           <div className={styles.inputContainer}>
             <label htmlFor="LastName" className={styles.inputLabel}>
               Last Name
             </label>
-            <input
-              type="text"
-              id="lastName"
-              className={styles.inputField}
-              {...register('lastName')}
-            />
+            <input type="text" id="lastName" className={styles.inputField} {...register('lastName')} />
           </div>
-          {errors.lastName && errors.lastName.message && (
-            <span className="">{errors.lastName.message}</span>
-          )}
+          {errors.lastName && errors.lastName.message && <span className="">{errors.lastName.message}</span>}
         </div>
       </section>
       <div className={styles.inputSeparator}>
@@ -68,32 +54,16 @@ const RegisterForm = () => {
           <label htmlFor="Password" className={styles.inputLabel}>
             Password
           </label>
-          <input
-            type="password"
-            id="password"
-            className={styles.inputField}
-            {...register('password')}
-          />
+          <input type="password" id="password" className={styles.inputField} {...register('password')} />
         </div>
-        {errors.password && errors.password.message && (
-          <span className="">{errors.password.message}</span>
-        )}
+        {errors.password && errors.password.message && <span className="">{errors.password.message}</span>}
       </div>
       <div className={styles.inputSeparator}>
         <div className={styles.inputContainer}>
-          <label
-            htmlFor="ConfirmPassword"
-            className={styles.inputLabel}
-            {...register('confirmPassword')}
-          >
+          <label htmlFor="ConfirmPassword" className={styles.inputLabel} {...register('confirmPassword')}>
             Confirm Password
           </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            className={styles.inputField}
-            {...register('confirmPassword')}
-          />
+          <input type="password" id="confirmPassword" className={styles.inputField} {...register('confirmPassword')} />
         </div>
         {errors.confirmPassword && errors.confirmPassword.message && (
           <span className="">{errors.confirmPassword.message}</span>

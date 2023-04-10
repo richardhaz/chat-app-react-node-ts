@@ -1,8 +1,10 @@
 import {
   CreateConversationDto,
   FindAllMyConversationsDto,
-  FindConversationDto
+  FindConversationDto,
+  GetConversationByIdDto
 } from '@/shared/dtos/conversations';
+import { UpdateLastMessageStatusDto } from '@/shared/models';
 import { ConversationService } from '@/shared/services/conversation.service';
 import { errorMessageResolver } from '@/shared/utils';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -12,6 +14,22 @@ const getConversationByMembers = createAsyncThunk(
   async (data: FindConversationDto, thunkApi) => {
     try {
       const result = await ConversationService.getConversationByMembers(data);
+      if (result.ok) {
+        return result.data;
+      }
+    } catch (error) {
+      const errMessage = errorMessageResolver(error);
+      /* toast.error(errMessage); */
+      return thunkApi.rejectWithValue(errMessage);
+    }
+  }
+);
+
+const getConversationById = createAsyncThunk(
+  'conversation/getConversationById',
+  async (data: GetConversationByIdDto, thunkApi) => {
+    try {
+      const result = await ConversationService.getConversationById(data);
       if (result.ok) {
         return result.data;
       }
@@ -55,8 +73,26 @@ const createConversation = createAsyncThunk(
   }
 );
 
+const updateLastMessageStatus = createAsyncThunk(
+  'conversation/updateLastMessageStatus',
+  async (data: UpdateLastMessageStatusDto, thunkApi) => {
+    try {
+      const result = await ConversationService.updateLastMessageStatus(data);
+      if (result.ok) {
+        return result.data;
+      }
+    } catch (error) {
+      const errMessage = errorMessageResolver(error);
+      /* toast.error(errMessage); */
+      return thunkApi.rejectWithValue(errMessage);
+    }
+  }
+);
+
 export const ConversationThunk = {
   getConversationByMembers,
   createConversation,
-  getAllMyConversations
+  getAllMyConversations,
+  updateLastMessageStatus,
+  getConversationById
 };

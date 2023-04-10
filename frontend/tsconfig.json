@@ -20,7 +20,7 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx", "src/shared/components/new-message-notification"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["node_modules"]
 }

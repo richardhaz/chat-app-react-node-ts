@@ -8,12 +8,22 @@ interface ConversationReduxModel {
     loading: boolean;
     error: null | unknown;
   };
+  conversationById: {
+    data: ConversationModel | null;
+    loading: boolean;
+    error: null | unknown;
+  };
   allMyConversations: {
     data: ConversationModel[];
     loading: boolean;
     error: null | unknown;
   };
   createConversation: {
+    data: ConversationModel | null;
+    loading: boolean;
+    error: null | unknown;
+  };
+  updateLastConversationMessageStatus: {
     data: ConversationModel | null;
     loading: boolean;
     error: null | unknown;
@@ -26,12 +36,22 @@ const initialState: ConversationReduxModel = {
     loading: false,
     error: null
   },
+  conversationById: {
+    data: null,
+    loading: false,
+    error: null
+  },
   allMyConversations: {
     data: [],
     loading: false,
     error: null
   },
   createConversation: {
+    data: null,
+    loading: false,
+    error: null
+  },
+  updateLastConversationMessageStatus: {
     data: null,
     loading: false,
     error: null
@@ -86,6 +106,36 @@ export const conversationSlice = createSlice({
     builder.addCase(ConversationThunk.createConversation.rejected, (state, action) => {
       state.createConversation.loading = false;
       state.createConversation.error = action.payload;
+    });
+
+    // update last conversation message status
+    builder.addCase(ConversationThunk.updateLastMessageStatus.pending, (state) => {
+      state.updateLastConversationMessageStatus.loading = true;
+      state.updateLastConversationMessageStatus.error = null;
+    });
+    builder.addCase(ConversationThunk.updateLastMessageStatus.fulfilled, (state, action) => {
+      state.updateLastConversationMessageStatus.loading = false;
+      state.updateLastConversationMessageStatus.data = action.payload ?? null;
+      state.updateLastConversationMessageStatus.error = null;
+    });
+    builder.addCase(ConversationThunk.updateLastMessageStatus.rejected, (state, action) => {
+      state.updateLastConversationMessageStatus.loading = false;
+      state.updateLastConversationMessageStatus.error = action.payload;
+    });
+
+    // get conversation by id
+    builder.addCase(ConversationThunk.getConversationById.pending, (state) => {
+      state.conversationById.loading = true;
+      state.conversationById.error = null;
+    });
+    builder.addCase(ConversationThunk.getConversationById.fulfilled, (state, action) => {
+      state.conversationById.loading = false;
+      state.conversationById.data = action.payload ?? null;
+      state.conversationById.error = null;
+    });
+    builder.addCase(ConversationThunk.getConversationById.rejected, (state, action) => {
+      state.conversationById.loading = false;
+      state.conversationById.error = action.payload;
     });
   }
 });

@@ -7,12 +7,15 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
 import { ToastContainer } from 'react-toastify';
+/* import { SnackbarProvider } from 'notistack'; */
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   /*   <React.StrictMode> */
   <Provider store={store}>
     <ToastContainer theme="dark" />
+    {/*     <SnackbarProvider maxSnack={10}> */}
     <App />
+    {/*     </SnackbarProvider> */}
   </Provider>
   /*   </React.StrictMode> */
 );

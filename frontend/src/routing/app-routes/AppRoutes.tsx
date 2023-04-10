@@ -1,5 +1,7 @@
+import { toast } from 'react-toastify';
+
 import { PrimaryLayout } from '@/shared/layouts';
-import { Route } from 'react-router-dom';
+import { Route, useNavigate } from 'react-router-dom';
 
 import { RoutesWrapper } from '../components';
 import { HomePage } from '@/pages/home';
@@ -7,16 +9,40 @@ import { ChatPage } from '@/pages/chat';
 import { ConversationContentPage } from '@/pages/chat/components/conversation';
 import { ioSocket } from '@/shared/utils';
 import { setOnlineUsers } from '@/redux/socket/socket.slice';
-import { LoggedInModel } from '@/shared/models';
-import { useEffect } from 'react';
+import { LoggedInModel, SocketMessaggeData } from '@/shared/models';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
-import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 import { UserThunk } from '@/redux/user/user.thunk';
 import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { loggedIn } = useAppSelector((state) => state.auth);
+  const [socketMessage, setSocketMessage] = useState<SocketMessaggeData | null>(null);
+
+  const MessageNotification = ({ socketMessage }: { socketMessage: SocketMessaggeData }) => {
+    const linkStyle = {
+      border: '1px solid',
+      color: '#fff',
+      background: 'black',
+      padding: '5px'
+    };
+
+    const handleRedirect = () => {
+      navigate(`/chat/${socketMessage.senderId}`);
+    };
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {socketMessage.senderDetails.displayName} : {socketMessage.message}
+        <button onClick={handleRedirect}>View Message</button>
+        <button onClick={handleRedirect}>View Message</button>
+        <button onClick={handleRedirect}>View Message</button>
+        <button onClick={handleRedirect}>View Message</button>
+      </div>
+    );
+  };
 
   // load all users
   useEffect(() => {
@@ -47,6 +73,32 @@ export const AppRoutes = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
+  // listen incomming messages
+  useEffect(() => {
+    if (loggedIn) {
+      const socket = ioSocket();
+      socket.on('getMessage', (data: SocketMessaggeData) => {
+        setSocketMessage(data);
+        console.log('MESSAGE_FOUND!!!!!!!!!!!');
+      });
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (socketMessage && loggedIn) {
+      // check if loggedIn user belongs to the conversation
+      if ([socketMessage.senderId, socketMessage.receiverId].includes(loggedIn._id)) {
+        // check if the loggedIn user is the receiver, if its the sender the notification will not pop up
+        if (socketMessage.receiverId === loggedIn._id) {
+          /*  toast.dark(`${socketMessage.senderDetails.displayName} : ${socketMessage.message}`, {
+            autoClose: 15000
+          }); */
+          toast(<MessageNotification socketMessage={socketMessage} />);
+        }
+      }
+    }
+  }, [socketMessage]);
+
   return (
     <>
       <PrimaryLayout>
@@ -64,7 +116,7 @@ export const AppRoutes = () => {
           {/* Chat Routes */}
         </RoutesWrapper>
       </PrimaryLayout>
-      <UsersListNavigationDrawer />
+      {/* <UsersListNavigationDrawer /> */}
       {/*  <UsersListButton /> */}
     </>
   );

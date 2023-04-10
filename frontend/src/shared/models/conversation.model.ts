@@ -6,6 +6,7 @@ export type ConversationModel = {
   senderId: string;
   contact: UserModel;
   members: string[];
+  messageStatus: 'delivered' | 'seen' | 'deleted';
   createdAt: Date;
   updatedAt: Date;
 };

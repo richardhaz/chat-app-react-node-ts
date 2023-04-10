@@ -58,11 +58,7 @@ const UserDropDownMenu = () => {
           'aria-labelledby': 'user-dropdown-menu'
         }}
       >
-        <MenuItem
-          disableRipple
-          onClick={handleClose}
-          sx={{ '&:hover': { backgroundColor: '#242424' } }}
-        >
+        <MenuItem disableRipple onClick={handleClose} sx={{ '&:hover': { backgroundColor: '#242424' } }}>
           My account
         </MenuItem>
         <MenuItem

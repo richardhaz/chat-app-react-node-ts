@@ -12,10 +12,7 @@ interface ConfirmLogoutProps {
   setOpenConfirmLogout: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ConfirmLogout: React.FC<ConfirmLogoutProps> = ({
-  openConfirmLogout,
-  setOpenConfirmLogout
-}) => {
+const ConfirmLogoutDialog: React.FC<ConfirmLogoutProps> = ({ openConfirmLogout, setOpenConfirmLogout }) => {
   const dispatch = useAppDispatch();
   const handleClose = () => {
     setOpenConfirmLogout(false);
@@ -50,4 +47,4 @@ const ConfirmLogout: React.FC<ConfirmLogoutProps> = ({
   );
 };
 
-export default ConfirmLogout;
+export default ConfirmLogoutDialog;

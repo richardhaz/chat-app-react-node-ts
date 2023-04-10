@@ -22,7 +22,6 @@ const ConversationContent = () => {
   const { messages } = useAppSelector((state) => state.message);
 
   // socket
-  const { me } = useAppSelector((state) => state.user);
   /*   const { socketMessages } = useAppSelector((state) => state.socket); */
   const [arrivalMessages, setArrivalMessages] = useState<MessageResultModel[]>([]);
   const [socketMessages, setSocketMessages] = useState<SocketMessaggeData | null>(null);
@@ -47,6 +46,7 @@ const ConversationContent = () => {
 
   // TODO: validate input max length 250 character
   const onSubmit = (values: { message: string }) => {
+    console.log('on submit');
     const messagePayload: CreateMessageDto = {
       from: `${loggedIn?._id}`,
       to: `${userById.data?._id}`,
@@ -71,10 +71,8 @@ const ConversationContent = () => {
     if (socketMessages) {
       // check if the sender and receiver are in the same chat as sender or receiver
       if (
-        (loggedIn?._id === socketMessages.senderId &&
-          userById.data?._id === socketMessages.receiverId) ||
-        (loggedIn?._id === socketMessages.receiverId &&
-          userById.data?._id === socketMessages.senderId)
+        (loggedIn?._id === socketMessages.senderId && userById.data?._id === socketMessages.receiverId) ||
+        (loggedIn?._id === socketMessages.receiverId && userById.data?._id === socketMessages.senderId)
       ) {
         setArrivalMessages((prev) => [
           ...prev,
@@ -91,7 +89,7 @@ const ConversationContent = () => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socketMessages, me.data?._id]);
+  }, [socketMessages, loggedIn?._id]);
 
   return (
     <div className={styles.messageInputSection}>
@@ -104,10 +102,7 @@ const ConversationContent = () => {
           <ConversationContentData arrivalMessages={arrivalMessages} />
         )}
       </div>
-      <form
-        className={styles.messageInputContainer}
-        onSubmit={handleSubmit((values) => onSubmit(values))}
-      >
+      <form className={styles.messageInputContainer} onSubmit={handleSubmit((values) => onSubmit(values))}>
         <button className={styles.messageEmojisContainer}>
           <BsFillEmojiLaughingFill />
         </button>

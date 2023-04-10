@@ -10,7 +10,8 @@ import {
   RiBugLine,
   RiInformationLine
 } from 'react-icons/ri';
-import { useAppSelector } from '@/redux/useTypedRedux';
+import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
+import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 
 const routes = [
   {
@@ -20,7 +21,7 @@ const routes = [
   },
   {
     path: '/chat',
-    name: 'Inbox',
+    name: 'Single Chat',
     icon: <RiMessengerLine />
   },
   {
@@ -52,7 +53,7 @@ const routes = [
 
 const MainMenuOptions: React.FC = () => {
   const { loggedIn } = useAppSelector((state) => state.auth);
-  const { allMyConversations } = useAppSelector((state) => state.conversation);
+  /*   const { allMyConversations } = useAppSelector((state) => state.conversation); */
 
   return (
     <aside className={styles.mainMenuOptionsContainer}>
@@ -66,15 +67,17 @@ const MainMenuOptions: React.FC = () => {
         {routes.map((item, idx) => (
           <Link
             key={idx}
-            to={
+            to={item.path}
+            /*             to={
               item.path === '/chat' && allMyConversations.data.length > 0
                 ? `/chat/${allMyConversations.data[0].contact._id}`
                 : item.path
-            }
+            } */
             className={styles.menuListItem}
           >
             <span>{item.icon}</span>
             {item.name}
+            {/*     {item.path === '/chat' && <div>+9</div>} */}
           </Link>
         ))}
       </div>

@@ -8,13 +8,7 @@ export const ConversationContentLoading = () => {
         <div key={idx} className={styles.messageContentContainer}>
           <div className={styles.messageContent}>
             <div className={styles.userAvatar}>
-              <Skeleton
-                animation="wave"
-                sx={{ bgcolor: 'grey.900' }}
-                variant="circular"
-                width={45}
-                height={45}
-              />
+              <Skeleton animation="wave" sx={{ bgcolor: 'grey.900' }} variant="circular" width={45} height={45} />
             </div>
             <div className={styles.currentMessage} style={{ width: '100%' }}>
               <div className={styles.userInfoDetails}>

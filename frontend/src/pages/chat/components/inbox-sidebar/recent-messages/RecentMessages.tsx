@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './RecentMessages.module.scss';
 import { Link, useParams } from 'react-router-dom';
-import { useAppSelector } from '@/redux/useTypedRedux';
+import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import moment from 'moment';
+import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
+import { UpdateLastMessageStatusDto } from '@/shared/models';
 
 const RecentMessages: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { allMyConversations } = useAppSelector((state) => state.conversation);
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { onlineUsers } = useAppSelector((state) => state.socket);
   const params = useParams();
+
+  const handleUpdateConversationLastMessageStatus = () => {
+    console.log('running func');
+    const payload: UpdateLastMessageStatusDto = {
+      member1: `${loggedIn?._id}`,
+      member2: `${params.id}`,
+      messageStatus: 'seen'
+    };
+    dispatch(ConversationThunk.updateLastMessageStatus(payload));
+  };
+
+  console.log(allMyConversations);
+
+  useEffect(() => {
+    if (params.id && loggedIn && allMyConversations.data.length > 0) {
+      handleUpdateConversationLastMessageStatus();
+    }
+  }, []);
 
   return (
     <div className={styles.conversationList}>
@@ -32,7 +53,7 @@ const RecentMessages: React.FC = () => {
                   : moment(item.updatedAt).fromNow()}
               </span>
             </div>
-            <span className={styles.lastConnection}>1min</span>
+            <span className={styles.newMessage}>New</span>
           </div>
           <p className={styles.message}>
             {item.senderId === loggedIn?._id && 'You: '}

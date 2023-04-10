@@ -60,13 +60,19 @@
         }
       }
 
-      .lastConnection {
+      .newMessage {
         position: absolute;
-        top: 0;
+        top: 5px;
         right: -15%;
-        font-size: var(--text-size-tiny);
-        font-weight: 500;
-        color: var(--text-color-dim-light);
+        font-size: 10px;
+        font-weight: 400;
+        color: rgb(235, 235, 235);
+        /*    color: rgb(179, 179, 179);    */
+        /*         background-color: rgb(184, 18, 18); */
+        /*        background-color: rgb(160, 160, 52); */
+        background-color: rgb(124, 124, 40);
+        padding: 2px 8px;
+        border-radius: 10px;
         letter-spacing: 0.5px;
       }
     }

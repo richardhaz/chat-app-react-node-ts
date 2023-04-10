@@ -1,4 +1,5 @@
 import { MESSAGE_STATUS } from '../constants';
+import { LoggedInModel } from './logged-in.model';
 import { UserModel } from './user-model';
 
 export interface MessageModel {
@@ -28,7 +29,9 @@ export interface MessageResultModel {
 export interface SocketMessaggeData {
   senderId: string;
   receiverId: string;
+  senderDetails: LoggedInModel;
   message: string;
   messageIdentifier: string;
   messageStatus: MESSAGE_STATUS.DELIVERED;
+  /*   conversationId: string; */
 }

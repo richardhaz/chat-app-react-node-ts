@@ -47,6 +47,8 @@
     .menuListItem {
       position: relative;
       display: flex;
+      justify-content: start;
+      align-items: center;
       width: 100%;
       padding: 20px 20px;
       gap: 15px;
@@ -68,6 +70,18 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 14em;
+      }
+
+      div {
+        background-color: red;
+        border-radius: 10px;
+        width: 24px;
+        height: 18px;
+        font-size: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }

@@ -10,12 +10,22 @@ interface SocketReduxModel {
     loading: boolean;
     error: null | unknown;
   };
+  notificationUserById: {
+    data: UserModel | null;
+    loading: boolean;
+    error: null | unknown;
+  };
 }
 
 const initialState: SocketReduxModel = {
   onlineUsers: [],
   socketMessages: null,
   socketUserById: {
+    data: null,
+    loading: false,
+    error: null
+  },
+  notificationUserById: {
     data: null,
     loading: false,
     error: null
@@ -47,6 +57,21 @@ export const socketSlice = createSlice({
     builder.addCase(SocketThunk.getSocketUserById.rejected, (state, action) => {
       state.socketUserById.loading = false;
       state.socketUserById.error = action.payload;
+    });
+
+    // get notification uset by id
+    builder.addCase(SocketThunk.getNotificationUserById.pending, (state) => {
+      state.notificationUserById.loading = true;
+      state.notificationUserById.error = null;
+    });
+    builder.addCase(SocketThunk.getNotificationUserById.fulfilled, (state, action) => {
+      state.notificationUserById.loading = false;
+      state.notificationUserById.data = action.payload ?? null;
+      state.notificationUserById.error = null;
+    });
+    builder.addCase(SocketThunk.getNotificationUserById.rejected, (state, action) => {
+      state.notificationUserById.loading = false;
+      state.notificationUserById.error = action.payload;
     });
   }
 });

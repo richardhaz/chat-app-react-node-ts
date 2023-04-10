@@ -66,10 +66,8 @@ const ConversationContent = () => {
     if (socketMessages) {
       // check if the sender and receiver are in the same chat as sender or receiver
       if (
-        (loggedIn?._id === socketMessages.senderId &&
-          userById.data?._id === socketMessages.receiverId) ||
-        (loggedIn?._id === socketMessages.receiverId &&
-          userById.data?._id === socketMessages.senderId)
+        (loggedIn?._id === socketMessages.senderId && userById.data?._id === socketMessages.receiverId) ||
+        (loggedIn?._id === socketMessages.receiverId && userById.data?._id === socketMessages.senderId)
       ) {
         setArrivalMessages((prev) => [
           ...prev,
@@ -99,10 +97,7 @@ const ConversationContent = () => {
           <ConversationContentData arrivalMessages={arrivalMessages} />
         )}
       </div>
-      <form
-        className={styles.messageInputContainer}
-        onSubmit={handleSubmit((values) => onSubmit(values))}
-      >
+      <form className={styles.messageInputContainer} onSubmit={handleSubmit((values) => onSubmit(values))}>
         <button className={styles.messageEmojisContainer}>
           <BsFillEmojiLaughingFill />
         </button>
