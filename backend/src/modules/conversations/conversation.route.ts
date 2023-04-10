@@ -10,8 +10,8 @@ const ConversationRoute = express.Router();
 ConversationRoute.post(
   '/find-by-members',
   sessionMiddleware,
-  ConversationValidation.findConversation,
-  ConversationController.findConversation,
+  ConversationValidation.findConversationByMembers,
+  ConversationController.findConversationByMembers,
 );
 
 ConversationRoute.post(
@@ -26,6 +26,20 @@ ConversationRoute.post(
   sessionMiddleware,
   ConversationValidation.createConversation,
   ConversationController.createConversation,
+);
+
+ConversationRoute.patch(
+  '/update-last-message-status',
+  sessionMiddleware,
+  ConversationValidation.updateLastMessageStatus,
+  ConversationController.updateLastMessageStatus,
+);
+
+ConversationRoute.post(
+  '/get-conversation-by-id',
+  sessionMiddleware,
+  ConversationValidation.getConversationById,
+  ConversationController.getConversationById,
 );
 
 export { ConversationRoute };

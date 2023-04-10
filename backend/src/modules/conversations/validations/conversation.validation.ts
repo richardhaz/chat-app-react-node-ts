@@ -31,7 +31,7 @@ const createConversation = [
   },
 ];
 
-const findConversation = [
+const findConversationByMembers = [
   body('member1')
     .exists()
     .withMessage('member1 id is required')
@@ -58,4 +58,45 @@ const findAllMyConversations = [
   },
 ];
 
-export const ConversationValidation = { createConversation, findConversation, findAllMyConversations };
+const getConversationById = [
+  body('conversationId')
+    .exists()
+    .withMessage('conversationId is required')
+    .matches(REGEX.MONGO_ID)
+    .withMessage('please provide a valid mongoId'),
+  (req: Request, res: Response, next: NextFunction) => {
+    validateResult(req, res, next);
+  },
+];
+
+const updateLastMessageStatus = [
+  body('member1')
+    .exists()
+    .withMessage('member1 is required')
+    .matches(REGEX.MONGO_ID)
+    .withMessage('please provide a valid mongoId'),
+  body('member2')
+    .exists()
+    .withMessage('member1 is required')
+    .matches(REGEX.MONGO_ID)
+    .withMessage('please provide a valid mongoId'),
+  body('messageStatus')
+    .isString()
+    .withMessage('messageStatus have to be an string')
+    .isIn(['delivered', 'seen'])
+    .withMessage('allowed values -> delivered, seen or deleted')
+    .exists()
+    .withMessage('messageStatus is required')
+    .isLength({ max: 250 }),
+  (req: Request, res: Response, next: NextFunction) => {
+    validateResult(req, res, next);
+  },
+];
+
+export const ConversationValidation = {
+  createConversation,
+  findConversationByMembers,
+  findAllMyConversations,
+  updateLastMessageStatus,
+  getConversationById,
+};

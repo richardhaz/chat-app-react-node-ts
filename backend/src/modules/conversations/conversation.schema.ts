@@ -14,6 +14,11 @@ const Conversation = new Schema<ConversationModel>(
       type: String,
       required: true,
     },
+    messageStatus: {
+      type: String,
+      default: 'delivered',
+      required: true,
+    },
     senderId: {
       type: String,
       required: true,
