@@ -24,8 +24,7 @@ const register = async (dto: CreateUserDto) => {
   const payload = {
     ...dto,
     username: generateUsername(dto.email),
-    avatar: dto.avatar,
-    /* ?? 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg' */
+    avatar: dto.avatar ?? 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg',
   };
 
   const user = await UserSchema.create(payload);
