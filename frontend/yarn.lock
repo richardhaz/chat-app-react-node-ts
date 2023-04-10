@@ -1178,6 +1178,13 @@ electron-to-chromium@^1.4.284:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.295.tgz#911d5df67542bf7554336142eb302c5ec90bba66"
   integrity sha512-lEO94zqf1bDA3aepxwnWoHUjA8sZ+2owgcSZjYQy0+uOSEclJX0VieZC+r+wLpSxUHRd6gG32znTWmr+5iGzFw==
 
+emoji-picker-react@^4.4.8:
+  version "4.4.8"
+  resolved "https://registry.yarnpkg.com/emoji-picker-react/-/emoji-picker-react-4.4.8.tgz#cd18e942720d0d01e3d488a008f5e79aa315ec87"
+  integrity sha512-5bbj0PCvpjB64PZj31wZ35EoebF2mKoHqEEx9u2ZLghx7sGoD1MgyDhse851rqROypjhmK9IUY15QBa7mCLP0g==
+  dependencies:
+    clsx "^1.2.1"
+
 engine.io-client@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/engine.io-client/-/engine.io-client-6.4.0.tgz#88cd3082609ca86d7d3c12f0e746d12db4f47c91"

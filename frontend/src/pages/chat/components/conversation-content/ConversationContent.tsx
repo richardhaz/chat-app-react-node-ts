@@ -13,6 +13,7 @@ import { generateUUID, ioSocket, playMessageSentSound } from '@/shared/utils';
 import { useEffect, useState } from 'react';
 import { MessageResultModel, SocketMessaggeData } from '@/shared/models';
 import { setSocketMessages as setSocketMessagesAction } from '@/redux/socket/socket.slice';
+import EmojiPicker from 'emoji-picker-react';
 
 const ConversationContent = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +21,7 @@ const ConversationContent = () => {
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { userById } = useAppSelector((state) => state.user);
   const { messages } = useAppSelector((state) => state.message);
+  const [emoji, setemoji] = useState<boolean>(false);
 
   // socket
   /*   const { socketMessages } = useAppSelector((state) => state.socket); */
@@ -28,6 +30,14 @@ const ConversationContent = () => {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState('');
 
+  /*   const toggleEmojiPicker = () => {
+    setemoji(!emoji);
+  };
+
+  const handlerEmojiClick = () => {
+    const msg = isTyping;
+  };
+ */
   useEffect(() => {
     setArrivalMessages(messages.data);
   }, [messages.data]);
@@ -46,7 +56,6 @@ const ConversationContent = () => {
 
   // TODO: validate input max length 250 character
   const onSubmit = (values: { message: string }) => {
-    console.log('on submit');
     const messagePayload: CreateMessageDto = {
       from: `${loggedIn?._id}`,
       to: `${userById.data?._id}`,
@@ -102,10 +111,11 @@ const ConversationContent = () => {
           <ConversationContentData arrivalMessages={arrivalMessages} />
         )}
       </div>
+      {emoji && <EmojiPicker />}
       <form className={styles.messageInputContainer} onSubmit={handleSubmit((values) => onSubmit(values))}>
-        <button className={styles.messageEmojisContainer}>
+        {/*   <button className={styles.messageEmojisContainer} onClick={toggleEmojiPicker}>
           <BsFillEmojiLaughingFill />
-        </button>
+        </button> */}
         <input
           placeholder="Send a message ..."
           type="text"

@@ -8,7 +8,6 @@ const login = createAsyncThunk('auth/login', async ({ values, navigate, reset }:
   try {
     const result = await AuthService.login(values);
     if (result.ok) {
-      console.log('redirect to home');
       LocalStorageService.setLocalStorage(LocalStorageService.key.loggedIn, result.data);
       navigate('/');
       reset();
@@ -25,8 +24,8 @@ const logout = createAsyncThunk('auth/logout', async (_, thunkApi) => {
   try {
     const result = await AuthService.logout();
     const socket = ioSocket();
-    socket.on('disconnect', (reason) => {
-      console.log(reason);
+    socket.on('disconnect', () => {
+      /* console.log('0k'); */
     });
     LocalStorageService.clearLocalStorage(LocalStorageService.key.loggedIn);
     if (result.ok) {

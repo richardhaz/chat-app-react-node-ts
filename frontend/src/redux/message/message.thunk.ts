@@ -10,7 +10,7 @@ const getAllMessages = createAsyncThunk('message/getAllMessages', async (data: G
   try {
     const result = await MessageService.getAllMessages(data);
     if (result.ok) {
-      console.log('get-all-messages', result.data);
+      /*       console.log('get-all-messages', result.data); */
       return result.data;
     }
   } catch (error) {
@@ -45,7 +45,7 @@ const createMessage = createAsyncThunk('message/createMessage', async (data: Cre
 
     const result = await MessageService.createMessage(data);
     if (result.ok) {
-      console.log('create-message', result.data);
+      /*       console.log('create-message', result.data); */
       thunkApi.dispatch(ConversationThunk.createConversation(createConversation));
 
       return result.data;

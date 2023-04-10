@@ -16,12 +16,14 @@ export const registerUserYupValidation = Yup.object().shape({
   password: Yup.string()
     .min(8, '6 characters min')
     .max(18, '18 character max')
-    .matches(
+    /*  .matches(
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{6,18}\S$/,
       'Please provide at least one uppercase, one special character and no spaces'
-    )
+    ) */
     .required('Password is required'),
   confirmPassword: Yup.string()
     .required('Required')
-    .oneOf([Yup.ref('password')], 'Your passwords do not match.')
+    .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
+  /*   avatar: Yup.mixed().test('fileSize', 'File is too large', (value) => !value || (value && value.size <= 50000)) */
+  avatar: Yup.mixed()
 });

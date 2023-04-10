@@ -1,19 +1,16 @@
 import styles from './ChatPage.module.scss';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
 import { MessageThunk } from '@/redux/message/message.thunk';
-import { InboxSidebar } from './components/inbox-sidebar';
 import { StartMessaging } from './components/start-messaging';
 import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 
 const ChatPage = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const navigate = useNavigate();
   const { loggedIn } = useAppSelector((state) => state.auth);
-  const { allMyConversations } = useAppSelector((state) => state.conversation);
 
   // fetch user info if user is selected in chat
   /*   useEffect(() => {

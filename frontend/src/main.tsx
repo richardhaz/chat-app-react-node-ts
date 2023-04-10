@@ -12,7 +12,7 @@ import { ToastContainer } from 'react-toastify';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   /*   <React.StrictMode> */
   <Provider store={store}>
-    <ToastContainer theme="dark" />
+    <ToastContainer theme="dark" limit={3} />
     {/*     <SnackbarProvider maxSnack={10}> */}
     <App />
     {/*     </SnackbarProvider> */}

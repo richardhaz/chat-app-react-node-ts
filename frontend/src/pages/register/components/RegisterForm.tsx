@@ -1,11 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { registerUserYupValidation } from '../utils';
 import styles from './RegisterForm.module.scss';
 import { CreateUserDto } from '@/shared/dtos/auth';
+import { useAppDispatch } from '@/redux/useTypedRedux';
+import { UserThunk } from '@/redux/user/user.thunk';
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -14,7 +18,7 @@ const RegisterForm = () => {
   } = useForm<CreateUserDto>({ resolver: yupResolver(registerUserYupValidation) });
 
   const onSubmit = (values: CreateUserDto) => {
-    console.log(values);
+    dispatch(UserThunk.registerUser({ values, navigate, reset }));
   };
 
   return (
@@ -32,7 +36,7 @@ const RegisterForm = () => {
       <section className={styles.nameFieldRow}>
         <div className={styles.inputSeparator}>
           <div className={styles.inputContainer}>
-            <label htmlFor="FirstName" className={styles.inputLabel} {...register('firstName')}>
+            <label htmlFor="FirstName" className={styles.inputLabel}>
               First Name
             </label>
             <input type="text" id="firstName" className={styles.inputField} {...register('firstName')} />
@@ -60,7 +64,7 @@ const RegisterForm = () => {
       </div>
       <div className={styles.inputSeparator}>
         <div className={styles.inputContainer}>
-          <label htmlFor="ConfirmPassword" className={styles.inputLabel} {...register('confirmPassword')}>
+          <label htmlFor="ConfirmPassword" className={styles.inputLabel}>
             Confirm Password
           </label>
           <input type="password" id="confirmPassword" className={styles.inputField} {...register('confirmPassword')} />
@@ -68,6 +72,15 @@ const RegisterForm = () => {
         {errors.confirmPassword && errors.confirmPassword.message && (
           <span className="">{errors.confirmPassword.message}</span>
         )}
+      </div>
+      <div className={styles.inputSeparator}>
+        <div className={styles.inputContainer}>
+          <label htmlFor="ChooseAvatar" className={styles.inputLabel}>
+            Choose Avatar
+          </label>
+          <input type="file" className={styles.inputField} {...register('avatar')} />
+        </div>
+        {errors.avatar && errors.avatar.message && <span className="">{errors.avatar.message}</span>}
       </div>
       <button type="submit">Create My Account</button>
       <div className={styles.existingUser}>

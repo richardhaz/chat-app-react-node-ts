@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { LoggedInModel } from '@/shared/models';
 import { AuthThunk } from './auth.thunk';
 import { LocalStorageService } from '@/shared/services';
+import { UserThunk } from '../user/user.thunk';
 
 export interface AuthReduxModel {
   loading: boolean;
@@ -30,6 +31,7 @@ export const authSlice = createSlice({
     } */
   },
   extraReducers(builder) {
+    // login user
     builder.addCase(AuthThunk.login.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -40,6 +42,21 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(AuthThunk.login.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+
+    // registration user
+    builder.addCase(UserThunk.registerUser.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(UserThunk.registerUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
+      state.loggedIn = action.payload ?? null;
+    });
+    builder.addCase(UserThunk.registerUser.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });

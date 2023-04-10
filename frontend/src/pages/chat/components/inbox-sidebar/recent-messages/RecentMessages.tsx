@@ -14,7 +14,6 @@ const RecentMessages: React.FC = () => {
   const params = useParams();
 
   const handleUpdateConversationLastMessageStatus = () => {
-    console.log('running func');
     const payload: UpdateLastMessageStatusDto = {
       member1: `${loggedIn?._id}`,
       member2: `${params.id}`,
@@ -22,8 +21,6 @@ const RecentMessages: React.FC = () => {
     };
     dispatch(ConversationThunk.updateLastMessageStatus(payload));
   };
-
-  console.log(allMyConversations);
 
   useEffect(() => {
     if (params.id && loggedIn && allMyConversations.data.length > 0) {

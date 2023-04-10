@@ -1,5 +1,16 @@
 import { AxiosUrl } from '@/config/axios-config';
-import { GenericResponse, UserModel } from '@/shared/models';
+import { GenericResponse, LoggedInModel, UserModel } from '@/shared/models';
+import { CreateUserDto } from '../dtos/auth';
+
+const registerUser = (data: CreateUserDto): Promise<GenericResponse<LoggedInModel>> => {
+  return AxiosUrl.post('/user/register', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }).then((res) => {
+    return res.data;
+  });
+};
 
 const getAllUsers = (): Promise<GenericResponse<UserModel[]>> => {
   return AxiosUrl.get('/user/all').then((res) => {
@@ -19,4 +30,4 @@ const getUserById = (id: string): Promise<GenericResponse<UserModel>> => {
   });
 };
 
-export const UserService = { getAllUsers, getUserById, getProfile };
+export const UserService = { getAllUsers, getUserById, getProfile, registerUser };

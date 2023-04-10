@@ -12,6 +12,7 @@ import {
 } from 'react-icons/ri';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
+import { S3Avatar } from '@/shared/utils';
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
     name: 'My Account',
     icon: <RiUser3Line />
   },
-  {
+  /*   {
     path: '/settings',
     name: 'Settings',
     icon: <RiSettings2Line />
@@ -38,7 +39,7 @@ const routes = [
     path: '/friends',
     name: 'Friends',
     icon: <RiInformationLine />
-  },
+  }, */
   {
     path: '/bug-report',
     name: 'Bug Report',
@@ -53,31 +54,20 @@ const routes = [
 
 const MainMenuOptions: React.FC = () => {
   const { loggedIn } = useAppSelector((state) => state.auth);
-  /*   const { allMyConversations } = useAppSelector((state) => state.conversation); */
 
   return (
     <aside className={styles.mainMenuOptionsContainer}>
       <div className={styles.menuOptionsHeaderWrapper}>
         <div className={styles.menuHeader}>
-          <img src={loggedIn?.avatar} />
+          <img src={loggedIn?.avatar.startsWith('http') ? loggedIn?.avatar : S3Avatar(`${loggedIn?.avatar}`)} />
           <p>{loggedIn?.displayName}</p>
         </div>
       </div>
       <div className={styles.menuList}>
         {routes.map((item, idx) => (
-          <Link
-            key={idx}
-            to={item.path}
-            /*             to={
-              item.path === '/chat' && allMyConversations.data.length > 0
-                ? `/chat/${allMyConversations.data[0].contact._id}`
-                : item.path
-            } */
-            className={styles.menuListItem}
-          >
+          <Link key={idx} to={item.path} className={styles.menuListItem}>
             <span>{item.icon}</span>
             {item.name}
-            {/*     {item.path === '/chat' && <div>+9</div>} */}
           </Link>
         ))}
       </div>

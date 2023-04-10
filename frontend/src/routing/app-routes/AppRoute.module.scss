@@ -1,0 +1,28 @@
+.messageNotificationContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.messageNotificationContainer .message {
+}
+
+.messageNotificationContainer .viewMessage {
+  border: none;
+  outline: none;
+  background-color: var(--primary-color-darker);
+  color: var(--text-color-light);
+  margin-top: 10px;
+  padding: 10px 0px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 150ms background-color ease;
+  &:hover {
+    background-color: rgb(0, 87, 87);
+  }
+}

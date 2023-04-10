@@ -20,13 +20,13 @@ const NotificationsDropDownMenu = () => {
   const { socketUserById } = useAppSelector((state) => state.socket);
   const params = useParams();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (socketUserById?.data) {
       console.log('socket message user profile', socketUserById.data);
       console.log('socket message', socketMessage);
     }
   }, [socketUserById]);
-
+ */
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

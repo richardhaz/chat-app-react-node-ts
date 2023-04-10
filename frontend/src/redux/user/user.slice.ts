@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { UserModel } from '@/shared/models';
+import { LoggedInModel, UserModel } from '@/shared/models';
 import { UserThunk } from './user.thunk';
 
 interface UserReduxModel {
@@ -12,6 +12,11 @@ interface UserReduxModel {
     loading: boolean;
     data: UserModel | null;
     error: null | unknown;
+  };
+  registerUserResult: {
+    loading: boolean;
+    error: null | unknown;
+    data: LoggedInModel | null;
   };
   userById: {
     loading: boolean;
@@ -27,6 +32,11 @@ interface UserReduxModel {
 
 const initialState: UserReduxModel = {
   me: {
+    loading: false,
+    data: null,
+    error: null
+  },
+  registerUserResult: {
     loading: false,
     data: null,
     error: null

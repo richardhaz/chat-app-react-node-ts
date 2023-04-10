@@ -5,16 +5,17 @@ import { useAppSelector } from '@/redux/useTypedRedux';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const { token } = useAppSelector((state) => state.auth);
+  const { loggedIn } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token) {
+    if (loggedIn) {
       navigate('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!token) {
+  if (!loggedIn) {
     return (
       <PageWrapper>
         <LoginForm />
