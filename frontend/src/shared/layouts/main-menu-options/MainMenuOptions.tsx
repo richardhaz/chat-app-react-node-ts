@@ -15,21 +15,21 @@ import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 import { S3Avatar } from '@/shared/utils';
 
 const routes = [
-  {
+  /*   {
     path: '/global-chat',
     name: 'Global Chat',
     icon: <RiGlobalLine />
-  },
+  }, */
   {
     path: '/chat',
     name: 'Single Chat',
     icon: <RiMessengerLine />
-  },
-  {
+  }
+  /*   {
     path: '/me',
     name: 'My Account',
     icon: <RiUser3Line />
-  },
+  } */
   /*   {
     path: '/settings',
     name: 'Settings',
@@ -40,7 +40,7 @@ const routes = [
     name: 'Friends',
     icon: <RiInformationLine />
   }, */
-  {
+  /*   {
     path: '/bug-report',
     name: 'Bug Report',
     icon: <RiBugLine />
@@ -49,7 +49,7 @@ const routes = [
     path: '/about',
     name: 'About',
     icon: <RiGroupLine />
-  }
+  } */
 ];
 
 const MainMenuOptions: React.FC = () => {

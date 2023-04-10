@@ -18,6 +18,8 @@ import { MePage } from '@/pages/me';
 import { GlobalChatPage } from '@/pages/global-chat';
 import { BugReportPage } from '@/pages/bug-report';
 import { AboutPage } from '@/pages/about';
+import { UsersListButton } from '@/shared/components/users-list-button';
+import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 
 export const AppRoutes = () => {
   interface MessageNotificationProps {
@@ -111,7 +113,7 @@ export const AppRoutes = () => {
           {/* Chat Routes */}
         </RoutesWrapper>
       </PrimaryLayout>
-      {/* <UsersListNavigationDrawer /> */}
+      <UsersListNavigationDrawer />
       {/*  <UsersListButton /> */}
     </>
   );

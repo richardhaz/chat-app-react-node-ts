@@ -76,7 +76,7 @@ const RegisterForm = () => {
       <div className={styles.inputSeparator}>
         <div className={styles.inputContainer}>
           <label htmlFor="ChooseAvatar" className={styles.inputLabel}>
-            Choose Avatar
+            Choose Avatar (Optional)
           </label>
           <input type="file" className={styles.inputField} {...register('avatar')} />
         </div>

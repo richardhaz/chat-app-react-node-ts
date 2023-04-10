@@ -30,7 +30,7 @@
     }
     p {
       color: #afafaf;
-      text-align: start;
+      text-align: center;
       @include respond-below(md) {
         font-size: 14px;
       }
