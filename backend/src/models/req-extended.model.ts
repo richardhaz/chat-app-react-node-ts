@@ -4,6 +4,7 @@ import { UserModel } from './user.model';
 
 export interface RequestExtended extends Request {
   user?: UserModel;
+  imageName?: string;
   /*   query: {
     searchBy?: string;
     orderBy?: string;

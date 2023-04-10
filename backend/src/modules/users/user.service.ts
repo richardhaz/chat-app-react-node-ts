@@ -24,10 +24,12 @@ const register = async (dto: CreateUserDto) => {
   const payload = {
     ...dto,
     username: generateUsername(dto.email),
-    avatar: 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg',
+    avatar: dto.avatar,
+    /* ?? 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg' */
   };
-  const user = UserSchema.create(payload);
-  return await user;
+
+  const user = await UserSchema.create(payload);
+  return user;
 };
 
 export const UserService = { getAll, register, findByEmail, findById };

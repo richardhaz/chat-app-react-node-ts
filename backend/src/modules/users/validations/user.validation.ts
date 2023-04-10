@@ -43,6 +43,7 @@ const registerUser = [
     .withMessage('lastName is required')
     .isLength({ min: 3, max: 50 })
     .withMessage('max length is 8 and min length is 120'),
+  body('avatar').isString().withMessage('avatar have to be an string').optional({ nullable: true }),
   (req: Request, res: Response, next: NextFunction) => {
     validateResult(req, res, next);
   },

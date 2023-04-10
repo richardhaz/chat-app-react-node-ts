@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { sessionMiddleware } from '@/middlewares';
+import uploadFileMiddleware from '@/middlewares/upload-file.middleware';
 
 import { UserController } from './user.controller';
 import { UserValidation } from './validations';
@@ -8,7 +9,12 @@ import { UserValidation } from './validations';
 const UserRoute = express.Router();
 
 UserRoute.get('/all', sessionMiddleware, UserController.getAllUsers);
-UserRoute.post('/register', UserValidation.registerUser, UserController.registerUser);
+UserRoute.post(
+  '/register',
+  uploadFileMiddleware('images/avatars').single('avatar'),
+  UserValidation.registerUser,
+  UserController.registerUser,
+);
 UserRoute.get('/profile', sessionMiddleware, UserController.getProfile);
 UserRoute.get('/:id', sessionMiddleware, UserValidation.validateId, UserController.getUserById);
 
