@@ -1,5 +1,6 @@
 export * from './auth-cookie.model';
 export * from './conversation.model';
+export * from './global-message.model';
 export * from './jwt-payload-extended.model';
 export * from './message.model';
 export * from './notification.model';
