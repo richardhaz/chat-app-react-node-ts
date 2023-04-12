@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@/sass/root.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,7 +12,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   /*   <React.StrictMode> */
   <Provider store={store}>
     <ToastContainer theme="dark" limit={3} />
-    {/*     <SnackbarProvider maxSnack={10}> */}
     <App />
     {/*     </SnackbarProvider> */}
   </Provider>

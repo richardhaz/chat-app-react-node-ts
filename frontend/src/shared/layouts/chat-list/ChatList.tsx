@@ -5,19 +5,19 @@ import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
 import ChatListLoading from './ChatListLoading';
 import { useEffect, useState } from 'react';
-import { SocketMessaggeData } from '@/shared/models';
+import { SocketMessaggeData, SocketUserModel } from '@/shared/models';
 import { ioSocket } from '@/shared/utils';
 
 const ChatList: React.FC = () => {
+  const params = useParams();
+  const dispatch = useAppDispatch();
   const { users } = useAppSelector((state) => state.user);
   const { loggedIn } = useAppSelector((state) => state.auth);
   const { onlineUsers } = useAppSelector((state) => state.socket);
-  /*   const [socketMessageCount, setSocketMessageCount] = useState<SocketMessaggeData[]>([]); */
-  /*   const [newMessage, setNewMessage] = useState(false); */
   const [socketMessage, setSocketMessage] = useState<SocketMessaggeData | null>(null);
+  const [filteredUsers, setFilteredUsers] = useState<SocketUserModel[]>([]);
 
-  const dispatch = useAppDispatch();
-  const params = useParams();
+  const allOnlineUsers = onlineUsers.length - 1;
 
   const handleGetAllMessages = (id: string) => {
     setSocketMessage(null);
@@ -27,7 +27,17 @@ const ChatList: React.FC = () => {
     }
   };
 
-  const allOnlineUsers = onlineUsers.length - 1;
+  const handleSearch = (searchTerm: string) => {
+    // remove my user from search
+    const onlineUsersWithoutMe = onlineUsers.filter((res) => res.profile._id !== loggedIn?._id);
+
+    // search user
+    const result = onlineUsersWithoutMe.filter((res) =>
+      res.profile.displayName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+    );
+
+    setFilteredUsers(result);
+  };
 
   const messageNotificationBelongsYou = (id: string) => {
     return (
@@ -59,6 +69,7 @@ const ChatList: React.FC = () => {
         setSocketMessage(null);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketMessage]);
 
   return (
@@ -70,21 +81,17 @@ const ChatList: React.FC = () => {
             <span>{`${allOnlineUsers} users connected`}</span>
           </div>
           <div className={styles.inputWrapper}>
-            <input placeholder="Search" />
+            <input placeholder="Search" onChange={(e) => handleSearch(e.target.value)} />
             <span>
               <BiSearch />
             </span>
           </div>
         </div>
       </div>
-
-      {users.loading ? (
-        <ChatListLoading />
-      ) : (
-        <div className={styles.usersList}>
-          {onlineUsers
-            .filter((u) => u.profile._id !== loggedIn?._id)
-            .map((item) => (
+      {filteredUsers.length !== 0 ? (
+        <div>
+          <div className={styles.usersList}>
+            {filteredUsers.map((item) => (
               <Link
                 key={item.profile._id}
                 to={`/chat/${item.profile._id}`}
@@ -107,6 +114,41 @@ const ChatList: React.FC = () => {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      ) : (
+        <div>
+          {users.loading ? (
+            <ChatListLoading />
+          ) : (
+            <div className={styles.usersList}>
+              {onlineUsers
+                .filter((u) => u.profile._id !== loggedIn?._id)
+                .map((item) => (
+                  <Link
+                    key={item.profile._id}
+                    to={`/chat/${item.profile._id}`}
+                    className={styles.usersListItem}
+                    onClick={() => handleGetAllMessages(item.profile._id)}
+                  >
+                    <div className={styles.userProfile}>
+                      <div className={styles.avatarWrapper}>
+                        <img src={item.profile.avatar} alt="user profile picture" />
+                        <div className={styles.dotNotification}></div>
+                      </div>
+
+                      <div>
+                        <p>{item.profile.displayName}</p>
+                        <span>online</span>
+                      </div>
+                      {messageNotificationBelongsYou(item.profile._id) && (
+                        <div className={styles.newMessageNotification}>!</div>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+            </div>
+          )}
         </div>
       )}
     </div>

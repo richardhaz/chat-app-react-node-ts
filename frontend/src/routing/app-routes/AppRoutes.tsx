@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import { PrimaryLayout } from '@/shared/layouts';
-import { Route, useNavigate, useParams } from 'react-router-dom';
+import { Route, useLocation, useNavigate } from 'react-router-dom';
 import styles from './AppRoute.module.scss';
 import { RoutesWrapper } from '../components';
 import { HomePage } from '@/pages/home';
@@ -9,7 +9,7 @@ import { ChatPage } from '@/pages/chat';
 import { ConversationContentPage } from '@/pages/chat/components/conversation';
 import { ioSocket } from '@/shared/utils';
 import { setOnlineUsers } from '@/redux/socket/socket.slice';
-import { LoggedInModel, SocketMessaggeData } from '@/shared/models';
+import { LoggedInModel, MessageNotificationProps, SocketMessaggeData } from '@/shared/models';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
@@ -18,15 +18,12 @@ import { MePage } from '@/pages/me';
 import { GlobalChatPage } from '@/pages/global-chat';
 import { BugReportPage } from '@/pages/bug-report';
 import { AboutPage } from '@/pages/about';
-import { UsersListButton } from '@/shared/components/users-list-button';
 import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 
 export const AppRoutes = () => {
-  interface MessageNotificationProps {
-    socketMessage: SocketMessaggeData;
-  }
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { loggedIn } = useAppSelector((state) => state.auth);
   const [socketMessage, setSocketMessage] = useState<SocketMessaggeData | null>(null);
 
@@ -78,12 +75,10 @@ export const AppRoutes = () => {
 
   // listen incomming messages
   useEffect(() => {
-    if (loggedIn) {
-      const socket = ioSocket();
-      socket.on('getMessage', (data: SocketMessaggeData) => {
-        setSocketMessage(data);
-      });
-    }
+    const socket = ioSocket();
+    socket.on('getMessage', (data: SocketMessaggeData) => {
+      setSocketMessage(data);
+    });
   }, []);
 
   useEffect(() => {
@@ -91,11 +86,12 @@ export const AppRoutes = () => {
       // check if loggedIn user belongs to the conversation
       if ([socketMessage.senderId, socketMessage.receiverId].includes(loggedIn._id)) {
         // check if the loggedIn user is the receiver, if its the sender the notification will not pop up
-        if (socketMessage.receiverId === loggedIn._id) {
+        if (socketMessage.receiverId === loggedIn._id && !location.pathname.startsWith('/chat')) {
           toast(<MessageNotification socketMessage={socketMessage} />, { autoClose: 15000 });
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketMessage]);
 
   return (
@@ -110,11 +106,9 @@ export const AppRoutes = () => {
           <Route path="/me" element={<MePage />} />
           <Route path="/bug-report" element={<BugReportPage />} />
           <Route path="/about" element={<AboutPage />} />
-          {/* Chat Routes */}
         </RoutesWrapper>
       </PrimaryLayout>
       <UsersListNavigationDrawer />
-      {/*  <UsersListButton /> */}
     </>
   );
 };

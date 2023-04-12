@@ -15,22 +15,27 @@ import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 import { S3Avatar } from '@/shared/utils';
 
 const routes = [
-  /*   {
+  {
     path: '/global-chat',
     name: 'Global Chat',
     icon: <RiGlobalLine />
-  }, */
+  },
   {
     path: '/chat',
     name: 'Single Chat',
     icon: <RiMessengerLine />
-  }
-  /*   {
+  },
+  {
     path: '/me',
     name: 'My Account',
     icon: <RiUser3Line />
-  } */
-  /*   {
+  },
+  {
+    path: '/about',
+    name: 'About',
+    icon: <RiInformationLine />
+  }
+  /*  {
     path: '/settings',
     name: 'Settings',
     icon: <RiSettings2Line />
