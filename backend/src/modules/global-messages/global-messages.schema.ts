@@ -21,7 +21,6 @@ const GlobalMessages = new Schema<GlobalMessageModel>(
         default: MESSAGE_STATUS.DELIVERED,
       },
     },
-
     sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users',

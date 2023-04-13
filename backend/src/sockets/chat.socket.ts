@@ -30,6 +30,18 @@ export const chatSocket = (io: SocketServer) => {
       });
     });
 
+    // send global message
+    socket.on('sendGlobalMessage', ({ senderId, message, messageIdentifier, senderDetails, fromSelf }) => {
+      io.emit('getGlobalMessage', {
+        senderId,
+        senderDetails,
+        fromSelf,
+        message,
+        messageIdentifier,
+        messageStatus: MESSAGE_STATUS.DELIVERED,
+      });
+    });
+
     // get all messages
     socket.on('message', (message) => {
       socket.broadcast.emit('message', message);

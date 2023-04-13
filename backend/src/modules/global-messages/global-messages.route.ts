@@ -7,12 +7,17 @@ import { GlobalMessageValidation } from './validations';
 
 const GlobalMessageRoute = express.Router();
 
-GlobalMessageRoute.get('/all', sessionMiddleware, GlobalMessageController.getAllMessages);
+GlobalMessageRoute.post(
+  '/all',
+  sessionMiddleware,
+  GlobalMessageValidation.getMessages,
+  GlobalMessageController.getAllMessages,
+);
 GlobalMessageRoute.post(
   '/create',
   sessionMiddleware,
   GlobalMessageValidation.createMessage,
-  GlobalMessageController.getAllMessages,
+  GlobalMessageController.createMessage,
 );
 
 export { GlobalMessageRoute };

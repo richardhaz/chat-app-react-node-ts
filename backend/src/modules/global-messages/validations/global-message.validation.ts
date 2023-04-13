@@ -17,4 +17,11 @@ const createMessage = [
   },
 ];
 
-export const GlobalMessageValidation = { createMessage };
+const getMessages = [
+  body('from').matches(REGEX.MONGO_ID).withMessage('please provide a valid mongoId'),
+  (req: Request, res: Response, next: NextFunction) => {
+    validateResult(req, res, next);
+  },
+];
+
+export const GlobalMessageValidation = { createMessage, getMessages };
