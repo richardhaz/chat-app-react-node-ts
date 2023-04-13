@@ -88,7 +88,7 @@ const ChatList: React.FC = () => {
           </div>
         </div>
       </div>
-      {filteredUsers.length !== 0 ? (
+      {filteredUsers.length > 0 ? (
         <div>
           <div className={styles.usersList}>
             {filteredUsers.map((item) => (

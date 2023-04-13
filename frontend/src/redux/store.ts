@@ -5,6 +5,7 @@ import { userSlice } from './user/user.slice';
 import { messageSlice } from './message/message.slice';
 import { socketSlice } from './socket/socket.slice';
 import { conversationSlice } from './conversation/conversation.slice';
+import { globalMessageSlice } from './global-message/global-message.slice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     auth: authSlice.reducer,
     user: userSlice.reducer,
     message: messageSlice.reducer,
+    globalMessage: globalMessageSlice.reducer,
     socket: socketSlice.reducer,
     conversation: conversationSlice.reducer
   }

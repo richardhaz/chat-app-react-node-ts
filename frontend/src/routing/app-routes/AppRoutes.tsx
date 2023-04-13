@@ -81,6 +81,17 @@ export const AppRoutes = () => {
     });
   }, []);
 
+  /* 
+      // listen incomming messages
+    useEffect(() => {
+      const socket = ioSocket();
+      socket.on('getGlobalMessage', (data: SocketGlobalMessaggeData) => {
+        setSocketMessage(data);
+      });
+    }, []);
+
+  */
+
   useEffect(() => {
     if (socketMessage && loggedIn) {
       // check if loggedIn user belongs to the conversation

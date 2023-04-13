@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { SocketMessaggeData, SocketUserModel, UserModel } from '@/shared/models';
+import { SocketGlobalMessaggeData, SocketMessaggeData, SocketUserModel, UserModel } from '@/shared/models';
 import { SocketThunk } from './socket.thunk';
 
 interface SocketReduxModel {
   onlineUsers: SocketUserModel[];
   socketMessages: SocketMessaggeData | null;
+  socketGlobalMessages: SocketGlobalMessaggeData | null;
   socketUserById: {
     data: UserModel | null;
     loading: boolean;
@@ -20,6 +21,7 @@ interface SocketReduxModel {
 const initialState: SocketReduxModel = {
   onlineUsers: [],
   socketMessages: null,
+  socketGlobalMessages: null,
   socketUserById: {
     data: null,
     loading: false,
@@ -41,6 +43,9 @@ export const socketSlice = createSlice({
     },
     setSocketMessages: (state, action) => {
       state.socketMessages = action.payload;
+    },
+    setSocketGlobalMessages: (state, action) => {
+      state.socketGlobalMessages = action.payload;
     }
   },
   extraReducers(builder) {
@@ -76,4 +81,4 @@ export const socketSlice = createSlice({
   }
 });
 
-export const { setOnlineUsers, setSocketMessages } = socketSlice.actions;
+export const { setOnlineUsers, setSocketMessages, setSocketGlobalMessages } = socketSlice.actions;

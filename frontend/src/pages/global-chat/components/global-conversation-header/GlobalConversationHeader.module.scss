@@ -1,0 +1,63 @@
+.conversationContentHeader {
+  background-color: var(--bg-color-dark);
+  height: var(--header-conversations-height-inside);
+  width: 100%;
+  border-radius: 15px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .userInfoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .userNames {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+
+        img {
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+        }
+
+        div {
+          p {
+            font-size: var(--text-size-base);
+          }
+
+          span {
+            font-size: var(--text-size-small);
+            text-align: start;
+            width: 100%;
+            color: var(--text-color-dim);
+          }
+        }
+      }
+    }
+
+    .iconMenuButton {
+      border: none;
+      outline: none;
+      background-color: inherit;
+      color: var(--text-color-light);
+      transition: 150ms color ease;
+      font-size: var(--text-size-extra-large);
+      &:hover {
+        cursor: pointer;
+        color: var(--icon-color-hover);
+      }
+    }
+  }
+}
