@@ -11,7 +11,10 @@ const GlobalConversationContentPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(GlobalMessageThunk.getAllMessages({ from: `${loggedIn?._id}` }));
+    if (loggedIn) {
+      dispatch(GlobalMessageThunk.getAllMessages({ from: loggedIn._id }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return (

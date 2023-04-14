@@ -22,6 +22,9 @@ const ConversationContent = () => {
   const { loggedIn } = useAppSelector(state => state.auth);
   const { globalMessages } = useAppSelector(state => state.globalMessage);
 
+  const [typing, setTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+
   // socket
   const [arrivalMessages, setArrivalMessages] = useState<GlobalMessageResultModel[]>([]);
   const [socketGlobalMessages, setSocketGlobalMessages] = useState<SocketGlobalMessaggeData | null>(null);
@@ -35,7 +38,7 @@ const ConversationContent = () => {
     register,
     handleSubmit,
     reset,
-    formState: { isValid, errors }
+    formState: { isValid }
   } = useForm<{
     message: string;
   }>();
@@ -98,14 +101,15 @@ const ConversationContent = () => {
       </div>
       <form className={styles.messageInputContainer} onSubmit={handleSubmit(values => onSubmit(values))}>
         <input
+          maxLength={250}
           placeholder="Send a message ..."
           type="text"
           {...register('message', {
             required: true,
             maxLength: 250
+            /*             onChange: (e: React.ChangeEvent<HTMLInputElement>) => setIsTyping(e.target.value) */
           })}
         />
-
         <div className={styles.messageOptionsContainer}>
           <button className={styles.submitButton} disabled={!isValid}>
             <IoSend />

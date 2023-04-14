@@ -21,18 +21,18 @@ const ChatPage = () => {
 
   // fetch messages if user is selected
   useEffect(() => {
-    if (loggedIn?._id && params.id) {
-      const payload = { from: loggedIn._id, to: params.id };
-      dispatch(MessageThunk.getAllMessages(payload));
-    }
+    if (!loggedIn || !params.id) return;
+
+    const payload = { from: loggedIn._id, to: params.id };
+    dispatch(MessageThunk.getAllMessages(payload));
   }, [dispatch, params.id, loggedIn]);
 
   // get conversation by members
   useEffect(() => {
-    if (loggedIn?._id && params.id) {
-      const payload = { member1: loggedIn._id, member2: params.id };
-      dispatch(ConversationThunk.getConversationByMembers(payload));
-    }
+    if (!loggedIn || !params.id) return;
+
+    const payload = { member1: loggedIn._id, member2: params.id };
+    dispatch(ConversationThunk.getConversationByMembers(payload));
   }, [dispatch, params.id, loggedIn]);
 
   return (

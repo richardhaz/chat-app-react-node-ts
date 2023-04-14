@@ -24,8 +24,6 @@ const ConversationContent = () => {
 
   const [arrivalMessages, setArrivalMessages] = useState<MessageResultModel[]>([]);
   const [socketMessages, setSocketMessages] = useState<SocketMessaggeData | null>(null);
-  const [typing, setTyping] = useState(false);
-  const [isTyping, setIsTyping] = useState('');
 
   // set messages from db to a new state
   useEffect(() => {
@@ -37,7 +35,7 @@ const ConversationContent = () => {
     register,
     handleSubmit,
     reset,
-    formState: { isValid, errors }
+    formState: { isValid }
   } = useForm<{
     message: string;
   }>();
@@ -57,7 +55,6 @@ const ConversationContent = () => {
 
   /* SOCKET EVENTS */
   const events: EventProps[] = [
-    // Get socket messages
     {
       name: EVENTS.GET_SENT_MESSAGE,
       handler(message) {
@@ -70,7 +67,6 @@ const ConversationContent = () => {
   useSocketEvents(events);
 
   /* SET SOCKET MESSAGES */
-
   function usersBelongToCurrentChat(socketMessages: SocketMessaggeData) {
     // check if the sender and receiver are in the same chat as sender or receiver
     return (
@@ -110,17 +106,14 @@ const ConversationContent = () => {
 
       <form className={styles.messageInputContainer} onSubmit={handleSubmit(values => onSubmit(values))}>
         <input
+          maxLength={250}
           placeholder="Send a message ..."
           type="text"
           {...register('message', {
             required: true,
-            maxLength: 250,
-            onChange: (e: React.ChangeEvent<HTMLInputElement>) => setIsTyping(e.target.value)
+            maxLength: 250
           })}
         />
-        {/*         {errors.message && errors.message.message && (
-          <span className="">{errors.message.message}</span>
-        )} */}
         <div className={styles.messageOptionsContainer}>
           <button className={styles.submitButton} disabled={!isValid}>
             <IoSend />
