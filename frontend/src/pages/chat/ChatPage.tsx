@@ -10,21 +10,7 @@ import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 const ChatPage = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const { loggedIn } = useAppSelector((state) => state.auth);
-
-  // fetch user info if user is selected in chat
-  /*   useEffect(() => {
-    if (params.id) {
-      dispatch(ConversationThunk.getAllMyConversations({ senderId: `${loggedIn?._id}` }));
-    }
-  }, [dispatch]); */
-
-  // open first conversation if there's at least one and no params id
-  /*   useEffect(() => {
-    if (allMyConversations.data.length > 0 && !params.id) {
-      navigate(`/chat/${allMyConversations.data[0].contact._id}`);
-    }
-  }, []); */
+  const { loggedIn } = useAppSelector(state => state.auth);
 
   // fetch user info if user is selected in chat
   useEffect(() => {

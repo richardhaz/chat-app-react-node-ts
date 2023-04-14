@@ -58,7 +58,7 @@ const routes = [
 ];
 
 const MainMenuOptions: React.FC = () => {
-  const { loggedIn } = useAppSelector((state) => state.auth);
+  const { loggedIn } = useAppSelector(state => state.auth);
 
   return (
     <aside className={styles.mainMenuOptionsContainer}>

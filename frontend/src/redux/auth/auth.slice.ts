@@ -32,7 +32,7 @@ export const authSlice = createSlice({
   },
   extraReducers(builder) {
     // login user
-    builder.addCase(AuthThunk.login.pending, (state) => {
+    builder.addCase(AuthThunk.login.pending, state => {
       state.loading = true;
       state.error = null;
     });
@@ -47,7 +47,7 @@ export const authSlice = createSlice({
     });
 
     // registration user
-    builder.addCase(UserThunk.registerUser.pending, (state) => {
+    builder.addCase(UserThunk.registerUser.pending, state => {
       state.loading = true;
       state.error = null;
     });
@@ -62,11 +62,11 @@ export const authSlice = createSlice({
     });
 
     // logout
-    builder.addCase(AuthThunk.logout.pending, (state) => {
+    builder.addCase(AuthThunk.logout.pending, state => {
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(AuthThunk.logout.fulfilled, (state) => {
+    builder.addCase(AuthThunk.logout.fulfilled, state => {
       state.loading = false;
       state.error = null;
       state.loggedIn = null;

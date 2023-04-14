@@ -4,7 +4,7 @@ import { RiMessengerLine } from 'react-icons/ri';
 import styles from './MessengerButton.module.scss';
 
 const MessengerButton = () => {
-  const { chatListNavigationDrawer } = useAppSelector((state) => state.app);
+  const { chatListNavigationDrawer } = useAppSelector(state => state.app);
   const dispatch = useAppDispatch();
   return (
     <button

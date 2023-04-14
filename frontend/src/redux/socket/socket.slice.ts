@@ -50,7 +50,7 @@ export const socketSlice = createSlice({
   },
   extraReducers(builder) {
     // get socket user by id
-    builder.addCase(SocketThunk.getSocketUserById.pending, (state) => {
+    builder.addCase(SocketThunk.getSocketUserById.pending, state => {
       state.socketUserById.loading = true;
       state.socketUserById.error = null;
     });
@@ -65,7 +65,7 @@ export const socketSlice = createSlice({
     });
 
     // get notification uset by id
-    builder.addCase(SocketThunk.getNotificationUserById.pending, (state) => {
+    builder.addCase(SocketThunk.getNotificationUserById.pending, state => {
       state.notificationUserById.loading = true;
       state.notificationUserById.error = null;
     });

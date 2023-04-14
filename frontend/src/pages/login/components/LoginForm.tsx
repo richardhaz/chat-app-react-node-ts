@@ -17,7 +17,7 @@ const LoginForm = () => {
   } = useForm<LoginUserDto>({ resolver: yupResolver(loginUserYupValidation) });
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state) => state.auth);
+  const { loading } = useAppSelector(state => state.auth);
 
   const onSubmit = (values: LoginUserDto) => {
     dispatch(AuthThunk.login({ values, navigate, reset }));

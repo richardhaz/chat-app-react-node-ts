@@ -4,7 +4,7 @@ import { FiUsers } from 'react-icons/fi';
 import styles from './UsersListButton.module.scss';
 
 const UsersListButton = () => {
-  const { usersListNavigationDrawer } = useAppSelector((state) => state.app);
+  const { usersListNavigationDrawer } = useAppSelector(state => state.app);
   const dispatch = useAppDispatch();
 
   return (

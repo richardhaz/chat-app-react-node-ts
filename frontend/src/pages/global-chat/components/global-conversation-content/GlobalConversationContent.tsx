@@ -4,7 +4,7 @@ import { IoSend } from 'react-icons/io5';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { useForm } from 'react-hook-form';
 
-import { generateUUID, ioSocket, playMessageSentSound } from '@/shared/utils';
+import { generateUUID, playMessageSentSound } from '@/shared/utils';
 import { useEffect, useState } from 'react';
 import { GlobalMessageResultModel, SocketGlobalMessaggeData } from '@/shared/models';
 import { setSocketGlobalMessages as setSocketGlobalMessagesAction } from '@/redux/socket/socket.slice';
@@ -14,17 +14,19 @@ import { GlobalMessageThunk } from '@/redux/global-message/global-message.thunk'
 import GlobalConversationContentEmpty from './GlobalConversationContentEmpty';
 import GlobalConversationContentData from './GlobalConversationContentData';
 import { EVENTS } from '@/sockets';
+import { EventProps, useSocketEvents } from '@/shared/hooks';
 
 const ConversationContent = () => {
   const dispatch = useAppDispatch();
 
-  const { loggedIn } = useAppSelector((state) => state.auth);
-  const { globalMessages } = useAppSelector((state) => state.globalMessage);
+  const { loggedIn } = useAppSelector(state => state.auth);
+  const { globalMessages } = useAppSelector(state => state.globalMessage);
 
   // socket
   const [arrivalMessages, setArrivalMessages] = useState<GlobalMessageResultModel[]>([]);
   const [socketGlobalMessages, setSocketGlobalMessages] = useState<SocketGlobalMessaggeData | null>(null);
 
+  // set global messages from db to a new state
   useEffect(() => {
     setArrivalMessages(globalMessages.data);
   }, [globalMessages.data]);
@@ -50,30 +52,36 @@ const ConversationContent = () => {
     dispatch(GlobalMessageThunk.createMessage(messagePayload));
   };
 
-  // Get socket messages
-  useEffect(() => {
-    const socket = ioSocket();
-    socket.on(EVENTS.GET_GLOBAL_MESSAGE, (data) => {
-      dispatch(setSocketGlobalMessagesAction(data));
-      setSocketGlobalMessages(data);
-    });
-  }, [dispatch]);
+  /* SOCKET EVENTS */
+  const events: EventProps[] = [
+    // Get socket global message
+    {
+      name: EVENTS.GET_GLOBAL_MESSAGE,
+      handler(globalMessage) {
+        dispatch(setSocketGlobalMessagesAction(globalMessage));
+        setSocketGlobalMessages(globalMessage);
+      }
+    }
+  ];
+
+  useSocketEvents(events);
 
   useEffect(() => {
-    if (socketGlobalMessages) {
-      setArrivalMessages((prev) => [
-        ...prev,
-        {
-          message: socketGlobalMessages.message,
-          fromSelf: loggedIn?._id === socketGlobalMessages.senderId,
-          messageIdentifier: socketGlobalMessages.messageIdentifier,
-          messageStatus: socketGlobalMessages.messageStatus,
-          sender: socketGlobalMessages.senderDetails,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-      ]);
-    }
+    if (!loggedIn) return;
+    if (!socketGlobalMessages) return;
+
+    const newMessage: GlobalMessageResultModel = {
+      message: socketGlobalMessages.message,
+      fromSelf: loggedIn._id === socketGlobalMessages.senderId,
+      messageIdentifier: socketGlobalMessages.messageIdentifier,
+      messageStatus: socketGlobalMessages.messageStatus,
+      sender: socketGlobalMessages.senderDetails,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+
+    setArrivalMessages(prev => [...prev, newMessage]);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketGlobalMessages, loggedIn?._id]);
 
@@ -88,10 +96,7 @@ const ConversationContent = () => {
           <GlobalConversationContentData arrivalMessages={arrivalMessages} />
         )}
       </div>
-      <form className={styles.messageInputContainer} onSubmit={handleSubmit((values) => onSubmit(values))}>
-        {/*   <button className={styles.messageEmojisContainer} onClick={toggleEmojiPicker}>
-          <BsFillEmojiLaughingFill />
-        </button> */}
+      <form className={styles.messageInputContainer} onSubmit={handleSubmit(values => onSubmit(values))}>
         <input
           placeholder="Send a message ..."
           type="text"

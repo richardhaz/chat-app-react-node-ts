@@ -34,7 +34,7 @@ export const messageSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     // get all messages
-    builder.addCase(MessageThunk.getAllMessages.pending, (state) => {
+    builder.addCase(MessageThunk.getAllMessages.pending, state => {
       state.messages.loading = true;
       state.messages.error = null;
     });
@@ -49,7 +49,7 @@ export const messageSlice = createSlice({
     });
 
     // create message
-    builder.addCase(MessageThunk.createMessage.pending, (state) => {
+    builder.addCase(MessageThunk.createMessage.pending, state => {
       state.createMessage.loading = true;
       state.createMessage.error = null;
     });

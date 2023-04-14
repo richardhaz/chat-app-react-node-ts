@@ -1,33 +1,20 @@
 import styles from './NotificationsDropDownMenu.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Tooltip } from '@mui/material';
 import { RiNotification3Line } from 'react-icons/ri';
 import { SocketMessaggeData } from '@/shared/models';
-import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
-import { ioSocket } from '@/shared/utils';
+import { useAppDispatch } from '@/redux/useTypedRedux';
 import { SocketThunk } from '@/redux/socket/socket.thunk';
-import { Link, useParams } from 'react-router-dom';
-import moment from 'moment';
 import { EVENTS } from '@/sockets';
+import { EventProps, useSocketEvents } from '@/shared/hooks';
 
 const NotificationsDropDownMenu = () => {
   const dispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [notification, setNotification] = useState(1);
   const [socketMessage, setSocketMessage] = useState<SocketMessaggeData | null>(null);
-  const { loggedIn } = useAppSelector((state) => state.auth);
-  const { socketUserById } = useAppSelector((state) => state.socket);
-  const params = useParams();
 
-  /*   useEffect(() => {
-    if (socketUserById?.data) {
-      console.log('socket message user profile', socketUserById.data);
-      console.log('socket message', socketMessage);
-    }
-  }, [socketUserById]);
- */
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -37,21 +24,26 @@ const NotificationsDropDownMenu = () => {
     setAnchorEl(null);
   };
 
-  // listen incomming messages
-  useEffect(() => {
-    const socket = ioSocket();
-    socket.on(EVENTS.GET_SENT_MESSAGE, (data: SocketMessaggeData) => {
-      setSocketMessage(data);
-      dispatch(SocketThunk.getSocketUserById(data.senderId));
-    });
-  }, [dispatch]);
+  /* SOCKET EVENTS */
+  const events: EventProps[] = [
+    // Get socket messages
+    {
+      name: EVENTS.GET_SENT_MESSAGE,
+      handler(message: SocketMessaggeData) {
+        setSocketMessage(message);
+        dispatch(SocketThunk.getSocketUserById(message.senderId));
+      }
+    }
+  ];
+
+  useSocketEvents(events);
 
   return (
     <div>
       <Tooltip title="Notifications" placement="bottom" arrow>
         <button
           className={styles.navIconButton}
-          onClick={(e) => {
+          onClick={e => {
             handleClick(e);
             setSocketMessage(null);
           }}

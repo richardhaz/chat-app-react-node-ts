@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { GlobalMessageThunk } from '@/redux/global-message/global-message.thunk';
 
 const GlobalConversationContentPage = () => {
-  const { loggedIn } = useAppSelector((state) => state.auth);
+  const { loggedIn } = useAppSelector(state => state.auth);
 
   const dispatch = useAppDispatch();
 

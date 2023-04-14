@@ -3,7 +3,7 @@ import styles from './ConversationContentEmpty.module.scss';
 import { useAppSelector } from '@/redux/useTypedRedux';
 
 const ConversationContentEmpty = () => {
-  const { userById } = useAppSelector((state) => state.user);
+  const { userById } = useAppSelector(state => state.user);
   return (
     <div className={styles.emptyConversationContainer}>
       <div>

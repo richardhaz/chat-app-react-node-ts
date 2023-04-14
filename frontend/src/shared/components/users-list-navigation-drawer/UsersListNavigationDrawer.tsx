@@ -8,10 +8,10 @@ import ChatListLoading from '@/shared/layouts/chat-list/ChatListLoading';
 
 const UsersListNavigationDrawer = () => {
   const dispatch = useAppDispatch();
-  const { loggedIn } = useAppSelector((state) => state.auth);
-  const { usersListNavigationDrawer } = useAppSelector((state) => state.app);
-  const { onlineUsers } = useAppSelector((state) => state.socket);
-  const { users } = useAppSelector((state) => state.user);
+  const { loggedIn } = useAppSelector(state => state.auth);
+  const { usersListNavigationDrawer } = useAppSelector(state => state.app);
+  const { onlineUsers } = useAppSelector(state => state.socket);
+  const { users } = useAppSelector(state => state.user);
 
   const renderResult = () => {
     const allOnlineUsers = onlineUsers.length - 1;
@@ -37,8 +37,8 @@ const UsersListNavigationDrawer = () => {
         ) : (
           <div className={styles.usersListWrapper}>
             {onlineUsers
-              .filter((u) => u.profile._id !== loggedIn?._id)
-              .map((item) => (
+              .filter(u => u.profile._id !== loggedIn?._id)
+              .map(item => (
                 <Link
                   key={item.profile._id}
                   to={`/chat/${item.profile._id}`}

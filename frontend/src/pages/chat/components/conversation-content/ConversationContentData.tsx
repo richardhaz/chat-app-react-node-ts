@@ -9,7 +9,7 @@ interface ConversationContentData {
 }
 
 const ConversationContentData: React.FC<ConversationContentData> = ({ arrivalMessages }) => {
-  const { userById: receiver } = useAppSelector((state) => state.user);
+  const { userById: receiver } = useAppSelector(state => state.user);
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 

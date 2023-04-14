@@ -19,7 +19,7 @@ const UserDropDownMenu = () => {
 
   const dispatch = useAppDispatch();
 
-  const auth = useAppSelector((state) => state.auth);
+  const auth = useAppSelector(state => state.auth);
 
   return (
     <div>

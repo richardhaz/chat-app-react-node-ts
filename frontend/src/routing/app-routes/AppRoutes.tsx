@@ -13,19 +13,20 @@ import { LoggedInModel, MessageNotificationProps, SocketMessaggeData } from '@/s
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
-import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 import { MePage } from '@/pages/me';
 import { GlobalChatPage } from '@/pages/global-chat';
 import { BugReportPage } from '@/pages/bug-report';
 import { AboutPage } from '@/pages/about';
 import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 import { EVENTS } from '@/sockets';
+import { useSocketEvents, EventProps } from '@/shared/hooks';
 
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
+  const socket = ioSocket();
   const navigate = useNavigate();
   const location = useLocation();
-  const { loggedIn } = useAppSelector((state) => state.auth);
+  const { loggedIn } = useAppSelector(state => state.auth);
   const [socketMessage, setSocketMessage] = useState<SocketMessaggeData | null>(null);
 
   const MessageNotification: React.FC<MessageNotificationProps> = ({ socketMessage }) => {
@@ -56,42 +57,43 @@ export const AppRoutes = () => {
     dispatch(UserThunk.getProfile());
   }, [dispatch]);
 
-  // fetch user info if user is selected in chat
+  // Connect to Socket.io
   useEffect(() => {
-    dispatch(ConversationThunk.getAllMyConversations({ senderId: `${loggedIn?._id}` }));
+    if (!loggedIn) return;
+    socket.emit(EVENTS.ADD_ACTIVE_USER, loggedIn);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
-
-  // Connect to Socket.io and get all online users
-  useEffect(() => {
-    if (loggedIn) {
-      const socket = ioSocket();
-      socket.emit(EVENTS.ADD_ACTIVE_USER, loggedIn);
-      socket.on(EVENTS.GET_ALL_ACTIVE_USERS, (users: LoggedInModel[]) => {
-        dispatch(setOnlineUsers(users));
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
-
-  // listen incomming messages
-  useEffect(() => {
-    const socket = ioSocket();
-    socket.on(EVENTS.GET_SENT_MESSAGE, (data: SocketMessaggeData) => {
-      setSocketMessage(data);
-    });
   }, []);
 
-  useEffect(() => {
-    if (socketMessage && loggedIn) {
-      // check if loggedIn user belongs to the conversation
-      if ([socketMessage.senderId, socketMessage.receiverId].includes(loggedIn._id)) {
-        // check if the loggedIn user is the receiver, if its the sender the notification will not pop up
-        if (socketMessage.receiverId === loggedIn._id && !location.pathname.startsWith('/chat')) {
-          toast(<MessageNotification socketMessage={socketMessage} />, { autoClose: 15000 });
-        }
+  // Socket Events
+  const events: EventProps[] = [
+    // get all online users
+    {
+      name: EVENTS.GET_ALL_ACTIVE_USERS,
+      handler(users: LoggedInModel[]) {
+        dispatch(setOnlineUsers(users));
+      }
+    },
+    // listen incomming messages
+    {
+      name: EVENTS.GET_SENT_MESSAGE,
+      handler(data: SocketMessaggeData) {
+        setSocketMessage(data);
       }
     }
+  ];
+
+  useSocketEvents(events);
+
+  useEffect(() => {
+    if (!loggedIn || !socketMessage) return;
+    // check if loggedIn user belongs to the conversation
+    if ([socketMessage.senderId, socketMessage.receiverId].includes(loggedIn._id) === false) return;
+    if (socketMessage.receiverId !== loggedIn._id) return;
+    // check if the user has the chat open
+    if (location.pathname.startsWith('/chat')) return;
+
+    toast(<MessageNotification socketMessage={socketMessage} />, { autoClose: 15000 });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketMessage]);
 

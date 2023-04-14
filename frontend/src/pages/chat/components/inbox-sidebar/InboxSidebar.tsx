@@ -6,7 +6,7 @@ import RecentMessagesEmpty from './recent-messages/RecentMessagesEmpty';
 import { CircularProgress } from '@mui/material';
 
 const InboxSidebar: React.FC = () => {
-  const { allMyConversations } = useAppSelector((state) => state.conversation);
+  const { allMyConversations } = useAppSelector(state => state.conversation);
 
   return (
     <aside className={styles.inboxContainer}>

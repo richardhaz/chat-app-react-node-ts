@@ -4,12 +4,12 @@ import { IoEllipsisVerticalSharp } from 'react-icons/io5';
 import ConversationHeaderLoading from './ConversationHeaderLoading';
 
 const ConversationHeader = () => {
-  const { userById } = useAppSelector((state) => state.user);
-  const { messages } = useAppSelector((state) => state.message);
+  const { userById } = useAppSelector(state => state.user);
+  const { messages } = useAppSelector(state => state.message);
 
-  const { onlineUsers } = useAppSelector((state) => state.socket);
+  const { onlineUsers } = useAppSelector(state => state.socket);
 
-  const result = onlineUsers.filter((u) => u.profile._id === userById.data?._id);
+  const result = onlineUsers.filter(u => u.profile._id === userById.data?._id);
 
   return (
     <div className={styles.conversationContentHeader}>

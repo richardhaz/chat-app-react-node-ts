@@ -5,7 +5,7 @@ import { useAppSelector } from '@/redux/useTypedRedux';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const { loggedIn } = useAppSelector((state) => state.auth);
+  const { loggedIn } = useAppSelector(state => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {

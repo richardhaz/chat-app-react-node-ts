@@ -8,9 +8,9 @@ import { UpdateLastMessageStatusDto } from '@/shared/models';
 
 const RecentMessages: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { allMyConversations } = useAppSelector((state) => state.conversation);
-  const { loggedIn } = useAppSelector((state) => state.auth);
-  const { onlineUsers } = useAppSelector((state) => state.socket);
+  const { allMyConversations } = useAppSelector(state => state.conversation);
+  const { loggedIn } = useAppSelector(state => state.auth);
+  const { onlineUsers } = useAppSelector(state => state.socket);
   const params = useParams();
 
   const handleUpdateConversationLastMessageStatus = () => {
@@ -30,7 +30,7 @@ const RecentMessages: React.FC = () => {
 
   return (
     <div className={styles.conversationList}>
-      {allMyConversations.data.map((item) => (
+      {allMyConversations.data.map(item => (
         <Link
           key={item._id}
           to={item.contact._id}
@@ -45,7 +45,7 @@ const RecentMessages: React.FC = () => {
                 {item.contact.firstName} {item.contact.lastName}
               </p>
               <span>
-                {onlineUsers.filter((u) => u.profile._id === item.contact._id).length > 0
+                {onlineUsers.filter(u => u.profile._id === item.contact._id).length > 0
                   ? 'online'
                   : moment(item.updatedAt).fromNow()}
               </span>

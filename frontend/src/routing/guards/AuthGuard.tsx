@@ -4,7 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 export const AuthGuard: React.FC = () => {
   // TODO: uncomment useAppSelector
-  const { loggedIn } = useAppSelector((state) => state.auth);
+  const { loggedIn } = useAppSelector(state => state.auth);
 
   /*   const token = true; */
 

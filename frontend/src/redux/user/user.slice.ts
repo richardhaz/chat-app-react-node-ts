@@ -64,7 +64,7 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     // get me
-    builder.addCase(UserThunk.getProfile.pending, (state) => {
+    builder.addCase(UserThunk.getProfile.pending, state => {
       state.me.loading = true;
       state.me.error = null;
     });
@@ -79,7 +79,7 @@ export const userSlice = createSlice({
     });
 
     // get all users
-    builder.addCase(UserThunk.getAllUsers.pending, (state) => {
+    builder.addCase(UserThunk.getAllUsers.pending, state => {
       state.users.loading = true;
       state.users.error = null;
     });
@@ -94,7 +94,7 @@ export const userSlice = createSlice({
     });
 
     // get user by id
-    builder.addCase(UserThunk.getUserById.pending, (state) => {
+    builder.addCase(UserThunk.getUserById.pending, state => {
       state.userById.loading = true;
       state.userById.error = null;
     });

@@ -6,8 +6,8 @@ import { UserThunk } from '@/redux/user/user.thunk';
 import ChatListLoading from './ChatListLoading';
 import { useEffect, useState } from 'react';
 import { SocketMessaggeData, SocketUserModel } from '@/shared/models';
+import { ioSocket } from '@/shared/utils';
 import { EVENTS } from '@/sockets';
-import { EventProps, useSocketEvents } from '@/shared/hooks';
 
 const ChatList: React.FC = () => {
   const params = useParams();
@@ -20,7 +20,7 @@ const ChatList: React.FC = () => {
 
   const handleGetAllMessages = (id: string) => {
     setSocketMessage(null);
-    // prevent refetching the same user info if its selected one more time in the chat list
+    // if condition to prevent refetching the same user info if its selected one more time in the chat list
     if (params.id && params.id !== id) {
       dispatch(UserThunk.getUserById(id));
     }
@@ -29,46 +29,45 @@ const ChatList: React.FC = () => {
   const handleSearch = (searchTerm: string) => {
     // remove my user from search
     const onlineUsersWithoutMe = onlineUsers.filter(res => res.profile._id !== loggedIn?._id);
+
     // search user
     const result = onlineUsersWithoutMe.filter(res =>
       res.profile.displayName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
     );
+
     setFilteredUsers(result);
   };
 
-  // SOCKET EVENTS
-  const events: EventProps[] = [
-    // listen incomming messages
-    {
-      name: EVENTS.GET_SENT_MESSAGE,
-      handler(message: SocketMessaggeData) {
-        setSocketMessage(message);
-      }
-    }
-  ];
-
-  useSocketEvents(events);
-
-  function loggedInBelongsToCurrentChat() {
+  const messageNotificationBelongsYou = (id: string) => {
     return (
-      // check if loggedIn user belongs to current chat
-      [socketMessage?.senderId, socketMessage?.receiverId].includes(loggedIn?._id) &&
-      // check if loggedIn user is the receiver & params id is the sender
-      socketMessage?.senderId === params.id &&
-      socketMessage?.receiverId === loggedIn?._id
-    );
-  }
-
-  const messageNotificationBelongsToYou = (id: string) => {
-    return (
-      [socketMessage?.senderId, socketMessage?.receiverId].includes(loggedIn?._id) && socketMessage?.senderId === id
+      socketMessage &&
+      loggedIn &&
+      [socketMessage.senderId, socketMessage.receiverId].includes(loggedIn._id) &&
+      socketMessage.senderId === id
     );
   };
 
+  // listen incomming messages
   useEffect(() => {
-    if (!socketMessage || !loggedIn) return;
-    if (!loggedInBelongsToCurrentChat()) return;
-    setSocketMessage(null);
+    if (loggedIn) {
+      const socket = ioSocket();
+      socket.on(EVENTS.GET_SENT_MESSAGE, (data: SocketMessaggeData) => {
+        setSocketMessage(data);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (socketMessage && loggedIn) {
+      if (
+        [socketMessage.senderId, socketMessage.receiverId].includes(loggedIn._id) &&
+        socketMessage.senderId === params.id &&
+        socketMessage.receiverId === loggedIn._id
+      ) {
+        setSocketMessage(null);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketMessage]);
 
@@ -108,7 +107,7 @@ const ChatList: React.FC = () => {
                     <p>{item.profile.displayName}</p>
                     <span>online</span>
                   </div>
-                  {messageNotificationBelongsToYou(item.profile._id) && (
+                  {messageNotificationBelongsYou(item.profile._id) && (
                     <div className={styles.newMessageNotification}>!</div>
                   )}
                 </div>
@@ -141,7 +140,7 @@ const ChatList: React.FC = () => {
                         <p>{item.profile.displayName}</p>
                         <span>online</span>
                       </div>
-                      {messageNotificationBelongsToYou(item.profile._id) && (
+                      {messageNotificationBelongsYou(item.profile._id) && (
                         <div className={styles.newMessageNotification}>!</div>
                       )}
                     </div>

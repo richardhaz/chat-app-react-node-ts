@@ -7,25 +7,25 @@ const registerUser = (data: CreateUserDto): Promise<GenericResponse<LoggedInMode
     headers: {
       'Content-Type': 'multipart/form-data'
     }
-  }).then((res) => {
+  }).then(res => {
     return res.data;
   });
 };
 
 const getAllUsers = (): Promise<GenericResponse<UserModel[]>> => {
-  return AxiosUrl.get('/user/all').then((res) => {
+  return AxiosUrl.get('/user/all').then(res => {
     return res.data;
   });
 };
 
 const getProfile = (): Promise<GenericResponse<UserModel>> => {
-  return AxiosUrl.get('/user/profile').then((res) => {
+  return AxiosUrl.get('/user/profile').then(res => {
     return res.data;
   });
 };
 
 const getUserById = (id: string): Promise<GenericResponse<UserModel>> => {
-  return AxiosUrl.get(`/user/${id}`).then((res) => {
+  return AxiosUrl.get(`/user/${id}`).then(res => {
     return res.data;
   });
 };

@@ -3,13 +3,13 @@ import { GenericResponse, MessageModel, MessageResultModel } from '@/shared/mode
 import { CreateMessageDto, GetAllMessagesDto } from '../dtos/messages';
 
 const getAllMessages = (data: GetAllMessagesDto): Promise<GenericResponse<MessageResultModel[]>> => {
-  return AxiosUrl.post('/message/all', data).then((res) => {
+  return AxiosUrl.post('/message/all', data).then(res => {
     return res.data;
   });
 };
 
 const createMessage = (data: CreateMessageDto): Promise<GenericResponse<MessageModel>> => {
-  return AxiosUrl.post('/message/create', data).then((res) => {
+  return AxiosUrl.post('/message/create', data).then(res => {
     return res.data;
   });
 };

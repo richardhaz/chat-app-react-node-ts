@@ -64,7 +64,7 @@ export const conversationSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     // get conversation by members
-    builder.addCase(ConversationThunk.getConversationByMembers.pending, (state) => {
+    builder.addCase(ConversationThunk.getConversationByMembers.pending, state => {
       state.conversationByMembers.loading = true;
       state.conversationByMembers.error = null;
     });
@@ -79,7 +79,7 @@ export const conversationSlice = createSlice({
     });
 
     // get all my conversations
-    builder.addCase(ConversationThunk.getAllMyConversations.pending, (state) => {
+    builder.addCase(ConversationThunk.getAllMyConversations.pending, state => {
       state.allMyConversations.loading = true;
       state.allMyConversations.error = null;
     });
@@ -94,7 +94,7 @@ export const conversationSlice = createSlice({
     });
 
     // create conversation
-    builder.addCase(ConversationThunk.createConversation.pending, (state) => {
+    builder.addCase(ConversationThunk.createConversation.pending, state => {
       state.createConversation.loading = true;
       state.createConversation.error = null;
     });
@@ -109,7 +109,7 @@ export const conversationSlice = createSlice({
     });
 
     // update last conversation message status
-    builder.addCase(ConversationThunk.updateLastMessageStatus.pending, (state) => {
+    builder.addCase(ConversationThunk.updateLastMessageStatus.pending, state => {
       state.updateLastConversationMessageStatus.loading = true;
       state.updateLastConversationMessageStatus.error = null;
     });
@@ -124,7 +124,7 @@ export const conversationSlice = createSlice({
     });
 
     // get conversation by id
-    builder.addCase(ConversationThunk.getConversationById.pending, (state) => {
+    builder.addCase(ConversationThunk.getConversationById.pending, state => {
       state.conversationById.loading = true;
       state.conversationById.error = null;
     });

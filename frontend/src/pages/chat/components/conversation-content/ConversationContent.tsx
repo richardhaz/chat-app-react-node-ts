@@ -1,6 +1,5 @@
 import styles from './ConversationContent.module.scss';
 import { IoSend } from 'react-icons/io5';
-import { BsFillEmojiLaughingFill } from 'react-icons/bs';
 
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { useForm } from 'react-hook-form';
@@ -9,43 +8,31 @@ import { CreateMessageDto } from '@/shared/dtos/messages';
 import { ConversationContentLoading } from './ConversationContentLoading';
 import ConversationContentEmpty from './ConversationContentEmpty';
 import ConversationContentData from './ConversationContentData';
-import { generateUUID, ioSocket, playMessageSentSound } from '@/shared/utils';
+import { generateUUID, playMessageSentSound } from '@/shared/utils';
 import { useEffect, useState } from 'react';
 import { MessageResultModel, SocketMessaggeData } from '@/shared/models';
 import { setSocketMessages as setSocketMessagesAction } from '@/redux/socket/socket.slice';
-import EmojiPicker from 'emoji-picker-react';
 import { EVENTS } from '@/sockets';
+import { EventProps, useSocketEvents } from '@/shared/hooks';
 
 const ConversationContent = () => {
   const dispatch = useAppDispatch();
 
-  const { loggedIn } = useAppSelector((state) => state.auth);
-  const { userById } = useAppSelector((state) => state.user);
-  const { messages } = useAppSelector((state) => state.message);
-  const [emoji, setemoji] = useState<boolean>(false);
+  const { loggedIn } = useAppSelector(state => state.auth);
+  const { userById } = useAppSelector(state => state.user);
+  const { messages } = useAppSelector(state => state.message);
 
-  // socket
-  /*   const { socketMessages } = useAppSelector((state) => state.socket); */
   const [arrivalMessages, setArrivalMessages] = useState<MessageResultModel[]>([]);
   const [socketMessages, setSocketMessages] = useState<SocketMessaggeData | null>(null);
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState('');
 
-  /*   const toggleEmojiPicker = () => {
-    setemoji(!emoji);
-  };
-
-  const handlerEmojiClick = () => {
-    const msg = isTyping;
-  };
- */
+  // set messages from db to a new state
   useEffect(() => {
     setArrivalMessages(messages.data);
   }, [messages.data]);
 
-  /*   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  }; */
-
+  /* FORM */
   const {
     register,
     handleSubmit,
@@ -68,36 +55,44 @@ const ConversationContent = () => {
     dispatch(MessageThunk.createMessage(messagePayload));
   };
 
-  // Get socket messages
-  useEffect(() => {
-    const socket = ioSocket();
-    socket.on(EVENTS.GET_SENT_MESSAGE, (data) => {
-      dispatch(setSocketMessagesAction(data));
-      setSocketMessages(data);
-    });
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (socketMessages) {
-      // check if the sender and receiver are in the same chat as sender or receiver
-      if (
-        (loggedIn?._id === socketMessages.senderId && userById.data?._id === socketMessages.receiverId) ||
-        (loggedIn?._id === socketMessages.receiverId && userById.data?._id === socketMessages.senderId)
-      ) {
-        setArrivalMessages((prev) => [
-          ...prev,
-          {
-            fromSelf: loggedIn?._id === socketMessages.senderId,
-            messageIdentifier: socketMessages.messageIdentifier,
-            message: socketMessages.message,
-            senderId: socketMessages.senderId,
-            status: socketMessages.messageStatus,
-            createdAt: new Date(),
-            updatedAt: new Date()
-          }
-        ]);
+  /* SOCKET EVENTS */
+  const events: EventProps[] = [
+    // Get socket messages
+    {
+      name: EVENTS.GET_SENT_MESSAGE,
+      handler(message) {
+        dispatch(setSocketMessagesAction(message));
+        setSocketMessages(message);
       }
     }
+  ];
+
+  useSocketEvents(events);
+
+  /* SET SOCKET MESSAGES */
+
+  function usersBelongToCurrentChat(socketMessages: SocketMessaggeData) {
+    // check if the sender and receiver are in the same chat as sender or receiver
+    return (
+      (loggedIn?._id === socketMessages.senderId && userById.data?._id === socketMessages.receiverId) ||
+      (loggedIn?._id === socketMessages.receiverId && userById.data?._id === socketMessages.senderId)
+    );
+  }
+
+  useEffect(() => {
+    if (!socketMessages) return;
+    if (!usersBelongToCurrentChat(socketMessages)) return;
+
+    const newMessage: MessageResultModel = {
+      fromSelf: loggedIn?._id === socketMessages.senderId,
+      messageIdentifier: socketMessages.messageIdentifier,
+      message: socketMessages.message,
+      senderId: socketMessages.senderId,
+      status: socketMessages.messageStatus,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    setArrivalMessages(prev => [...prev, newMessage]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketMessages, loggedIn?._id]);
 
@@ -112,11 +107,8 @@ const ConversationContent = () => {
           <ConversationContentData arrivalMessages={arrivalMessages} />
         )}
       </div>
-      {emoji && <EmojiPicker />}
-      <form className={styles.messageInputContainer} onSubmit={handleSubmit((values) => onSubmit(values))}>
-        {/*   <button className={styles.messageEmojisContainer} onClick={toggleEmojiPicker}>
-          <BsFillEmojiLaughingFill />
-        </button> */}
+
+      <form className={styles.messageInputContainer} onSubmit={handleSubmit(values => onSubmit(values))}>
         <input
           placeholder="Send a message ..."
           type="text"

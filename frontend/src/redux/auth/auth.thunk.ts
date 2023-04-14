@@ -1,5 +1,5 @@
 import { AuthService, LocalStorageService } from '@/shared/services';
-import { errorMessageResolver, ioSocket } from '@/shared/utils';
+import { errorMessageResolver } from '@/shared/utils';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthLoginThunkProps } from './auth.types';
 import { toast } from 'react-toastify';
@@ -23,10 +23,6 @@ const login = createAsyncThunk('auth/login', async ({ values, navigate, reset }:
 const logout = createAsyncThunk('auth/logout', async (_, thunkApi) => {
   try {
     const result = await AuthService.logout();
-    const socket = ioSocket();
-    socket.on('disconnect', () => {
-      /* console.log('0k'); */
-    });
     LocalStorageService.clearLocalStorage(LocalStorageService.key.loggedIn);
     if (result.ok) {
       console.log('logout success');

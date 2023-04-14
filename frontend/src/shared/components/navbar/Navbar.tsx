@@ -10,7 +10,7 @@ import { ConfirmLogoutDialog } from './components/logout';
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const [openConfirmLogout, setOpenConfirmLogout] = useState(false);
-  const { usersListNavigationDrawer } = useAppSelector((state) => state.app);
+  const { usersListNavigationDrawer } = useAppSelector(state => state.app);
 
   return (
     <>

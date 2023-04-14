@@ -34,7 +34,7 @@ export const globalMessageSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     // get all global messages
-    builder.addCase(GlobalMessageThunk.getAllMessages.pending, (state) => {
+    builder.addCase(GlobalMessageThunk.getAllMessages.pending, state => {
       state.globalMessages.loading = true;
       state.globalMessages.error = null;
     });
@@ -49,7 +49,7 @@ export const globalMessageSlice = createSlice({
     });
 
     // create a global message
-    builder.addCase(GlobalMessageThunk.createMessage.pending, (state) => {
+    builder.addCase(GlobalMessageThunk.createMessage.pending, state => {
       state.createGlobalMessage.loading = true;
       state.createGlobalMessage.error = null;
     });

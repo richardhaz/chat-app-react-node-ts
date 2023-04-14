@@ -3,7 +3,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const OverlayLoader = () => {
   return (
-    <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open>
+    <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open>
       <CircularProgress color="inherit" />
     </Backdrop>
   );
