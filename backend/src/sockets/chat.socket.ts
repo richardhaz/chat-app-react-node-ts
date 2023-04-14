@@ -3,6 +3,8 @@ import { Server as SocketServer } from 'socket.io';
 import { MESSAGE_STATUS } from '@/constants';
 import { SocketUserModel } from '@/models';
 
+import { EVENTS } from './events';
+
 export const chatSocket = (io: SocketServer) => {
   interface IOnlineUsers {
     profile: SocketUserModel;
@@ -11,16 +13,10 @@ export const chatSocket = (io: SocketServer) => {
 
   let onlineUsers = [] as IOnlineUsers[];
 
-  const getUser = (userId: string) => {
-    return onlineUsers.find((u) => u.profile._id === userId);
-  };
-
   io.on('connection', (socket) => {
     // send message
-    socket.on('sendMessage', ({ senderId, receiverId, message, messageIdentifier, senderDetails }) => {
-      const user = getUser(receiverId);
-      console.log('socketId', user?.socketId);
-      io.emit('getMessage', {
+    socket.on(EVENTS.SEND_MESSAGE, ({ senderId, receiverId, message, messageIdentifier, senderDetails }) => {
+      io.emit(EVENTS.GET_SENT_MESSAGE, {
         senderId,
         receiverId,
         senderDetails,
@@ -31,8 +27,8 @@ export const chatSocket = (io: SocketServer) => {
     });
 
     // send global message
-    socket.on('sendGlobalMessage', ({ senderId, message, messageIdentifier, senderDetails, fromSelf }) => {
-      io.emit('getGlobalMessage', {
+    socket.on(EVENTS.SEND_GLOBAL_MESSAGE, ({ senderId, message, messageIdentifier, senderDetails, fromSelf }) => {
+      io.emit(EVENTS.GET_GLOBAL_MESSAGE, {
         senderId,
         senderDetails,
         fromSelf,
@@ -42,36 +38,22 @@ export const chatSocket = (io: SocketServer) => {
       });
     });
 
-    // get all messages
-    socket.on('message', (message) => {
-      socket.broadcast.emit('message', message);
-      console.log('message:', message);
-    });
-
-    // add new user
-    socket.on('new_user_add', (newUser: SocketUserModel) => {
+    // add new active user
+    socket.on(EVENTS.ADD_ACTIVE_USER, (newUser: SocketUserModel) => {
       // if user is not added before
       if (!onlineUsers.some((user) => user.profile._id === newUser._id)) {
         onlineUsers.push({ profile: { ...newUser, connectionStatus: 'online' }, socketId: socket.id });
         /*         console.log('new user is here!', onlineUsers); */
       }
       // send all active users to new user
-      io.emit('get_users', onlineUsers);
+      io.emit(EVENTS.GET_ALL_ACTIVE_USERS, onlineUsers);
     });
 
     socket.on('disconnect', () => {
       onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
       /*       console.log('user disconnected', onlineUsers); */
       // send all online users to all users
-      io.emit('get_users', onlineUsers);
-    });
-
-    socket.on('offline', () => {
-      // remove user from active users
-      onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
-      /*       console.log('user is offline', onlineUsers); */
-      // send all online users to all users
-      io.emit('get_users', onlineUsers);
+      io.emit(EVENTS.GET_ALL_ACTIVE_USERS, onlineUsers);
     });
   });
 };
