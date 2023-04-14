@@ -43,7 +43,6 @@ export const chatSocket = (io: SocketServer) => {
       // if user is not added before
       if (!onlineUsers.some((user) => user.profile._id === newUser._id)) {
         onlineUsers.push({ profile: { ...newUser, connectionStatus: 'online' }, socketId: socket.id });
-        /*         console.log('new user is here!', onlineUsers); */
       }
       // send all active users to new user
       io.emit(EVENTS.GET_ALL_ACTIVE_USERS, onlineUsers);
@@ -51,9 +50,17 @@ export const chatSocket = (io: SocketServer) => {
 
     socket.on('disconnect', () => {
       onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
-      /*       console.log('user disconnected', onlineUsers); */
       // send all online users to all users
       io.emit(EVENTS.GET_ALL_ACTIVE_USERS, onlineUsers);
+    });
+
+    socket.on(EVENTS.TYPING, (room) => {
+      console.log(room);
+      socket.in(room).emit(EVENTS.TYPING);
+    });
+    socket.on(EVENTS.STOP_TYPING, (room) => {
+      console.log(room);
+      socket.in(room).emit(EVENTS.STOP_TYPING);
     });
   });
 };
