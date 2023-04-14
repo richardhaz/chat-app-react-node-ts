@@ -10,6 +10,7 @@ import { ioSocket } from '@/shared/utils';
 import { SocketThunk } from '@/redux/socket/socket.thunk';
 import { Link, useParams } from 'react-router-dom';
 import moment from 'moment';
+import { EVENTS } from '@/sockets';
 
 const NotificationsDropDownMenu = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +40,7 @@ const NotificationsDropDownMenu = () => {
   // listen incomming messages
   useEffect(() => {
     const socket = ioSocket();
-    socket.on('getMessage', (data: SocketMessaggeData) => {
+    socket.on(EVENTS.GET_SENT_MESSAGE, (data: SocketMessaggeData) => {
       setSocketMessage(data);
       dispatch(SocketThunk.getSocketUserById(data.senderId));
     });

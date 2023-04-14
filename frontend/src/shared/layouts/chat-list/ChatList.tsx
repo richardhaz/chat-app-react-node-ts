@@ -7,6 +7,7 @@ import ChatListLoading from './ChatListLoading';
 import { useEffect, useState } from 'react';
 import { SocketMessaggeData, SocketUserModel } from '@/shared/models';
 import { ioSocket } from '@/shared/utils';
+import { EVENTS } from '@/sockets';
 
 const ChatList: React.FC = () => {
   const params = useParams();
@@ -52,7 +53,7 @@ const ChatList: React.FC = () => {
   useEffect(() => {
     if (loggedIn) {
       const socket = ioSocket();
-      socket.on('getMessage', (data: SocketMessaggeData) => {
+      socket.on(EVENTS.GET_SENT_MESSAGE, (data: SocketMessaggeData) => {
         setSocketMessage(data);
       });
     }

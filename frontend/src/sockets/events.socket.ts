@@ -1,9 +1,12 @@
 const prefix = 'Chat';
-const SOCKET_EVENTS = {
+
+const EVENTS = {
   INITIALIZE: 'connection',
-  GET_ALL_MESSAGES: `${prefix}GetAllMessages`,
-  GET_ALL_ONLINE_USERS: `${prefix}GetAllOnlineUsers`,
-  GET_ONLINE_USER: `${prefix}GetOnlineUser`
-  // and more events...
+  SEND_MESSAGE: `${prefix}SendMessage`,
+  SEND_GLOBAL_MESSAGE: `${prefix}SendGlobalMessage`,
+  GET_SENT_MESSAGE: `${prefix}GetSentMessage`,
+  GET_GLOBAL_MESSAGE: `${prefix}GetGlobalMessage`,
+  ADD_ACTIVE_USER: `${prefix}AddActiveUser`,
+  GET_ALL_ACTIVE_USERS: `${prefix}GetAllActiveUsers`
 };
-export { SOCKET_EVENTS };
+export { EVENTS };

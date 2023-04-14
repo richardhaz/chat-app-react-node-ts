@@ -16,8 +16,6 @@ const GlobalConversationContentData: React.FC<GlobalConversationContentData> = (
     scrollRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   }, [arrivalMessages]);
 
-  console.log(arrivalMessages);
-
   return (
     <>
       {arrivalMessages.map((item, idx) => (

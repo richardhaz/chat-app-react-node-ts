@@ -19,6 +19,7 @@ import { GlobalChatPage } from '@/pages/global-chat';
 import { BugReportPage } from '@/pages/bug-report';
 import { AboutPage } from '@/pages/about';
 import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
+import { EVENTS } from '@/sockets';
 
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
@@ -65,8 +66,8 @@ export const AppRoutes = () => {
   useEffect(() => {
     if (loggedIn) {
       const socket = ioSocket();
-      socket.emit('new_user_add', loggedIn);
-      socket.on('get_users', (users: LoggedInModel[]) => {
+      socket.emit(EVENTS.ADD_ACTIVE_USER, loggedIn);
+      socket.on(EVENTS.GET_ALL_ACTIVE_USERS, (users: LoggedInModel[]) => {
         dispatch(setOnlineUsers(users));
       });
     }
@@ -76,21 +77,10 @@ export const AppRoutes = () => {
   // listen incomming messages
   useEffect(() => {
     const socket = ioSocket();
-    socket.on('getMessage', (data: SocketMessaggeData) => {
+    socket.on(EVENTS.GET_SENT_MESSAGE, (data: SocketMessaggeData) => {
       setSocketMessage(data);
     });
   }, []);
-
-  /* 
-      // listen incomming messages
-    useEffect(() => {
-      const socket = ioSocket();
-      socket.on('getGlobalMessage', (data: SocketGlobalMessaggeData) => {
-        setSocketMessage(data);
-      });
-    }, []);
-
-  */
 
   useEffect(() => {
     if (socketMessage && loggedIn) {

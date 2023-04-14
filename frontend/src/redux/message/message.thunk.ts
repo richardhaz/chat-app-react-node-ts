@@ -5,6 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ConversationThunk } from '../conversation/conversation.thunk';
 import { CreateConversationDto } from '@/shared/dtos/conversations';
 import { LoggedInModel } from '@/shared/models';
+import { EVENTS } from '@/sockets';
 
 const getAllMessages = createAsyncThunk('message/getAllMessages', async (data: GetAllMessagesDto, thunkApi) => {
   try {
@@ -34,7 +35,7 @@ const createMessage = createAsyncThunk('message/createMessage', async (data: Cre
 
     // sending messages
     const socket = ioSocket();
-    socket.emit('sendMessage', {
+    socket.emit(EVENTS.SEND_MESSAGE, {
       senderId: data.from,
       senderDetails: userFromLocalStorage ? (JSON.parse(userFromLocalStorage) as LoggedInModel) : null,
       receiverId: data.to,

@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { MessageResultModel, SocketMessaggeData } from '@/shared/models';
 import { setSocketMessages as setSocketMessagesAction } from '@/redux/socket/socket.slice';
 import EmojiPicker from 'emoji-picker-react';
+import { EVENTS } from '@/sockets';
 
 const ConversationContent = () => {
   const dispatch = useAppDispatch();
@@ -70,7 +71,7 @@ const ConversationContent = () => {
   // Get socket messages
   useEffect(() => {
     const socket = ioSocket();
-    socket.on('getMessage', (data) => {
+    socket.on(EVENTS.GET_SENT_MESSAGE, (data) => {
       dispatch(setSocketMessagesAction(data));
       setSocketMessages(data);
     });

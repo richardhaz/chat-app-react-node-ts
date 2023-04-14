@@ -2,6 +2,7 @@ import { GlobalMessageService, LocalStorageService } from '@/shared/services';
 import { errorMessageResolver, ioSocket } from '@/shared/utils';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CreateGlobalMessageDto, GetGlobalMessagesDto } from '@/shared/dtos/global-messages';
+import { EVENTS } from '@/sockets';
 
 const getAllMessages = createAsyncThunk(
   'global-message/getAllMessages',
@@ -26,7 +27,7 @@ const createMessage = createAsyncThunk(
     try {
       // sending messages
       const socket = ioSocket();
-      socket.emit('sendGlobalMessage', {
+      socket.emit(EVENTS.SEND_GLOBAL_MESSAGE, {
         senderId: data.from,
         senderDetails: LocalStorageService.getLocalStorage(LocalStorageService.key.loggedIn)
           ? JSON.parse(LocalStorageService.getLocalStorage(LocalStorageService.key.loggedIn) as string)

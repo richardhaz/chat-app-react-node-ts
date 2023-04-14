@@ -13,6 +13,7 @@ import { CreateGlobalMessageDto } from '@/shared/dtos/global-messages';
 import { GlobalMessageThunk } from '@/redux/global-message/global-message.thunk';
 import GlobalConversationContentEmpty from './GlobalConversationContentEmpty';
 import GlobalConversationContentData from './GlobalConversationContentData';
+import { EVENTS } from '@/sockets';
 
 const ConversationContent = () => {
   const dispatch = useAppDispatch();
@@ -52,7 +53,7 @@ const ConversationContent = () => {
   // Get socket messages
   useEffect(() => {
     const socket = ioSocket();
-    socket.on('getGlobalMessage', (data) => {
+    socket.on(EVENTS.GET_GLOBAL_MESSAGE, (data) => {
       dispatch(setSocketGlobalMessagesAction(data));
       setSocketGlobalMessages(data);
     });
