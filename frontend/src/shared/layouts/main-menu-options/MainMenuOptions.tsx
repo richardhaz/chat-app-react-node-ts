@@ -25,11 +25,11 @@ const routes = [
     name: 'Single Chat',
     icon: <RiMessengerLine />
   },
-  {
+  /*   {
     path: '/me',
     name: 'My Account',
     icon: <RiUser3Line />
-  },
+  }, */
   {
     path: '/about',
     name: 'About',
