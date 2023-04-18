@@ -1,7 +1,6 @@
 import express from 'express';
 
-import { sessionMiddleware } from '@/middlewares';
-import uploadFileMiddleware from '@/middlewares/upload-file.middleware';
+import { sessionMiddleware, uploadFileMiddleware } from '@/middlewares';
 
 import { UserController } from './user.controller';
 import { UserValidation } from './validations';

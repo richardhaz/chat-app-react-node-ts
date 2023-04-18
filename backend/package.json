@@ -3,12 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "engines": {
-    "node": ">=14.21.2",
-    "yarn": "1.22.19",
-    "pnpm": "please use yarn",
-    "npm": "please use yarn"
-  },
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules src/index.ts dotenv/config ./src/index.ts dotenv_config_path=.env.development",
     "start:development": "node dist/index.js dotenv/config dist/index.js dotenv_config_path=.env.development",

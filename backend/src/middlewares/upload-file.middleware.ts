@@ -23,4 +23,4 @@ const uploadFileMiddleware = (path: string) => {
   });
 };
 
-export default uploadFileMiddleware;
+export { uploadFileMiddleware };
