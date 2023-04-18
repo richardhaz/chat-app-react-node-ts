@@ -4,7 +4,7 @@ import { IoSend } from 'react-icons/io5';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { useForm } from 'react-hook-form';
 
-import { generateUUID, playMessageSentSound } from '@/shared/utils';
+import { generateUUID, ioSocket, playMessageSentSound } from '@/shared/utils';
 import { useEffect, useState } from 'react';
 import { GlobalMessageResultModel, SocketGlobalMessaggeData } from '@/shared/models';
 import { setSocketGlobalMessages as setSocketGlobalMessagesAction } from '@/redux/socket/socket.slice';
@@ -14,7 +14,6 @@ import { GlobalMessageThunk } from '@/redux/global-message/global-message.thunk'
 import GlobalConversationContentEmpty from './GlobalConversationContentEmpty';
 import GlobalConversationContentData from './GlobalConversationContentData';
 import { EVENTS } from '@/sockets';
-import { EventProps, useSocketEvents } from '@/shared/hooks';
 
 const ConversationContent = () => {
   const dispatch = useAppDispatch();
@@ -56,18 +55,13 @@ const ConversationContent = () => {
   };
 
   /* SOCKET EVENTS */
-  const events: EventProps[] = [
-    // Get socket global message
-    {
-      name: EVENTS.GET_GLOBAL_MESSAGE,
-      handler(globalMessage) {
-        dispatch(setSocketGlobalMessagesAction(globalMessage));
-        setSocketGlobalMessages(globalMessage);
-      }
-    }
-  ];
-
-  useSocketEvents(events);
+  useEffect(() => {
+    const socket = ioSocket();
+    socket.on(EVENTS.GET_GLOBAL_MESSAGE, globalMessage => {
+      dispatch(setSocketGlobalMessagesAction(globalMessage));
+      setSocketGlobalMessages(globalMessage);
+    });
+  }, [dispatch]);
 
   useEffect(() => {
     if (!loggedIn) return;

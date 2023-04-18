@@ -1,5 +1,5 @@
 import styles from './NotificationsDropDownMenu.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Tooltip } from '@mui/material';
@@ -8,7 +8,7 @@ import { SocketMessaggeData } from '@/shared/models';
 import { useAppDispatch } from '@/redux/useTypedRedux';
 import { SocketThunk } from '@/redux/socket/socket.thunk';
 import { EVENTS } from '@/sockets';
-import { EventProps, useSocketEvents } from '@/shared/hooks';
+import { ioSocket } from '@/shared/utils';
 
 const NotificationsDropDownMenu = () => {
   const dispatch = useAppDispatch();
@@ -25,18 +25,12 @@ const NotificationsDropDownMenu = () => {
   };
 
   /* SOCKET EVENTS */
-  const events: EventProps[] = [
-    // Get socket messages
-    {
-      name: EVENTS.GET_SENT_MESSAGE,
-      handler(message: SocketMessaggeData) {
-        setSocketMessage(message);
-        dispatch(SocketThunk.getSocketUserById(message.senderId));
-      }
-    }
-  ];
-
-  useSocketEvents(events);
+  useEffect(() => {
+    const socket = ioSocket();
+    socket.on(EVENTS.GET_SENT_MESSAGE, (msgData: SocketMessaggeData) => {
+      dispatch(SocketThunk.getSocketUserById(msgData.senderId));
+    });
+  }, [dispatch]);
 
   return (
     <div>

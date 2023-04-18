@@ -7,7 +7,7 @@ import ChatListLoading from './ChatListLoading';
 import { useEffect, useState } from 'react';
 import { SocketMessaggeData, SocketUserModel } from '@/shared/models';
 import { EVENTS } from '@/sockets';
-import { EventProps, useSocketEvents } from '@/shared/hooks';
+import { ioSocket } from '@/shared/utils';
 
 const ChatList: React.FC = () => {
   const params = useParams();
@@ -37,17 +37,12 @@ const ChatList: React.FC = () => {
   };
 
   // SOCKET EVENTS
-  const events: EventProps[] = [
-    // listen incomming messages
-    {
-      name: EVENTS.GET_SENT_MESSAGE,
-      handler(message: SocketMessaggeData) {
-        setSocketMessage(message);
-      }
-    }
-  ];
-
-  useSocketEvents(events);
+  useEffect(() => {
+    const socket = ioSocket();
+    socket.on(EVENTS.GET_SENT_MESSAGE, (msgData: SocketMessaggeData) => {
+      setSocketMessage(msgData);
+    });
+  }, [dispatch]);
 
   function loggedInBelongsToCurrentChat() {
     return (

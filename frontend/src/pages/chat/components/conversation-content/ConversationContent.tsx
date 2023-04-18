@@ -8,12 +8,11 @@ import { CreateMessageDto } from '@/shared/dtos/messages';
 import { ConversationContentLoading } from './ConversationContentLoading';
 import ConversationContentEmpty from './ConversationContentEmpty';
 import ConversationContentData from './ConversationContentData';
-import { generateUUID, playMessageSentSound } from '@/shared/utils';
+import { generateUUID, ioSocket, playMessageSentSound } from '@/shared/utils';
 import { useEffect, useState } from 'react';
 import { MessageResultModel, SocketMessaggeData } from '@/shared/models';
 import { setSocketMessages as setSocketMessagesAction } from '@/redux/socket/socket.slice';
 import { EVENTS } from '@/sockets';
-import { EventProps, useSocketEvents } from '@/shared/hooks';
 
 const ConversationContent = () => {
   const dispatch = useAppDispatch();
@@ -54,17 +53,14 @@ const ConversationContent = () => {
   };
 
   /* SOCKET EVENTS */
-  const events: EventProps[] = [
-    {
-      name: EVENTS.GET_SENT_MESSAGE,
-      handler(message) {
-        dispatch(setSocketMessagesAction(message));
-        setSocketMessages(message);
-      }
-    }
-  ];
 
-  useSocketEvents(events);
+  useEffect(() => {
+    const socket = ioSocket();
+    socket.on(EVENTS.GET_SENT_MESSAGE, message => {
+      dispatch(setSocketMessagesAction(message));
+      setSocketMessages(message);
+    });
+  }, [dispatch]);
 
   /* SET SOCKET MESSAGES */
   function usersBelongToCurrentChat(socketMessages: SocketMessaggeData) {

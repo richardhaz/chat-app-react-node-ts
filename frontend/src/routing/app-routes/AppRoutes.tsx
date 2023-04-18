@@ -19,7 +19,6 @@ import { BugReportPage } from '@/pages/bug-report';
 import { AboutPage } from '@/pages/about';
 import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 import { EVENTS } from '@/sockets';
-import { useSocketEvents, EventProps } from '@/shared/hooks';
 
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
@@ -64,25 +63,20 @@ export const AppRoutes = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Socket Events
-  const events: EventProps[] = [
-    // get all online users
-    {
-      name: EVENTS.GET_ALL_ACTIVE_USERS,
-      handler(users: LoggedInModel[]) {
-        dispatch(setOnlineUsers(users));
-      }
-    },
-    // listen incomming messages
-    {
-      name: EVENTS.GET_SENT_MESSAGE,
-      handler(data: SocketMessaggeData) {
-        setSocketMessage(data);
-      }
-    }
-  ];
+  /* SOCKET EVENTS */
+  useEffect(() => {
+    const socket = ioSocket();
+    socket.on(EVENTS.GET_ALL_ACTIVE_USERS, (users: LoggedInModel[]) => {
+      dispatch(setOnlineUsers(users));
+    });
+  }, [dispatch]);
 
-  useSocketEvents(events);
+  useEffect(() => {
+    const socket = ioSocket();
+    socket.on(EVENTS.GET_SENT_MESSAGE, (msgData: SocketMessaggeData) => {
+      setSocketMessage(msgData);
+    });
+  }, [dispatch]);
 
   useEffect(() => {
     if (!loggedIn || !socketMessage) return;
