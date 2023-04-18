@@ -11,40 +11,14 @@
   .userInfoContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
 
-    .userInfo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-
-      .userNames {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-
-        img {
-          width: 45px;
-          height: 45px;
-          border-radius: 50%;
-        }
-
-        div {
-          p {
-            font-size: var(--text-size-base);
-          }
-
-          span {
-            font-size: var(--text-size-small);
-            text-align: start;
-            width: 100%;
-            color: var(--text-color-dim);
-          }
-        }
-      }
+    p {
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 2px;
+      text-align: center;
     }
 
     .iconMenuButton {

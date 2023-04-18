@@ -18,6 +18,7 @@ export function useSocketEvents(events: EventProps[]) {
       for (const event of events) {
         socket.off(event.name);
       }
+      socket.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

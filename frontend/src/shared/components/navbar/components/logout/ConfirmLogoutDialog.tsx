@@ -29,11 +29,11 @@ const ConfirmLogoutDialog: React.FC<ConfirmLogoutProps> = ({ openConfirmLogout, 
         /* TransitionComponent={Transition} */
       >
         <DialogTitle id="alert-dialog-title" sx={{ color: 'white' }}>
-          {'Do you want to logout?'}
+          {'Terminate Session?'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description" sx={{ color: 'lightgray' }}>
-            Click logout to terminate your current session
+            Click on logout to terminate your session
           </DialogContentText>
         </DialogContent>
         <DialogActions>
