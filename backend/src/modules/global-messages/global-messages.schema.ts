@@ -1,7 +1,7 @@
 import mongoose, { model, Schema } from 'mongoose';
 
-import { MESSAGE_STATUS } from '@/constants';
-import { GlobalMessageModel } from '@/models';
+import { MESSAGE_STATUS } from '@constants/message.constant';
+import { GlobalMessageModel } from '@models/global-message.model';
 
 const GlobalMessages = new Schema<GlobalMessageModel>(
   {

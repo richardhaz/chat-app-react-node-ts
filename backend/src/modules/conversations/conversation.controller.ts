@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { ConversationModel } from '@/models';
-import { ErrorManager } from '@/utils';
+import { ConversationModel } from '@models/conversation.model';
+import { ErrorManager } from '@utils/error-manager';
 
 import { UserService } from '../users/user.service';
 import { ConversationService } from './conversation.service';

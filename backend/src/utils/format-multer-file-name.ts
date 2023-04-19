@@ -1,4 +1,4 @@
-import { RequestExtended } from '@/models';
+import { RequestExtended } from '@models/index';
 
 export const formatFileName = (req: RequestExtended, file: Express.Multer.File) => {
   const ext = file.originalname.split('.').pop();

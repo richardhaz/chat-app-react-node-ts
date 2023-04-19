@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import { body, param } from 'express-validator';
 
-import { confirmPasswordMatch, IsEmailUnique } from '@/constraints';
-import { REGEX, validateResult } from '@/utils';
+import { confirmPasswordMatch } from '@constraints/confirm-password-match.constraint';
+import { IsEmailUnique } from '@constraints/is-email-unique.constraint';
+import { REGEX } from '@utils/regex-utility';
+import { validateResult } from '@utils/validation-result';
 
 const registerUser = [
   body('email')

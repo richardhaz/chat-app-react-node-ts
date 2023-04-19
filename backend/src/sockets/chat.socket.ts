@@ -1,7 +1,7 @@
 import { Server as SocketServer } from 'socket.io';
 
-import { MESSAGE_STATUS } from '@/constants';
-import { SocketUserModel } from '@/models';
+import { MESSAGE_STATUS } from '@constants/index';
+import { SocketUserModel } from '@models/index';
 
 import { EVENTS } from './events';
 

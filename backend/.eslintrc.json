@@ -34,6 +34,28 @@
     "@typescript-eslint/no-base-to-string": "off",
     "@typescript-eslint/dot-notation": "off",
     "@typescript-eslint/prefer-ts-expect-error": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "off",
+    "import/no-unresolved": [
+      "error",
+      {
+        "plugins": [
+          "module-resolve",
+          {
+            "alias": {
+              "@config": "./src/config",
+              "@common": "./src/common",
+              "@constants": "./src/constants",
+              "@constraints": "./src/constraints",
+              "@db": "./src/db",
+              "@middlewares": "./src/middlewares",
+              "@models": "./src/models",
+              "@modules": "./src/modules",
+              "@sockets": "./src/sockets",
+              "@utils": "./src/utils"
+            }
+          }
+        ]
+      }
+    ]
   }
 }

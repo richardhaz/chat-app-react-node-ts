@@ -1,6 +1,6 @@
 import aws from 'aws-sdk';
 
-import { envConfig } from '@/config';
+import { envConfig } from '@config/env-config';
 
 const secretAccessKey = envConfig().aws.s3.secretAccessKey;
 const accessKeyId = envConfig().aws.s3.accessKeyId;

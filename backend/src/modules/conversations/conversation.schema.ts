@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { ConversationModel } from '@/models';
+import { ConversationModel } from '@models/conversation.model';
 
 const Conversation = new Schema<ConversationModel>(
   {

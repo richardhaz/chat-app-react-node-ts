@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { body } from 'express-validator';
 
-import { REGEX, validateResult } from '@/utils';
+import { REGEX } from '@utils/regex-utility';
+import { validateResult } from '@utils/validation-result';
 
 const createConversation = [
   body('lastMessage')

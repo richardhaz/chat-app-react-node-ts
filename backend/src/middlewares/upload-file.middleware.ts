@@ -1,9 +1,10 @@
 import multer from 'multer';
 import multerS3 from 'multer-s3';
 
-import { envConfig, s3 } from '@/config';
-import { RequestExtended } from '@/models';
-import { formatFileName } from '@/utils';
+import { envConfig } from '@config/env-config';
+import { s3 } from '@config/s3-config';
+import { RequestExtended } from '@models/req-extended.model';
+import { formatFileName } from '@utils/format-multer-file-name';
 
 const bucket = `${envConfig().aws.s3.bucketName}`;
 const projectName = `${envConfig().aws.s3.projectName}`;

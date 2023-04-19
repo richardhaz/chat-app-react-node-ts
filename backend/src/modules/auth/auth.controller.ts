@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { UserModel } from '@/models';
-import { ErrorManager, signToken, TimeHelper, verifyPwd } from '@/utils';
+import { UserModel } from '@models/user.model';
+import { signToken, TimeHelper, verifyPwd, ErrorManager } from '@utils/index';
 
 import { UserService } from '../users/user.service';
 import { LoginUserDto } from './dtos';

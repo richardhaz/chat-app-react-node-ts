@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-import { envConfig } from '@/config/env-config';
-import { JwtPayloadExtendedModel, UserModel } from '@/models';
+import { envConfig } from '@config/env-config';
+import { JwtPayloadExtendedModel, UserModel } from '@models/index';
 
 const secretKey = envConfig().jwt.secret as string;
 const expiresIn = envConfig().jwt.expiration as string;

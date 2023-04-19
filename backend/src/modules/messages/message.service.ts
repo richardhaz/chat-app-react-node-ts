@@ -15,7 +15,9 @@ const getAllMessages = (dto: GetChatMessageDto) => {
     users: {
       $all: [dto.from, dto.to],
     },
-  }).sort({ updatedAt: 'asc' });
+  })
+    .sort({ updatedAt: 'asc' })
+    .lean();
 };
 
 const getLastestMessage = (dto: GetChatMessageDto) => {
@@ -23,7 +25,7 @@ const getLastestMessage = (dto: GetChatMessageDto) => {
     users: {
       $in: [dto.from],
     },
-  }); /* .sort({ $natural: -1 }); */
+  }).lean(); /* .sort({ $natural: -1 }); */
   /*     .limit(1); */
 };
 

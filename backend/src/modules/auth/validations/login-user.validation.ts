@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { body } from 'express-validator';
 
-import { validateResult } from '@/utils';
+import { validateResult } from '@utils/validation-result';
 
 const login = [
   body('email').exists().withMessage('email is required'),

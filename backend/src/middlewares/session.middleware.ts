@@ -1,8 +1,8 @@
 import { NextFunction, Response } from 'express';
 
-import { RequestExtended, UserModel } from '@/models';
-import { UserService } from '@/modules/users/user.service';
-import { ErrorManager, getCookiesAsCollection, verifyToken } from '@/utils';
+import { UserService } from '@modules/users/user.service';
+import { RequestExtended, UserModel } from '@models/index';
+import { ErrorManager, getCookiesAsCollection, verifyToken } from '@utils/index';
 
 const sessionMiddleware = async (req: RequestExtended, res: Response, next: NextFunction) => {
   try {

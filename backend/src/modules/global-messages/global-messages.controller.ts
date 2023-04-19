@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { GlobalMessageModel } from '@/models';
-import { ErrorManager } from '@/utils';
+import { GlobalMessageModel } from '@models/global-message.model';
+import { ErrorManager } from '@utils/error-manager';
 
 import { CreateGlobalMessageDto, GetGlobalMessagesDto } from './dtos';
 import { GlobalMessageService } from './global-messages.service';

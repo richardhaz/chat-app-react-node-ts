@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 
-import { RequestExtended } from '@/models';
-import { ErrorManager, signToken, TimeHelper } from '@/utils';
+import { RequestExtended } from '@models/req-extended.model';
+import { ErrorManager } from '@utils/error-manager';
+import { signToken } from '@utils/handle-jwt';
+import { TimeHelper } from '@utils/time-helper';
 
 import { CreateUserDto } from './dtos';
 import { UserService } from './user.service';

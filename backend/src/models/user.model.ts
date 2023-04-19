@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose';
 
-import { USER_STATUS } from '@/constants';
+import { USER_STATUS } from '@constants/user.constant';
 
 export interface UserModel {
   _id: ObjectId;

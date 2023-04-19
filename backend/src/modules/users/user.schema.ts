@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
 
-import { USER_STATUS } from '@/constants';
-import { UserModel } from '@/models';
+import { USER_STATUS } from '@constants/index';
+import { UserModel } from '@models/index';
 
 const User = new Schema<UserModel>(
   {

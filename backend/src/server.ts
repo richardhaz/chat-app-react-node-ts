@@ -5,12 +5,12 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 
-import { corsConfig } from '@/config';
-import { AuthRoute } from '@/modules/auth/auth.route';
-import { ConversationRoute } from '@/modules/conversations/conversation.route';
-import { MessageRoute } from '@/modules/messages/message.route';
-import { UserRoute } from '@/modules/users/user.route';
-import { routeNotFound } from '@/utils';
+import { corsConfig } from '@config/index';
+import { AuthRoute } from '@modules/auth/auth.route';
+import { ConversationRoute } from '@modules/conversations/conversation.route';
+import { MessageRoute } from '@modules/messages/message.route';
+import { UserRoute } from '@modules/users/user.route';
+import { routeNotFound } from '@utils/index';
 
 import { GlobalMessageRoute } from './modules/global-messages/global-messages.route';
 

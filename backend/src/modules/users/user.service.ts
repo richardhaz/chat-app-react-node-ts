@@ -1,4 +1,5 @@
-import { encryptPwd, generateUsername } from '@/utils';
+import { encryptPwd } from '@utils/encrypt-and-verify-password';
+import { generateUsername } from '@utils/generate-username';
 
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserSchema } from './user.schema';
@@ -11,7 +12,7 @@ const getAll = (id: string) => {
 };
 
 const findByEmail = (email: string) => {
-  return UserSchema.findOne({ email });
+  return UserSchema.findOne({ email }).lean();
 };
 
 const findById = (id: string) => {

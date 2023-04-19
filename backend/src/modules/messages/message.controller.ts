@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 
-import { MessageModel, RequestExtended } from '@/models';
-import { ErrorManager } from '@/utils';
+import { MessageModel } from '@models/message.model';
+import { RequestExtended } from '@models/req-extended.model';
+import { ErrorManager } from '@utils/error-manager';
 
 import { UserService } from '../users/user.service';
 import { CreateMessageDto, GetChatMessageDto } from './dtos';

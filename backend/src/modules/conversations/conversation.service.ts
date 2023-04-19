@@ -1,4 +1,4 @@
-import { ConversationModel } from '@/models';
+import { ConversationModel } from '@models/conversation.model';
 
 import { ConversationSchema } from './conversation.schema';
 import {

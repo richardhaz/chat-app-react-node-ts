@@ -3,13 +3,13 @@ import 'dotenv/config';
 import http from 'http';
 import { Server as SocketServer } from 'socket.io';
 
-import { envConfig } from '@/config';
-import { dbConnect } from '@/db';
-import { logger } from '@/utils';
+import { envConfig } from '@config/env-config';
+import { dbConnect } from '@db/db-connection';
 
 import { corsConfig } from './config';
 import { server } from './server';
-import { chatSocket } from './sockets';
+import { chatSocket } from '@sockets/chat.socket';
+import { logger } from '@utils/logger';
 
 const appPort = envConfig().app.port as string;
 const environment = envConfig().app.environment as string;

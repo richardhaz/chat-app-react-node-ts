@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { sessionMiddleware } from '@/middlewares';
+import { sessionMiddleware } from '@middlewares/index';
 
 import { MessageController } from './message.controller';
 import { MessageValidation } from './validations';
