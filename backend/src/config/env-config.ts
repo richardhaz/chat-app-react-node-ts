@@ -3,6 +3,7 @@ export const envConfig = () => ({
     host: process.env.APP_HOST,
     port: process.env.APP_PORT,
     environment: process.env.ENVIRONMENT,
+    allowedOrigin: process.env.ALLOWED_ORIGIN,
   },
   socket: {
     port: process.env.SOCKET_PORT,
