@@ -1,5 +1,5 @@
 import 'dotenv/config';
-
+import path from 'path';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
@@ -19,10 +19,10 @@ server.use(cors(corsConfig));
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 server.use(cookieParser());
-server.use(helmet());
+/* server.use(helmet()); */
 
 const PREFIX_API = '/api';
-
+server.use('/', express.static(path.join(__dirname, '../public')));
 server.use(`${PREFIX_API}/auth`, AuthRoute);
 server.use(`${PREFIX_API}/user`, UserRoute);
 server.use(`${PREFIX_API}/message`, MessageRoute);
