@@ -7,6 +7,7 @@ import { loginUserYupValidation } from '../utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { AuthThunk } from '@/redux/auth/auth.thunk';
+import { DEFAULT_ROUTES } from '@/shared/constants';
 
 const LoginForm = () => {
   const {
@@ -50,7 +51,7 @@ const LoginForm = () => {
       </button>
       <div className={styles.existingUser}>
         <span>Don&apos;t have an account?</span>
-        <Link to="/register">Register</Link>
+        <Link to={DEFAULT_ROUTES.register}>Register</Link>
       </div>
     </form>
   );

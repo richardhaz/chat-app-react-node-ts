@@ -13,45 +13,46 @@ import {
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { ConversationThunk } from '@/redux/conversation/conversation.thunk';
 import { S3Avatar } from '@/shared/utils';
+import { APP_ROUTES } from '@/shared/constants';
 
 const routes = [
   {
-    path: '/global-chat',
+    path: 'global-chat',
     name: 'Global Chat',
     icon: <RiGlobalLine />
   },
   {
-    path: '/chat',
+    path: 'chat',
     name: 'Single Chat',
     icon: <RiMessengerLine />
   },
   /*   {
-    path: '/me',
+    path: 'me',
     name: 'My Account',
     icon: <RiUser3Line />
   }, */
   {
-    path: '/about',
+    path: 'about',
     name: 'About',
     icon: <RiInformationLine />
   }
   /*  {
-    path: '/settings',
+    path: 'settings',
     name: 'Settings',
     icon: <RiSettings2Line />
   },
   {
-    path: '/friends',
+    path: 'friends',
     name: 'Friends',
     icon: <RiInformationLine />
   }, */
   /*   {
-    path: '/bug-report',
+    path: 'bug-report',
     name: 'Bug Report',
     icon: <RiBugLine />
   },
   {
-    path: '/about',
+    path: 'about',
     name: 'About',
     icon: <RiGroupLine />
   } */
@@ -70,7 +71,7 @@ const MainMenuOptions: React.FC = () => {
       </div>
       <div className={styles.menuList}>
         {routes.map((item, idx) => (
-          <Link key={idx} to={item.path} className={styles.menuListItem}>
+          <Link key={idx} to={`${APP_ROUTES.baseUrl}/${item.path}`} className={styles.menuListItem}>
             <span>{item.icon}</span>
             {item.name}
           </Link>

@@ -6,6 +6,7 @@ import styles from './RegisterForm.module.scss';
 import { CreateUserDto } from '@/shared/dtos/auth';
 import { useAppDispatch } from '@/redux/useTypedRedux';
 import { UserThunk } from '@/redux/user/user.thunk';
+import { DEFAULT_ROUTES } from '@/shared/constants';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ const RegisterForm = () => {
       <button type="submit">Create My Account</button>
       <div className={styles.existingUser}>
         <span>Already have an account?</span>
-        <Link to="/login">Login</Link>
+        <Link to={DEFAULT_ROUTES.login}>Login</Link>
       </div>
     </form>
   );

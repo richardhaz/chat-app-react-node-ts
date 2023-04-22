@@ -2,6 +2,7 @@ export const envConfig = () => ({
   text: import.meta.env.VITE_TEXT,
   apiUrl: import.meta.env.VITE_API_URL,
   sockerUrl: import.meta.env.VITE_SOCKET_URL,
+  suffixUrl: import.meta.env.VITE_SUFFIX_URL,
   aws: {
     s3: {
       projectName: import.meta.env.VITE_AWS_PROJECT_NAME,

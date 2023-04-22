@@ -1,3 +1,4 @@
+import { APP_ROUTES } from '@/shared/constants';
 import { SocketMessaggeData } from '@/shared/models';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +17,7 @@ const NewMessageNotification: React.FC<NewMessageNotificationProps> = ({ socketM
   };
 
   const handleRedirect = () => {
-    navigate(`/chat/${socketMessage.senderId}`);
+    navigate(`${APP_ROUTES.chat}/${socketMessage.senderId}`);
   };
 
   return (

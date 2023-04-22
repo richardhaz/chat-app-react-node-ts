@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { SocketMessaggeData, SocketUserModel } from '@/shared/models';
 import { EVENTS } from '@/sockets';
 import { ioSocket } from '@/shared/utils';
+import { APP_ROUTES } from '@/shared/constants';
 
 const ChatList: React.FC = () => {
   const params = useParams();
@@ -89,7 +90,7 @@ const ChatList: React.FC = () => {
             {filteredUsers.map(item => (
               <Link
                 key={item.profile._id}
-                to={`/chat/${item.profile._id}`}
+                to={`${APP_ROUTES.chat}/${item.profile._id}`}
                 className={styles.usersListItem}
                 onClick={() => handleGetAllMessages(item.profile._id)}
               >
@@ -122,7 +123,7 @@ const ChatList: React.FC = () => {
                 .map(item => (
                   <Link
                     key={item.profile._id}
-                    to={`/chat/${item.profile._id}`}
+                    to={`${APP_ROUTES.chat}/${item.profile._id}`}
                     className={styles.usersListItem}
                     onClick={() => handleGetAllMessages(item.profile._id)}
                   >

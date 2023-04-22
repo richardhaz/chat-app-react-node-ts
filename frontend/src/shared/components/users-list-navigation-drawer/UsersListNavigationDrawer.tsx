@@ -5,6 +5,7 @@ import Drawer from '@mui/material/Drawer';
 import { useAppDispatch, useAppSelector } from '@/redux/useTypedRedux';
 import { setUsersListNavigationDrawer } from '@/redux/app/app.slice';
 import ChatListLoading from '@/shared/layouts/chat-list/ChatListLoading';
+import { APP_ROUTES } from '@/shared/constants';
 
 const UsersListNavigationDrawer = () => {
   const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ const UsersListNavigationDrawer = () => {
               .map(item => (
                 <Link
                   key={item.profile._id}
-                  to={`/chat/${item.profile._id}`}
+                  to={`${APP_ROUTES.chat}/${item.profile._id}`}
                   className={styles.usersListItem}
                   onClick={() => dispatch(setUsersListNavigationDrawer(!usersListNavigationDrawer))}
                 >

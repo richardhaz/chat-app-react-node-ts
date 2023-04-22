@@ -6,6 +6,7 @@ import { setUsersListNavigationDrawer } from '@/redux/app/app.slice';
 import { Tooltip } from '@mui/material';
 import { useState } from 'react';
 import { ConfirmLogoutDialog } from './components/logout';
+import { APP_ROUTES } from '@/shared/constants';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ const Navbar = () => {
   return (
     <>
       <header>
-        <Link to="/">The Guilty Dev</Link>
+        <Link to={`${APP_ROUTES.baseUrl}`}>The Guilty Dev</Link>
         <Tooltip title="Click here to go to global chat" placement="bottom" arrow>
           <button className={`${styles.globalChat} text-rainbow-animation`}>Chatty App</button>
         </Tooltip>

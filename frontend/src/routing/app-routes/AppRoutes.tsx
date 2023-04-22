@@ -19,6 +19,7 @@ import { BugReportPage } from '@/pages/bug-report';
 import { AboutPage } from '@/pages/about';
 import { UsersListNavigationDrawer } from '@/shared/components/users-list-navigation-drawer';
 import { EVENTS } from '@/sockets';
+import { APP_ROUTES } from '@/shared/constants';
 
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
@@ -30,7 +31,7 @@ export const AppRoutes = () => {
 
   const MessageNotification: React.FC<MessageNotificationProps> = ({ socketMessage }) => {
     const handleRedirect = () => {
-      navigate(`/chat/${socketMessage.senderId}`);
+      navigate(`${APP_ROUTES.chat}/${socketMessage.senderId}`);
       toast.dismiss();
     };
 
@@ -84,7 +85,7 @@ export const AppRoutes = () => {
     if ([socketMessage.senderId, socketMessage.receiverId].includes(loggedIn._id) === false) return;
     if (socketMessage.receiverId !== loggedIn._id) return;
     // check if the user has the chat open
-    if (location.pathname.startsWith('/chat')) return;
+    if (location.pathname.startsWith(APP_ROUTES.chat)) return;
 
     toast(<MessageNotification socketMessage={socketMessage} />, { autoClose: 15000 });
 
