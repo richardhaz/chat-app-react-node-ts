@@ -1,0 +1,100 @@
+.form {
+  width: 700px;
+  padding: 20px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  button {
+    background-color: var(--primary-color);
+    color: #fff;
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding: 20px 0;
+    font-size: 18px;
+    font-weight: 500;
+    transition: 150ms background-color ease;
+    transition: 500ms border ease;
+    border: 2px solid none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    &:focus {
+      background-color: var(--primary-color-darker);
+      border: 2px solid #fff;
+    }
+    &:hover {
+      background-color: var(--primary-color-darker);
+    }
+    &:active {
+      background-color: var(--primary-color-darker);
+    }
+  }
+}
+
+.nameFieldRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.inputSeparator {
+  margin-bottom: 15px;
+  width: 100%;
+
+  span {
+    color: #c51d2f;
+    font-size: 14px;
+  }
+}
+
+.inputContainer {
+  background-color: #131313;
+  border: 1px solid gray;
+  position: relative;
+  border-radius: 5px;
+  width: inherit;
+  margin-bottom: 5px;
+}
+
+.inputLabel {
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  color: #8f8f8f;
+  font-size: 14px;
+}
+
+.inputField {
+  background-color: inherit;
+  color: #fff;
+  outline: none;
+  padding: 30px 15px 10px 15px;
+  border: none;
+  font-size: 18px;
+  width: 100%;
+  border-radius: inherit;
+  letter-spacing: 0.5px;
+}
+
+.existingUser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  span {
+    font-size: 15px;
+  }
+  a {
+    color: var(--primary-color);
+    &:hover {
+      color: #fff;
+    }
+  }
+}

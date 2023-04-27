@@ -1,0 +1,94 @@
+.inboxContainer {
+  height: 100%;
+  min-width: 300px;
+
+  @include respond-below(2xl) {
+    display: none;
+  }
+
+  .conversationHeaderWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: var(--header-conversations-height);
+
+    .conversationHeader {
+      height: var(--header-conversations-height-inside);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      font-size: var(--text-size-extra-large);
+      flex-direction: column;
+
+      .headerNavTool {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px 14px;
+
+        p {
+          font-weight: 500;
+          font-size: 18px;
+        }
+
+        span {
+          font-size: var(--text-size-small);
+          color: var(--text-color-dim-light);
+        }
+
+        button {
+          border: none;
+          outline: none;
+          background-color: inherit;
+          color: var(--text-color-light);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: var(--text-size-extra-large);
+          height: 100%;
+          transition: 150ms color ease;
+          &:hover {
+            cursor: pointer;
+            color: var(--icon-color-hover);
+          }
+        }
+      }
+
+      .inputWrapper {
+        display: flex;
+        width: 100%;
+        position: relative;
+
+        input {
+          width: 100%;
+          outline: none;
+          border: none;
+          background-color: var(--bg-color-dark);
+          color: var(--text-color-semi-light);
+          font-size: var(--text-size-medium);
+          padding: 20px 50px;
+          border-radius: 30px;
+        }
+        input::-webkit-input-placeholder {
+          color: var(--text-color-semi-light);
+        }
+        input:-moz-placeholder {
+          color: var(--text-color-semi-light);
+        }
+
+        span {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 23px;
+          display: flex;
+          align-items: center;
+          color: var(--text-color-semi-light);
+        }
+      }
+    }
+  }
+}

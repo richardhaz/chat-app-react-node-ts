@@ -1,0 +1,101 @@
+/* @import 'mixins.scss'; */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import './_shared.scss';
+
+:root {
+  --primary-color: #008080;
+  --primary-color-light: rgb(2, 184, 184);
+  --primary-color-extra-light: rgb(188, 255, 255);
+  --primary-color-darker: rgb(0, 109, 109);
+
+  // utils
+
+  --icon-color-hover: rgb(219, 219, 219);
+
+  --primary-header-height: 80px;
+  --primary-content-height: calc(100vh - var(--primary-header-height));
+  --primary-content-height-inside: calc(var(--primary-content-height) - 20px);
+
+  --header-conversations-height: 160px;
+  --header-conversations-height-inside: 120px;
+
+  --text-size-tiny: 11px;
+  --text-size-extra-small: 12px;
+  --text-size-small: 13px;
+  --text-size-medium: 15px;
+  --text-size-base: 16px;
+  --text-size-large: 18px;
+  --text-size-extra-large: 20px;
+
+  --online-color: #31a24c;
+
+  --text-color-dim-light: #cbcbcb;
+  --text-color-dim: #afafaf;
+  --text-color-dim-dark: #a1a1a1;
+  --text-color-semi-light: #eeeeee;
+  --text-color-light: #fff;
+
+  --bg-color-semi-dark: #1a1a1a;
+  --bg-color-dark: #181717;
+
+  // border box
+  --bg-color-border-box: #242424;
+  --bg-color-border-box-light: #868686;
+  --bg-color-border-box-extra-light: #b8b8b8;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+html {
+  background-color: #1a1a1a;
+  font-family: 'Inter';
+  color: #fff;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  /*   background-color: rgb(104, 104, 104); */
+  background-color: rgb(80, 80, 80);
+  border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.MuiCircularProgress-colorPrimary {
+  color: var(--primary-color) !important;
+}

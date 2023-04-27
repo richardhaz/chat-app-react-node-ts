@@ -1,0 +1,136 @@
+header {
+  height: var(--primary-header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: static;
+  top: 0;
+
+  a {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    @include respond-below(md) {
+      font-size: 20px;
+    }
+  }
+
+  .globalChat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 28px;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+    @include respond-below(md) {
+      display: none;
+    }
+
+    @include respond-below(lg) {
+      font-size: 26px;
+    }
+  }
+
+  .optionsMenu {
+    background-color: inherit;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 28px;
+    color: #fff;
+    transition: 150ms background-color ease;
+    border: none;
+    outline: none;
+    pointer-events: inherit;
+
+    &:hover {
+      cursor: pointer;
+      color: rgb(219, 219, 219);
+    }
+
+    @include respond-below(md) {
+      display: flex;
+    }
+
+    @include respond-above(md) {
+      display: none;
+    }
+  }
+
+  nav {
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    display: flex;
+
+    .navIconButton {
+      position: relative;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color-light);
+      font-size: 24px;
+      transition: 150ms color ease;
+      cursor: pointer;
+      border: none;
+      outline: none;
+
+      &:hover {
+        color: var(--icon-color-hover);
+      }
+      span {
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        font-size: 12px;
+        font-weight: 500;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .navIconMessengerButton {
+      position: relative;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color-light);
+      font-size: 26px;
+      transition: 150ms color ease;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      &:hover {
+        color: var(--icon-color-hover);
+      }
+
+      @include respond-above(2xl) {
+        display: none;
+      }
+
+      span {
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        font-size: 12px;
+        font-weight: 500;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

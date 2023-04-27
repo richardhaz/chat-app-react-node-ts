@@ -1,0 +1,23 @@
+.aboutContainer {
+  padding: 16px;
+}
+
+.contentWrapper p {
+  color: var(--text-color-semi-light);
+  margin-bottom: 15px;
+}
+
+.contentWrapper h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.contentWrapper ul {
+  margin-top: 10px;
+  list-style: none;
+  color: var(--text-color-light);
+}
+
+.contentWrapper ul > li {
+  color: var(--text-color-dim);
+}

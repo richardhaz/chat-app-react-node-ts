@@ -1,0 +1,36 @@
+.menuUser {
+  color: #fff;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 150ms color ease;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    color: var(--icon-color-hover);
+  }
+  display: flex;
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  p {
+    font-size: var(--text-size-medium);
+    margin-right: 2px;
+    @include respond-below(md) {
+      display: none;
+    }
+  }
+
+  span {
+    font-size: var(--text-size-medium);
+    @include respond-below(md) {
+      display: none;
+    }
+  }
+}

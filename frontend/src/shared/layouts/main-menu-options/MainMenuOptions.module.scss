@@ -1,0 +1,88 @@
+.mainMenuOptionsContainer {
+  height: 100%;
+  min-width: 250px;
+  background-color: var(--bg-color-semi-dark);
+
+  @include respond-below(2xl) {
+    display: none;
+  }
+
+  .menuOptionsHeaderWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: var(--header-conversations-height);
+
+    .menuHeader {
+      height: var(--header-conversations-height-inside);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      font-size: var(--text-size-extra-large);
+      flex-direction: column;
+      gap: auto;
+
+      img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+      }
+      p {
+        font-size: var(--text-size-medium);
+        color: var(--text-color-light);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 13em;
+      }
+    }
+  }
+  .menuList {
+    display: block;
+    height: calc(var(--primary-content-height-inside) - var(--header-conversations-height));
+    overflow: auto;
+
+    .menuListItem {
+      position: relative;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      width: 100%;
+      padding: 20px 20px;
+      gap: 15px;
+      transition: 150ms background-color ease;
+      border-bottom: 1px solid var(--bg-color-border-box);
+      font-size: var(--text-size-medium);
+
+      &:hover {
+        background-color: var(--bg-color-border-box);
+      }
+
+      span {
+        font-size: var(--text-size-extra-large);
+        color: var(--text-color-semi-light);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 14em;
+      }
+
+      div {
+        background-color: red;
+        border-radius: 10px;
+        width: 24px;
+        height: 18px;
+        font-size: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

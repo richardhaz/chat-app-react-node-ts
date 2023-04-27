@@ -1,0 +1,67 @@
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  /*   background-color: red; */
+}
+
+@include respond-above(2xl) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+.loading-overlay {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: default;
+  position: fixed;
+  background-color: var(--bg-color-dark);
+}
+
+.text-divider {
+  display: flex;
+  align-items: center; // align text and lines vertically
+  gap: 5px;
+  font-size: 13px;
+  color: #aaaaaa;
+  /*   margin-right: 20px;
+  margin-left: 20px; */
+}
+
+.text-divider::before,
+.text-divider::after {
+  content: '';
+  height: 1px;
+  background-color: #585858;
+  flex-grow: 1; // both lines will expand to occupy the available space
+}
+
+.text-rainbow-animation {
+  font-family: arial black;
+  /*   font-size: 70px; */
+  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-animation 800s linear infinite;
+  -webkit-text-stroke: 1px rgb(180, 180, 180); /* width and color */
+}
+
+@keyframes rainbow-animation {
+  to {
+    background-position: 4500vh;
+  }
+}

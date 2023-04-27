@@ -1,0 +1,25 @@
+.userNames {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+
+  div {
+    p {
+      font-size: var(--text-size-base);
+    }
+
+    span {
+      font-size: var(--text-size-small);
+      text-align: start;
+      width: 100%;
+      color: var(--text-color-dim);
+    }
+  }
+}

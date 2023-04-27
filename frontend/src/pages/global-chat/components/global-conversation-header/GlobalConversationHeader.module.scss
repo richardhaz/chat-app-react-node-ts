@@ -1,0 +1,37 @@
+.conversationContentHeader {
+  background-color: var(--bg-color-dark);
+  height: var(--header-conversations-height-inside);
+  width: 100%;
+  border-radius: 15px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .userInfoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    p {
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .iconMenuButton {
+      border: none;
+      outline: none;
+      background-color: inherit;
+      color: var(--text-color-light);
+      transition: 150ms color ease;
+      font-size: var(--text-size-extra-large);
+      &:hover {
+        cursor: pointer;
+        color: var(--icon-color-hover);
+      }
+    }
+  }
+}

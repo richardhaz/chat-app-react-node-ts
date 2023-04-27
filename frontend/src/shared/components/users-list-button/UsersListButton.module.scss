@@ -1,0 +1,28 @@
+.usersListButton {
+  position: fixed;
+  /*   top: 260px; */
+  top: 20%;
+  right: 25px;
+  background-color: var(--primary-color);
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 28px;
+  color: #eeeeee;
+  transition: 150ms background-color ease;
+  border: none;
+  outline: none;
+  pointer-events: inherit;
+
+  &:hover {
+    background-color: var(--primary-color-darker);
+    cursor: pointer;
+  }
+
+  @include respond-below(lg) {
+    display: flex;
+  }
+
+  @include respond-above(lg) {
+    display: none;
+  }
+}
